@@ -1,65 +1,30 @@
-# Qwik City App ⚡️
+# My Personal Website 🙏🏻
 
-- [Qwik Docs](https://qwik.builder.io/)
-- [Discord](https://qwik.builder.io/chat)
-- [Qwik GitHub](https://github.com/BuilderIO/qwik)
-- [@QwikDev](https://twitter.com/QwikDev)
-- [Vite](https://vitejs.dev/)
+## Description
 
----
+Harnessing Bun, Qwik, and Tailwind CSS for a cutting-edge portfolio. Bun's robust HTTP server, Qwik's intuitive routing, and Tailwind's modern design converge to deliver a high-performance, visually captivating showcase of professional endeavors.
 
-## Project Structure
+## Technologies
 
-This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
+- **Bun**: A clean and robust HTTP server framework.
+- **Qwik**: A performance-focused JavaScript framework with intuitive file-based routing.
+- **Tailwind CSS**: A utility-first CSS framework for modern, responsive design.
 
-Inside your project, you'll see the following directory structure:
+## Setup
 
-```
-├── public/
-│   └── ...
-└── src/
-    ├── components/
-    │   └── ...
-    └── routes/
-        └── ...
-```
+### Bun
 
-- `src/routes`: Provides the directory-based routing, which can include a hierarchy of `layout.tsx` layout files, and an `index.tsx` file as the page. Additionally, `index.ts` files are endpoints. Please see the [routing docs](https://qwik.builder.io/qwikcity/routing/overview/) for more info.
+Follow the [official Bun documentation](https://bun.sh/docs/) for setup and usage instructions.
 
-- `src/components`: Recommended directory for components.
+### Qwik
 
-- `public`: Any static assets, like images, can be placed in the public directory. Please see the [Vite public directory](https://vitejs.dev/guide/assets.html#the-public-directory) for more info.
+Follow the [official Qwik documentation](https://qwik.builder.io/docs/) for setup and usage instructions.
 
-## Add Integrations and deployment
+### Tailwind CSS
 
-Use the `bun qwik add` command to add additional integrations. Some examples of integrations includes: Cloudflare, Netlify or Express Server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
+Follow the [official Tailwind CSS documentation](https://tailwindcss.com/docs) for setup and usage instructions.
 
-```shell
-bun qwik add # or `bun qwik add`
-```
+## Contact
 
-## Development
-
-Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
-
-```shell
-npm start # or `bun start`
-```
-
-> Note: during dev mode, Vite may request a significant number of `.js` files. This does not represent a Qwik production build.
-
-## Preview
-
-The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to preview a production build locally and should not be used as a production server.
-
-```shell
-bun preview # or `bun preview`
-```
-
-## Production
-
-The production build will generate client and server modules by running both client and server build commands. The build command will use Typescript to run a type check on the source code.
-
-```shell
-bun build # or `bun build`
-```
+Aleks Manov - contact@aleksmanov.me
+Project Link: [Personal Website Project Repo](https://github.com/Ception/mysite)
