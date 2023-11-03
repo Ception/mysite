@@ -15,11 +15,13 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to Qwik",
+  title:
+    "Aleks Manov - Innovative Developer Portfolio | Bun, Qwik & Tailwind Tech Stack",
   meta: [
     {
       name: "description",
-      content: "Qwik site description",
+      content:
+        "Aleks Manov's Innovative Developer Portfolio showcasing a modern tech stack with Bun, Qwik, and Tailwind CSS to deliver high-performance and visually captivating web solutions.",
     },
   ],
 };

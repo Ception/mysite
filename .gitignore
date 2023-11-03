@@ -39,3 +39,7 @@ lerna-debug.log*
 # Yarn
 .yarn/*
 !.yarn/releases
+
+# Environment configuration
+.env
+.env.*
