@@ -10,16 +10,16 @@ export const LandingPage = component$(() => {
         </h1>
         <p class="text-2xl font-semibold text-gray-700">Coming Soon</p>
       </header>
-      <section class="flex flex-wrap space-x-0 md:space-x-10">
+      <section class="grid grid-cols-1 gap-10 md:grid-cols-3">
         {["Qwik", "Bun", "Tailwind"].map((tech, index) => (
           <div
             key={index}
-            class="m-5 flex transform flex-col items-center transition-transform hover:scale-105"
+            class="flex transform flex-col items-center transition-transform hover:scale-105"
           >
             <div class="flex h-24 w-24 items-center justify-center rounded-full bg-white p-4 shadow-lg">
               {tech === "Qwik" && <QwikLogo />}
-              {tech === "Bun" && <BunLogo />}
               {tech === "Tailwind" && <TailwindLogo />}
+              {tech === "Bun" && <BunLogo />}
             </div>
             <p class="mt-2 text-xl font-semibold text-gray-700">{tech}</p>
           </div>
