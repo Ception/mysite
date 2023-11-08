@@ -1,11 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { LandingPage } from "../components/LandingPage";
+// import { LandingPage } from "../components/LandingPage";
+import { ThreeJsLandingPage } from "~/components/ThreeJs";
 
 export default component$(() => {
   return (
     <div>
-      <LandingPage />
+      {/* <LandingPage /> */}
+      <ThreeJsLandingPage />
     </div>
   );
 });
