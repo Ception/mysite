@@ -8,6 +8,10 @@ interface Sizes {
 
 export const ThreeJsLandingPage = component$(() => {
   useVisibleTask$(() => {
+    // texture loader
+    const loader: THREE.TextureLoader = new THREE.TextureLoader();
+    const star = loader.load("../../public/textures/star.png");
+
     // Canvas
     const canvas = document.querySelector(
       "canvas.three-js-landing",
@@ -24,14 +28,41 @@ export const ThreeJsLandingPage = component$(() => {
       100,
     );
 
+    const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
+    const particlesCount: number = 10000;
+
+    const positionArray: number[] = new Array(particlesCount * 3);
+
+    for (let i = 0; i < particlesCount * 3; i++) {
+      positionArray[i] = (Math.random() - 0.5) * 5;
+    }
+
+    particlesGeometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(positionArray, 3),
+    );
+
     // Materials
 
-    const material: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial();
-    material.color = new THREE.Color(0xff0000);
+    const material: THREE.PointsMaterial = new THREE.PointsMaterial({
+      transparent: true,
+      size: 0.005,
+    });
+
+    const particlesMaterial: THREE.PointsMaterial = new THREE.PointsMaterial({
+      transparent: true,
+      size: 0.005,
+      map: star,
+    });
 
     // Mesh
-    const sphere: THREE.Mesh = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+    const sphere: THREE.Points = new THREE.Points(geometry, material);
+
+    const particlesMesh: THREE.Points = new THREE.Points(
+      particlesGeometry,
+      particlesMaterial,
+    );
+    scene.add(sphere, particlesMesh);
 
     // Lights
 
@@ -90,6 +121,18 @@ export const ThreeJsLandingPage = component$(() => {
     });
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(new THREE.Color("#21282a"));
+
+    // mouse
+    document.addEventListener("mousemove", animateParticles);
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    function animateParticles(event: MouseEvent) {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    }
 
     /**
      * Animate
@@ -102,6 +145,8 @@ export const ThreeJsLandingPage = component$(() => {
 
       // Update objects
       sphere.rotation.y = 0.5 * elapsedTime;
+      particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
+      particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
 
       // Update Orbital Controls
       // controls.update()
