@@ -1,29 +1,41 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import * as THREE from "three";
 
+interface Sizes {
+  width: number;
+  height: number;
+}
+
 export const ThreeJsLandingPage = component$(() => {
   useVisibleTask$(() => {
     // Canvas
-    const canvas = document.querySelector("canvas.three-js-landing");
+    const canvas = document.querySelector(
+      "canvas.three-js-landing",
+    ) as HTMLCanvasElement;
 
     // Scene
-    const scene = new THREE.Scene();
+    const scene: THREE.Scene = new THREE.Scene();
 
     // Objects
-    const geometry = new THREE.TorusGeometry(0.7, 0.2, 16, 100);
+    const geometry: THREE.TorusGeometry = new THREE.TorusGeometry(
+      0.7,
+      0.2,
+      16,
+      100,
+    );
 
     // Materials
 
-    const material = new THREE.MeshBasicMaterial();
+    const material: THREE.MeshBasicMaterial = new THREE.MeshBasicMaterial();
     material.color = new THREE.Color(0xff0000);
 
     // Mesh
-    const sphere = new THREE.Mesh(geometry, material);
+    const sphere: THREE.Mesh = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
     // Lights
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.1);
+    const pointLight: THREE.PointLight = new THREE.PointLight(0xffffff, 0.1);
     pointLight.position.x = 2;
     pointLight.position.y = 3;
     pointLight.position.z = 4;
@@ -32,7 +44,7 @@ export const ThreeJsLandingPage = component$(() => {
     /**
      * Sizes
      */
-    const sizes = {
+    const sizes: Sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
     };
@@ -55,7 +67,7 @@ export const ThreeJsLandingPage = component$(() => {
      * Camera
      */
     // Base camera
-    const camera = new THREE.PerspectiveCamera(
+    const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(
       75,
       sizes.width / sizes.height,
       0.1,
@@ -73,7 +85,7 @@ export const ThreeJsLandingPage = component$(() => {
     /**
      * Renderer
      */
-    const renderer = new THREE.WebGLRenderer({
+    const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer({
       canvas: canvas,
     });
     renderer.setSize(sizes.width, sizes.height);
@@ -83,10 +95,10 @@ export const ThreeJsLandingPage = component$(() => {
      * Animate
      */
 
-    const clock = new THREE.Clock();
+    const clock: THREE.Clock = new THREE.Clock();
 
     const tick = () => {
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime: number = clock.getElapsedTime();
 
       // Update objects
       sphere.rotation.y = 0.5 * elapsedTime;
