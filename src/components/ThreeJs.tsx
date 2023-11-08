@@ -1,4 +1,5 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { QwikLogo, BunLogo, TailwindLogo, ThreeJsLogo } from "./Logos";
 import * as THREE from "three";
 
 interface Sizes {
@@ -10,7 +11,7 @@ export const ThreeJsLandingPage = component$(() => {
   useVisibleTask$(() => {
     // texture loader
     const loader: THREE.TextureLoader = new THREE.TextureLoader();
-    const star = loader.load("../../public/textures/star.png");
+    const star = loader.load("/textures/star.png");
 
     // Canvas
     const canvas = document.querySelector(
@@ -25,7 +26,7 @@ export const ThreeJsLandingPage = component$(() => {
       0.7,
       0.2,
       16,
-      100,
+      120,
     );
 
     const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
@@ -145,8 +146,12 @@ export const ThreeJsLandingPage = component$(() => {
 
       // Update objects
       sphere.rotation.y = 0.5 * elapsedTime;
-      particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
-      particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
+      particlesMesh.rotation.y = -0.1 * elapsedTime;
+
+      if (mouseX > 0) {
+        particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
+        particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
+      }
 
       // Update Orbital Controls
       // controls.update()
@@ -163,7 +168,40 @@ export const ThreeJsLandingPage = component$(() => {
 
   return (
     <div>
-      <canvas class="three-js-landing"></canvas>
+      <div class="container absolute z-10 flex min-h-screen w-full items-center justify-center text-white">
+        <div class="content relative flex w-full items-start gap-20 pt-12">
+          <div class="w-1/2 flex-auto flex-grow text-right">
+            <h1 class="line-height-1 m-0 text-5xl leading-tight">
+              Aleks Manov
+            </h1>
+            <h2 class="line-height-1 m-0 text-4xl leading-tight">
+              Software Engineer - Full Stack Developer
+            </h2>
+          </div>
+          <div class="w-2/5 flex-auto flex-grow text-xl leading-tight">
+            <p class="line-height-1 m-0">
+              Java, React, NextJS, JavaScript, and QWIK.
+            </p>
+            <section class="mt-4 grid grid-cols-1 gap-10 md:grid-cols-4">
+              {["Qwik", "Bun", "Tailwind", "Three.js"].map((tech, index) => (
+                <div
+                  key={index}
+                  class="flex transform flex-col items-center transition-transform hover:scale-105"
+                >
+                  <div class="z-50 flex h-16 w-16 items-center justify-center rounded-full bg-transparent p-4 shadow-lg">
+                    {tech === "Qwik" && <QwikLogo />}
+                    {tech === "Tailwind" && <TailwindLogo />}
+                    {tech === "Bun" && <BunLogo />}
+                    {tech === "Three.js" && <ThreeJsLogo />}
+                  </div>
+                  <p class="mt-2 text-base">{tech}</p>
+                </div>
+              ))}
+            </section>
+          </div>
+        </div>
+      </div>
+      <canvas class="three-js-landing fixed left-0 top-0 outline-none"></canvas>
     </div>
   );
 });
