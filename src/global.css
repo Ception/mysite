@@ -23,14 +23,20 @@ html {
 }
 
 body {
-  padding: 0;
-  line-height: inherit;
   color: white;
   background-color: #21282a;
 }
 
-h1,
-h2 {
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* h1,
+h2,
+h3,
+svg {
   animation:
     clipPath 2s forwards 2s,
     moveDown 3s forwards;
@@ -44,11 +50,13 @@ p {
 
 h1,
 h2,
-p {
+h3,
+p,
+svg {
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-}
+} */
 
-.content::before {
+/* .content::before {
   content: "";
   position: absolute;
   top: 0;
@@ -63,7 +71,7 @@ p {
   to {
     transform: scaleX(1);
   }
-}
+} */
 
 @keyframes clipPath {
   to {

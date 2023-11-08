@@ -168,38 +168,29 @@ export const ThreeJsLandingPage = component$(() => {
 
   return (
     <div>
-      <div class="container absolute z-10 flex min-h-screen w-full items-center justify-center text-white">
-        <div class="content relative flex w-full items-start gap-20 pt-12">
-          <div class="w-1/2 flex-auto flex-grow text-right">
-            <h1 class="line-height-1 m-0 text-5xl leading-tight">
-              Aleks Manov
-            </h1>
-            <h2 class="line-height-1 m-0 text-4xl leading-tight">
-              Software Engineer - Full Stack Developer
-            </h2>
-          </div>
-          <div class="w-2/5 flex-auto flex-grow text-xl leading-tight">
-            <p class="line-height-1 m-0">
-              Java, React, NextJS, JavaScript, and QWIK.
-            </p>
-            <section class="mt-4 grid grid-cols-1 gap-10 md:grid-cols-4">
-              {["Qwik", "Bun", "Tailwind", "Three.js"].map((tech, index) => (
-                <div
-                  key={index}
-                  class="flex transform flex-col items-center transition-transform hover:scale-105"
-                >
-                  <div class="z-50 flex h-16 w-16 items-center justify-center rounded-full bg-transparent p-4 shadow-lg">
-                    {tech === "Qwik" && <QwikLogo />}
-                    {tech === "Tailwind" && <TailwindLogo />}
-                    {tech === "Bun" && <BunLogo />}
-                    {tech === "Three.js" && <ThreeJsLogo />}
-                  </div>
-                  <p class="mt-2 text-base">{tech}</p>
-                </div>
-              ))}
-            </section>
-          </div>
+      <div class="container absolute z-10 flex min-h-screen w-full flex-col items-start justify-between p-4 text-white md:p-12">
+        <div>
+          <h1 class="m-0 text-3xl leading-tight md:text-5xl">Aleks Manov</h1>
+          <h3 class="m-0 text-2xl leading-tight md:text-4xl">
+            Software Engineer - Full Stack Developer
+          </h3>
         </div>
+        <section class="grid grid-cols-1 gap-2 sm:grid-cols-4 md:grid-cols-1 md:gap-4 lg:grid-cols-4">
+          {["Qwik", "Bun", "Tailwind", "Three.js"].map((tech, index) => (
+            <div
+              key={index}
+              class="flex transform flex-col items-center transition-transform hover:scale-105"
+            >
+              <div class="z-50">
+                {tech === "Qwik" && <QwikLogo />}
+                {tech === "Tailwind" && <TailwindLogo />}
+                {tech === "Bun" && <BunLogo />}
+                {tech === "Three.js" && <ThreeJsLogo />}
+              </div>
+              <p class="mt-2 text-sm md:text-base">{tech}</p>
+            </div>
+          ))}
+        </section>
       </div>
       <canvas class="three-js-landing fixed left-0 top-0 outline-none"></canvas>
     </div>
