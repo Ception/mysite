@@ -130,9 +130,25 @@ export const ThreeJsLandingPage = component$(() => {
     let mouseX = 0;
     let mouseY = 0;
 
+    const mousePos: THREE.Vector2 = new THREE.Vector2();
+
+    const targetRotation: THREE.Vector2 = new THREE.Vector2();
+
+    // Quaternion for the current rotation
+    const currentRotation: THREE.Quaternion = new THREE.Quaternion();
+
     function animateParticles(event: MouseEvent) {
+      // update the mouse pos
       mouseX = event.clientX;
       mouseY = event.clientY;
+
+      // Normalize mouse position to -1 to 1 range
+      mousePos.x = (mouseX / window.innerWidth) * 2 - 1;
+      mousePos.y = -(mouseY / window.innerHeight) * 2 + 1;
+
+      // Update target rotation based on mouse position
+      targetRotation.x = mousePos.y * Math.PI * 0.1;
+      targetRotation.y = mousePos.x * Math.PI * 0.1;
     }
 
     /**
@@ -146,15 +162,18 @@ export const ThreeJsLandingPage = component$(() => {
 
       // Update objects
       sphere.rotation.y = 0.5 * elapsedTime;
-      particlesMesh.rotation.y = -0.1 * elapsedTime;
 
-      if (mouseX > 0) {
-        particlesMesh.rotation.x = mouseY * (elapsedTime * 0.00008);
-        particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00008);
-      }
+      // Update particlesMesh rotation
+      // Convert target rotation to Quaternion
+      const targetQuaternion = new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(targetRotation.x, targetRotation.y, 0, "YXZ"),
+      );
 
-      // Update Orbital Controls
-      // controls.update()
+      // Slerp from current rotation to target rotation
+      currentRotation.slerp(targetQuaternion, 0.07);
+
+      // Update particlesMesh rotation
+      particlesMesh.setRotationFromQuaternion(currentRotation);
 
       // Render
       renderer.render(scene, camera);
