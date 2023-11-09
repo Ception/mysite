@@ -1,5 +1,4 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
-import { QwikLogo, BunLogo, TailwindLogo, ThreeJsLogo } from "./TechLogos";
 import * as THREE from "three";
 
 interface Sizes {
@@ -7,7 +6,7 @@ interface Sizes {
   height: number;
 }
 
-export const ThreeJsLandingPage = component$(() => {
+export const ThreeJs = component$(() => {
   useVisibleTask$(() => {
     // texture loader
     const loader: THREE.TextureLoader = new THREE.TextureLoader();
@@ -187,30 +186,6 @@ export const ThreeJsLandingPage = component$(() => {
 
   return (
     <div>
-      <div class="container absolute z-10 flex min-h-screen w-full flex-col items-start justify-between p-4 text-white md:p-12">
-        <div>
-          <h1 class="m-0 text-3xl leading-tight md:text-5xl">Aleks Manov</h1>
-          <h3 class="m-0 text-2xl leading-tight md:text-4xl">
-            Software Engineer - Full Stack Developer
-          </h3>
-        </div>
-        <section class="grid grid-cols-1 gap-2 sm:grid-cols-4 md:grid-cols-1 md:gap-4 lg:grid-cols-4">
-          {["Qwik", "Bun", "Tailwind", "Three.js"].map((tech, index) => (
-            <div
-              key={index}
-              class="flex transform flex-col items-center transition-transform hover:scale-105"
-            >
-              <div class="z-50">
-                {tech === "Qwik" && <QwikLogo />}
-                {tech === "Tailwind" && <TailwindLogo />}
-                {tech === "Bun" && <BunLogo />}
-                {tech === "Three.js" && <ThreeJsLogo />}
-              </div>
-              <p class="mt-2 text-sm md:text-base">{tech}</p>
-            </div>
-          ))}
-        </section>
-      </div>
       <canvas class="three-js-landing fixed left-0 top-0 outline-none"></canvas>
     </div>
   );

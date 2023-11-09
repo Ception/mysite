@@ -1,6 +1,29 @@
 import { component$ } from "@builder.io/qwik";
 
-export const QwikLogo = component$(() => (
+export const TechLogos = component$(() => {
+  return (
+    <div>
+      <section class="grid grid-cols-1 gap-2 sm:grid-cols-4 md:grid-cols-1 md:gap-4 lg:grid-cols-4">
+        {["Qwik", "Bun", "Tailwind", "Three.js"].map((tech, index) => (
+          <div
+            key={index}
+            class="flex transform flex-col items-center transition-transform hover:scale-105"
+          >
+            <div class="z-50">
+              {tech === "Qwik" && <QwikLogo />}
+              {tech === "Tailwind" && <TailwindLogo />}
+              {tech === "Bun" && <BunLogo />}
+              {tech === "Three.js" && <ThreeJsLogo />}
+            </div>
+            <p class="mt-2 text-sm md:text-base">{tech}</p>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+});
+
+const QwikLogo = component$(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -14,7 +37,7 @@ export const QwikLogo = component$(() => (
   </svg>
 ));
 
-export const TailwindLogo = component$(() => (
+const TailwindLogo = component$(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -28,7 +51,7 @@ export const TailwindLogo = component$(() => (
   </svg>
 ));
 
-export const BunLogo = component$(() => (
+const BunLogo = component$(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"
@@ -42,7 +65,7 @@ export const BunLogo = component$(() => (
   </svg>
 ));
 
-export const ThreeJsLogo = component$(() => (
+const ThreeJsLogo = component$(() => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="32"

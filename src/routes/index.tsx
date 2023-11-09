@@ -1,13 +1,15 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-// import { LandingPage } from "../components/LandingPage";
-import { ThreeJsLandingPage } from "~/components/ThreeJs";
+import { Header } from "~/components/Header";
+import { TechLogos } from "~/components/TechLogos";
+import { ThreeJs } from "~/components/ThreeJs";
 
 export default component$(() => {
   return (
-    <div>
-      {/* <LandingPage /> */}
-      <ThreeJsLandingPage />
+    <div class="container absolute flex min-h-screen w-full flex-col items-start justify-between p-4 text-white md:p-12">
+      <Header />
+      <ThreeJs />
+      <TechLogos />
     </div>
   );
 });
