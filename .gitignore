@@ -43,3 +43,6 @@ lerna-debug.log*
 # Environment configuration
 .env
 .env.*
+
+# Cloudflare
+functions/**/*.js
