@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 
 export const Header = component$(() => {
   const H1_TITLE = "Aleks Manov";
-  const H3_TITLE = "Software Engineer - Full Stack Developer";
+  const H3_TITLE = "Full Stack Developer";
 
   return (
     <div class="z-50">
