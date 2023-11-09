@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
-  "name": "mysite",
+  "name": "aleksmanov",
   "short_name": "Welcome to my Personal Website",
   "start_url": ".",
   "display": "standalone",
