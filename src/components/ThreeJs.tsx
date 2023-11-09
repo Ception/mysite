@@ -1,5 +1,5 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
-import { QwikLogo, BunLogo, TailwindLogo, ThreeJsLogo } from "./Logos";
+import { QwikLogo, BunLogo, TailwindLogo, ThreeJsLogo } from "./TechLogos";
 import * as THREE from "three";
 
 interface Sizes {
