@@ -16,7 +16,7 @@ export default component$(() => {
 
 export const head: DocumentHead = {
   title:
-    "Aleks Manov - Innovative Developer Portfolio | Bun, Qwik & Tailwind Tech Stack",
+    "Aleks Manov - Innovative Developer Portfolio | Bun, Qwik Tailwind & Three.js Tech Stack",
   meta: [
     {
       name: "description",
