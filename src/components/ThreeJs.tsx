@@ -29,7 +29,7 @@ export const ThreeJs = component$(() => {
     );
 
     const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
-    const particlesCount: number = 10000;
+    const particlesCount: number = 50000;
 
     const positionArray: number[] = new Array(particlesCount * 3);
 
