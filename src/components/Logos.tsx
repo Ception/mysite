@@ -1,5 +1,40 @@
 import { component$ } from "@builder.io/qwik";
 
+export const MyLogo = component$(() => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="64"
+      height="64"
+      viewBox="0 0 64 64"
+      class="transition-colors duration-300 hover:text-gray-700 dark:hover:text-gray-300"
+    >
+      <path fill="currentColor" d="M28.271 30h7.459l-3.729-9.938z" />
+      <path
+        fill="currentColor"
+        d="M52 2H12C6.477 2 2 6.476 2 12v40c0 5.523 4.477 10 10 10h40c5.523 0 10-4.477 10-10V12c0-5.524-4.477-10-10-10zM41.733 46l-4.202-11.199h-11.06L22.267 46H17l12.01-32h5.982L47 46h-5.267z"
+      />
+    </svg>
+  );
+});
+
+export const ToggleThemeIcon = component$(() => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="64"
+      height="64"
+      viewBox="0 0 256 256"
+      class="transition-colors duration-300 hover:text-gray-700 dark:hover:text-gray-300"
+    >
+      <path
+        fill="currentColor"
+        d="M122 40V16a6 6 0 0 1 12 0v24a6 6 0 0 1-12 0Zm68 88a62 62 0 1 1-62-62a62.07 62.07 0 0 1 62 62Zm-12 0a50 50 0 1 0-50 50a50.06 50.06 0 0 0 50-50ZM59.76 68.24a6 6 0 1 0 8.48-8.48l-16-16a6 6 0 0 0-8.48 8.48Zm0 119.52l-16 16a6 6 0 1 0 8.48 8.48l16-16a6 6 0 1 0-8.48-8.48ZM192 70a6 6 0 0 0 4.24-1.76l16-16a6 6 0 0 0-8.48-8.48l-16 16A6 6 0 0 0 192 70Zm4.24 117.76a6 6 0 0 0-8.48 8.48l16 16a6 6 0 0 0 8.48-8.48ZM46 128a6 6 0 0 0-6-6H16a6 6 0 0 0 0 12h24a6 6 0 0 0 6-6Zm82 82a6 6 0 0 0-6 6v24a6 6 0 0 0 12 0v-24a6 6 0 0 0-6-6Zm112-88h-24a6 6 0 0 0 0 12h24a6 6 0 0 0 0-12Z"
+      />
+    </svg>
+  );
+});
+
 export const TechLogos = component$(() => {
   return (
     <div>

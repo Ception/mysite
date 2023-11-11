@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { TechLogos } from "./TechLogos";
+import { TechLogos } from "./Logos";
 
 export const LandingPage = component$(() => {
   return (

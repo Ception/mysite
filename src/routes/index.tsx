@@ -1,15 +1,17 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import { Footer } from "~/components/Footer";
 import { Header } from "~/components/Header";
-import { TechLogos } from "~/components/TechLogos";
 import { ThreeJs } from "~/components/ThreeJs";
 
 export default component$(() => {
   return (
-    <div class="container absolute flex min-h-screen w-full flex-col items-start justify-between p-4 text-white md:p-12">
+    <div class="mx-auto flex min-h-screen w-screen flex-col p-4">
       <Header />
-      <ThreeJs />
-      <TechLogos />
+      <main class="flex-grow">
+        <ThreeJs />
+      </main>
+      <Footer />
     </div>
   );
 });
