@@ -1,4 +1,5 @@
 import { component$, useStore } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 
 export const Navbar = component$(() => {
   const state = useStore({
@@ -21,7 +22,7 @@ export const Navbar = component$(() => {
               transform: "rotate(180deg)",
             }}
           >
-            {item}
+            <Link href={item.toLowerCase()}>{item}</Link>
             <span
               class={`absolute right-0 top-0 w-1 bg-blue-500 transition-all duration-300 ease-out ${
                 state.activeItem === item ? "scale-y-100" : "scale-y-0"

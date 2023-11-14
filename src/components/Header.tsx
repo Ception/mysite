@@ -1,6 +1,7 @@
 // Header component
 import { component$ } from "@builder.io/qwik";
 import { ToggleThemeIcon, MyLogo } from "./Icons";
+import { Link } from "@builder.io/qwik-city";
 
 export const Header = component$(() => {
   return (
@@ -12,7 +13,9 @@ export const Header = component$(() => {
       }}
     >
       <div>
-        <MyLogo />
+        <Link href="/">
+          <MyLogo />
+        </Link>
       </div>
       <div>
         <ToggleThemeIcon />
