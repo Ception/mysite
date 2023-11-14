@@ -1,17 +1,21 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import { Footer } from "~/components/Footer";
 import { Header } from "~/components/Header";
+import { LandingPage } from "~/components/LandingPage";
+import { Navbar } from "~/components/Navbar";
 import { ThreeJs } from "~/components/ThreeJs";
 
 export default component$(() => {
   return (
-    <div class="mx-auto flex min-h-screen w-screen flex-col p-4">
-      <Header />
-      <main class="flex-grow">
-        <ThreeJs />
-      </main>
-      <Footer />
+    <div class="flex min-h-screen w-full items-center justify-center overflow-hidden">
+      <ThreeJs />
+      <div class="relative z-10 flex h-5/6 w-5/6 flex-col p-4">
+        <Header />
+        <Navbar />
+        <main class="flex-grow">
+          <LandingPage />
+        </main>
+      </div>
     </div>
   );
 });

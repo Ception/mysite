@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "@types/three": "^0.158.2",
-    "framer-motion": "^10.16.4",
     "three": "^0.158.0"
   }
 }

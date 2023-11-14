@@ -185,8 +185,8 @@ export const ThreeJs = component$(() => {
   });
 
   return (
-    <div>
-      <canvas class="three-js-landing fixed left-0 top-0 outline-none"></canvas>
+    <div class="absolute inset-0">
+      <canvas class="three-js-landing h-full w-full outline-none"></canvas>
     </div>
   );
 });
