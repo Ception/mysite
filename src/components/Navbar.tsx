@@ -11,7 +11,7 @@ export const Navbar = component$(() => {
       <ul class="absolute left-0 flex h-full flex-col items-center justify-center space-y-2">
         {state.menuItems.map((item) => (
           <li
-            class={`cursor-pointer px-4 py-2 text-lg ${
+            class={`cursor-pointer px-4 py-2 text-base ${
               state.activeItem === item ? "text-blue-600" : "text-white"
             }`}
             key={item}
