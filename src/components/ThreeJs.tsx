@@ -20,14 +20,6 @@ export const ThreeJs = component$(() => {
     // Scene
     const scene: THREE.Scene = new THREE.Scene();
 
-    // Objects
-    const geometry: THREE.TorusGeometry = new THREE.TorusGeometry(
-      0.7,
-      0.2,
-      16,
-      120,
-    );
-
     const particlesGeometry: THREE.BufferGeometry = new THREE.BufferGeometry();
     const particlesCount: number = 50000;
 
@@ -43,26 +35,17 @@ export const ThreeJs = component$(() => {
     );
 
     // Materials
-
-    const material: THREE.PointsMaterial = new THREE.PointsMaterial({
-      transparent: true,
-      size: 0.005,
-    });
-
     const particlesMaterial: THREE.PointsMaterial = new THREE.PointsMaterial({
       transparent: true,
       size: 0.005,
       map: star,
     });
 
-    // Mesh
-    const sphere: THREE.Points = new THREE.Points(geometry, material);
-
     const particlesMesh: THREE.Points = new THREE.Points(
       particlesGeometry,
       particlesMaterial,
     );
-    scene.add(sphere, particlesMesh);
+    scene.add(particlesMesh);
 
     // Lights
 
@@ -109,10 +92,6 @@ export const ThreeJs = component$(() => {
     camera.position.z = 2;
     scene.add(camera);
 
-    // Controls
-    // const controls = new OrbitControls(camera, canvas)
-    // controls.enableDamping = true
-
     /**
      * Renderer
      */
@@ -153,15 +132,7 @@ export const ThreeJs = component$(() => {
     /**
      * Animate
      */
-
-    const clock: THREE.Clock = new THREE.Clock();
-
     const tick = () => {
-      const elapsedTime: number = clock.getElapsedTime();
-
-      // Update objects
-      sphere.rotation.y = 0.5 * elapsedTime;
-
       // Update particlesMesh rotation
       // Convert target rotation to Quaternion
       const targetQuaternion = new THREE.Quaternion().setFromEuler(

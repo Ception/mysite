@@ -2,7 +2,8 @@ import { component$, useStore, useVisibleTask$ } from "@builder.io/qwik";
 
 export const LandingPage = component$(() => {
   const FINAL_TITLE: string = "Aleks Manov";
-  const characters: string = "アレックスマノ.フ ソフトウェアエンジア"; // aleks manov software engineer
+  const characters: string =
+    "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
   const state = useStore<{ title: string[] }>({
     title: new Array(FINAL_TITLE.length).fill(" "), // Initial state with spaces
   });
@@ -44,9 +45,7 @@ export const LandingPage = component$(() => {
   return (
     <div class="flex w-full items-center justify-between">
       <div class="flex items-center space-x-4">
-        <h1 class="text-3xl leading-tight md:text-5xl">
-          {state.title.join("")}
-        </h1>
+        <h3 class="leading-tight">{state.title.join("")}</h3>
       </div>
     </div>
   );
