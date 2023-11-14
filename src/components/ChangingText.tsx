@@ -30,7 +30,7 @@ export const ChangingText = component$((props: ChangingTextProps) => {
       } else {
         clearInterval(intervalId);
       }
-    }, 100);
+    }, 60);
 
     // Schedule each character to stop shuffling at a staggered time
     indexesToShuffle.forEach((index, i) => {
@@ -38,7 +38,7 @@ export const ChangingText = component$((props: ChangingTextProps) => {
         () => {
           state.title[index] = FINAL_TEXT[index].toUpperCase(); // Set the individual character to its final value
         },
-        i * 100 + 1200,
+        i * 100 + 1000,
       ); // i * 100 ensures each character is revealed one after another
     });
 

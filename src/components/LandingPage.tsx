@@ -4,13 +4,14 @@ import { ChangingText } from "./ChangingText";
 
 export const LandingPage = component$(() => {
   const PREFIX: string = "Software";
+  const SUFFIX: string = "Engineer";
 
   return (
     <div>
       <section class="flex h-full w-full flex-col items-center justify-center px-4 sm:px-2 md:px-0">
         <div class="flex flex-col items-start">
-          <div class="flex items-center">
-            <h2 class="pb-4 text-2xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-3xl">
+          <div class="flex h-10 items-center">
+            <h2 class="text-2xl sm:text-2xl md:text-2xl lg:text-2xl xl:text-3xl">
               <ChangingText finalText="Aleks Manov" />
             </h2>
           </div>
@@ -23,7 +24,7 @@ export const LandingPage = component$(() => {
           <div class="flex items-center justify-center">
             <ForwardArrow />
             <h1 class="pl-4 text-7xl sm:text-7xl md:text-7xl lg:text-7xl xl:text-8xl">
-              Engineer
+              {SUFFIX}
             </h1>
           </div>
         </div>
