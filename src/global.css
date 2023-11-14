@@ -61,3 +61,59 @@ h1 {
     transform: scaleX(1);
   }
 }
+
+/* Responsive styles */
+@media (max-width: 640px) {
+  /* sm */
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .line {
+    width: 80px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  /* md */
+  h1 {
+    font-size: 2rem;
+  }
+
+  .line {
+    width: 90px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* lg */
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .line {
+    width: 100px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* xl */
+  h1 {
+    font-size: 3rem;
+  }
+
+  .line {
+    width: 110px;
+  }
+}
+
+@media (min-width: 1281px) {
+  /* 2xl */
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .line {
+    width: 120px;
+  }
+}

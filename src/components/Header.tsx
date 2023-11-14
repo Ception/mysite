@@ -17,7 +17,7 @@ export const Header = component$(() => {
           <MyLogo />
         </Link>
       </div>
-      <div>
+      <div class="cursor-pointer">
         <ToggleThemeIcon />
       </div>
     </div>
