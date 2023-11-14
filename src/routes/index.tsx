@@ -7,9 +7,9 @@ import { ThreeJs } from "~/components/ThreeJs";
 
 export default component$(() => {
   return (
-    <div class="flex min-h-screen w-full items-center justify-center overflow-hidden">
+    <div class="flex min-h-screen w-full items-center justify-center overflow-hidden px-4 sm:px-2 md:px-0">
       <ThreeJs />
-      <div class="relative flex h-5/6 w-5/6 flex-col">
+      <div class="relative flex h-5/6 w-full flex-col sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-5/6">
         <Header />
         <Navbar />
         <main>
