@@ -1,5 +1,5 @@
 import { component$, useStore, useVisibleTask$ } from "@builder.io/qwik";
-import { ForwardArrow } from "./Icons";
+import { ForwardArrow, MouseIcon } from "./Icons";
 
 export const LandingPage = component$(() => {
   const FINAL_TITLE: string = "Aleks Manov";
@@ -33,7 +33,7 @@ export const LandingPage = component$(() => {
     indexesToShuffle.forEach((index, i) => {
       setTimeout(
         () => {
-          state.title[index] = FINAL_TITLE[index]; // Set the individual character to its final value
+          state.title[index] = FINAL_TITLE[index].toUpperCase(); // Set the individual character to its final value
         },
         i * 100 + 1200,
       ); // i * 100 ensures each character is revealed one after another
@@ -44,20 +44,25 @@ export const LandingPage = component$(() => {
   });
 
   return (
-    <section class="flex h-full w-full flex-col items-center justify-center">
-      <div class="flex flex-col items-start">
-        <div class="flex items-center">
-          <h2 class="pb-4 text-xl">{state.title.join("")}</h2>
+    <div>
+      <section class="flex h-full w-full flex-col items-center justify-center">
+        <div class="flex flex-col items-start">
+          <div class="flex items-center">
+            <h2 class="pb-4 text-2xl">{state.title.join("")}</h2>
+          </div>
+          <div class="flex items-center justify-center">
+            <h1 class="text-8xl">Software</h1>
+            <div class="line"></div>
+          </div>
+          <div class="flex items-center justify-center">
+            <ForwardArrow />
+            <h1 class="pl-4 text-8xl">Engineer</h1>
+          </div>
         </div>
-        <div class="flex items-center justify-center">
-          <h1 class="text-6xl">Software</h1>
-          <div class="line"></div>
-        </div>
-        <div class="flex items-center justify-center">
-          <ForwardArrow />
-          <h1 class="pl-4 text-6xl">Engineer</h1>
-        </div>
+      </section>
+      <div class="fixed bottom-0 left-0 right-0 m-0 flex w-full animate-bounce items-center justify-center p-0">
+        <MouseIcon />
       </div>
-    </section>
+    </div>
   );
 });
