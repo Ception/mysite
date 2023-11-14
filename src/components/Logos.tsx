@@ -22,8 +22,8 @@ export const ToggleThemeIcon = component$(() => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="64"
-      height="64"
+      width="36"
+      height="36"
       viewBox="0 0 256 256"
       class="transition-colors duration-300 hover:text-gray-700 dark:hover:text-gray-300"
     >
