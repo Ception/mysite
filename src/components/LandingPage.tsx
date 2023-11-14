@@ -27,7 +27,7 @@ export const LandingPage = component$(() => {
       } else {
         clearInterval(intervalId);
       }
-    }, 40);
+    }, 100);
 
     // Schedule each character to stop shuffling at a staggered time
     indexesToShuffle.forEach((index, i) => {
@@ -35,7 +35,7 @@ export const LandingPage = component$(() => {
         () => {
           state.title[index] = FINAL_TITLE[index]; // Set the individual character to its final value
         },
-        i * 100 + 1000,
+        i * 100 + 1200,
       ); // i * 100 ensures each character is revealed one after another
     });
 
@@ -44,7 +44,7 @@ export const LandingPage = component$(() => {
   });
 
   return (
-    <div class="flex h-full w-full flex-col items-center justify-center">
+    <section class="flex h-full w-full flex-col items-center justify-center">
       <div class="flex flex-col items-start">
         <div class="flex items-center">
           <h2 class="pb-4 text-xl">{state.title.join("")}</h2>
@@ -58,6 +58,6 @@ export const LandingPage = component$(() => {
           <h1 class="pl-4 text-6xl">Engineer</h1>
         </div>
       </div>
-    </div>
+    </section>
   );
 });
