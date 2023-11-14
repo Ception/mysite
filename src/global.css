@@ -27,54 +27,30 @@ body {
   padding: 0;
 }
 
-/* h1,
-h2,
-h3,
-svg {
-  animation:
-    clipPath 2s forwards 2s,
-    moveDown 3s forwards;
+.line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 1px;
+  margin-top: 0.9em;
 }
 
-p {
-  animation:
-    clipPath 2s forwards 4s,
-    moveDown 5s forwards;
-}
-
-h1,
-h2,
-h3,
-p,
-svg {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-} */
-
-/* .content::before {
+.line::before {
   content: "";
-  position: absolute;
-  top: 0;
-  left: 30%;
-  width: 50%;
+  width: 100%;
   border-bottom: 1px solid #fff;
   transform: scaleX(0);
-  animation: scaleX 2s forwards 0.5s;
+  transform-origin: left;
+  animation: scaleX 1s forwards 0.1s;
+}
+
+h1 {
+  margin-right: 10px;
 }
 
 @keyframes scaleX {
   to {
     transform: scaleX(1);
-  }
-} */
-
-@keyframes clipPath {
-  to {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-}
-
-@keyframes moveDown {
-  to {
-    transform: translateY(15px);
   }
 }

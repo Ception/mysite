@@ -9,10 +9,10 @@ export default component$(() => {
   return (
     <div class="flex min-h-screen w-full items-center justify-center overflow-hidden">
       <ThreeJs />
-      <div class="relative z-10 flex h-5/6 w-5/6 flex-col p-4">
+      <div class="relative flex h-5/6 w-5/6 flex-col p-4">
         <Header />
         <Navbar />
-        <main class="flex-grow">
+        <main>
           <LandingPage />
         </main>
       </div>

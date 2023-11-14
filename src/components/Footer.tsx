@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { TechLogos } from "./Logos";
+import { TechLogos } from "./Icons";
 
 export const Footer = component$(() => {
   return (

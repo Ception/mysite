@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { ToggleThemeIcon } from "./Logos";
+import { ToggleThemeIcon } from "./Icons";
 
 export const Header = component$(() => {
   return (

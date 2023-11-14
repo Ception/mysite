@@ -1,4 +1,5 @@
 import { component$, useStore } from "@builder.io/qwik";
+import { MyLogo } from "./Icons";
 
 export const Navbar = component$(() => {
   const state = useStore({
@@ -8,10 +9,13 @@ export const Navbar = component$(() => {
 
   return (
     <nav class="absolute left-0 top-1/2 -translate-y-1/2 transform">
+      <div class="pb-2x`">
+        <MyLogo />
+      </div>
       <ul class="flex h-full flex-col items-center justify-center">
         {state.menuItems.map((item) => (
           <li
-            class={`cursor-pointer px-4 py-2 ${
+            class={`cursor-pointer px-4 py-2 text-lg ${
               state.activeItem === item ? "text-blue-600" : "text-white"
             }`}
             key={item}
