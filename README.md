@@ -2,24 +2,19 @@
 
 ## Description
 
-Harnessing Bun, Qwik, Tailwind CSS, and Three.js for a cutting-edge portfolio. Bun's robust HTTP server, Qwik's intuitive routing, Tailwind's modern design, and Three.js's immersive 3D graphics converge to deliver a high-performance, visually captivating showcase of professional endeavors.
+Leveraging the power of Next.js 13, Tailwind CSS, and Three.js, this portfolio offers a state-of-the-art digital showcase. The combination of Next.js's intuitive routing, Tailwind's contemporary design approach, and Three.js's dynamic 3D graphics creates a visually striking and high-performing platform to exhibit professional achievements.
 
 ## Technologies
 
-- **Bun**: A clean and robust HTTP server framework.
-- **Qwik**: A performance-focused JavaScript framework with intuitive file-based routing.
-- **Tailwind CSS**: A utility-first CSS framework for modern, responsive design.
-- **Three.js**: A cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser.
+- **Next.js**: A React framework providing server-side rendering and generating static websites for React-based web applications.
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
+- **Three.js**: A cross-browser JavaScript library/API for creating and displaying animated 3D computer graphics in a web browser.
 
 ## Setup
 
-### Bun
+### Next.js
 
-Follow the [official Bun documentation](https://bun.sh/docs/) for setup and usage instructions.
-
-### Qwik
-
-Follow the [official Qwik documentation](https://qwik.builder.io/docs/) for setup and usage instructions.
+Follow the [official Next.js documentation](https://nextjs.org/docs) for setup and usage instructions.
 
 ### Tailwind CSS
 
@@ -27,7 +22,7 @@ Follow the [official Tailwind CSS documentation](https://tailwindcss.com/docs) f
 
 ### Three.js
 
-Follow the [official Three.js documentation](https://threejs.org/docs/) for setup and usage instructions.
+Follow the [official Three.js documentation](https://threejs.org/docs) for setup and usage instructions.
 
 ## Contact
 
