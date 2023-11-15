@@ -40,12 +40,12 @@ body {
   justify-content: center;
   width: 100px;
   height: 1px;
-  margin-top: 0.9em;
+  margin-top: 1.5em;
 }
 
 .line::before {
   content: "";
-  width: 75%;
+  width: 100%;
   border-bottom: 1px solid #fff;
   transform: scaleX(0);
   transform-origin: left;
