@@ -7,6 +7,7 @@ import {
 import { RouterHead } from "./components/router-head/router-head";
 
 import "./global.css";
+import { ThreeJs } from "./components/ThreeJs";
 
 export default component$(() => {
   /**
@@ -24,6 +25,7 @@ export default component$(() => {
         <RouterHead />
       </head>
       <body lang="en">
+        <ThreeJs />
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

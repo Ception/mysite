@@ -1,11 +1,11 @@
-import { component$, useStore, useVisibleTask$ } from "@builder.io/qwik";
+import { $, component$, useStore, useVisibleTask$ } from "@builder.io/qwik";
 
 interface ChangingTextProps {
-  finalText: string;
+  text: string;
 }
 
 export const ChangingText = component$((props: ChangingTextProps) => {
-  const FINAL_TEXT: string = props.finalText;
+  const FINAL_TEXT: string = props.text;
   const characters: string =
     "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
   const state = useStore<{ title: string[] }>({
@@ -46,5 +46,78 @@ export const ChangingText = component$((props: ChangingTextProps) => {
     return () => clearInterval(intervalId);
   });
 
-  return <div>{state.title.join("")}</div>;
+  return <span>{state.title.join("")}</span>;
+});
+
+interface ScramblePhrasesProps {
+  text: string[];
+}
+
+export const ScramblePhrases = component$((props: ScramblePhrasesProps) => {
+  const FINAL_TEXT: string[] = props.text;
+  const characters: string = "01";
+  const state = useStore<{ title: string }>({
+    title: "", // Initial state
+  });
+
+  useVisibleTask$(() => {
+    let wordIndex = 0;
+    const intervals: NodeJS.Timeout[] = [];
+    const revealTimeouts: NodeJS.Timeout[] = [];
+
+    const shuffleCharacter = (index: number) => {
+      state.title =
+        state.title.substring(0, index) +
+        characters.charAt(Math.floor(Math.random() * characters.length)) +
+        state.title.substring(index + 1);
+    };
+
+    const revealCharacter = (index: number, word: string) => {
+      state.title =
+        state.title.substring(0, index) +
+        word.charAt(index) +
+        state.title.substring(index + 1);
+    };
+
+    const shuffleWord = (word: string) => {
+      state.title = new Array(word.length + 1).join(" ");
+      for (let i = 0; i < word.length; i++) {
+        startShuffling(i, word);
+      }
+    };
+
+    const startShuffling = (index: number, word: string) => {
+      intervals[index] = setInterval(() => {
+        shuffleCharacter(index);
+      }, 100);
+
+      revealTimeouts[index] = setTimeout(
+        () => {
+          stopShuffling(index, word);
+        },
+        1500 + index * 100,
+      ); // Staggered reveal for smoothness
+    };
+
+    const stopShuffling = (index: number, word: string) => {
+      clearInterval(intervals[index]);
+      revealCharacter(index, word);
+      if (index === word.length - 1) {
+        setTimeout(() => {
+          wordIndex = (wordIndex + 1) % FINAL_TEXT.length;
+          shuffleWord(FINAL_TEXT[wordIndex]);
+        }, 2500);
+      }
+    };
+
+    shuffleWord(FINAL_TEXT[wordIndex]);
+
+    // Return a cleanup function
+    return () => {
+      intervals.forEach((interval) => clearInterval(interval));
+      revealTimeouts.forEach((timeout) => clearTimeout(timeout));
+    };
+  });
+
+  return <span>{state.title}</span>;
 });
