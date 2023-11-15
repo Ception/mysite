@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { ForwardArrow, MouseIcon } from "./Icons";
+import { ForwardArrow } from "./Icons";
 import { ChangingText, ScramblePhrases } from "./ChangingText";
 
 export const LandingPage = component$(() => {
