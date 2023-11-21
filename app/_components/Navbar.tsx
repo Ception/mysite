@@ -13,7 +13,7 @@ export default function Navbar() {
         {menuItems.map((item) => (
           <li
             className={`px-1 py-2 text-lg ${
-              activeItem === item ? "text-blue-600" : "text-white"
+              activeItem === item ? "text-sky-500" : "text-white"
             }`}
             key={item}
             onMouseOver={() => setActiveItem(item)}

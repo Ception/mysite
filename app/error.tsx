@@ -1,21 +1,24 @@
 "use client";
 
 import Link from "next/link";
+import { ChangingText } from "./_components/ChangingText";
 
 export default function Error() {
   return (
-    <div className="fixed inset-0 w-full flex justify-center">
-      <section className="h-full max-w-4/5 flex items-center px-4">
-        <div className="flex flex-col items-start">
-          <div className="flex h-8 items-center">
-            <h1 className="text-6xl font-bold">404</h1>
-            <p className="text-2xl">Page not found.</p>
-            <Link href="/">
-              <span className="text-xl underline">Go home</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="flex flex-col items-center justify-center h-screen space-y-[-0.5rem]">
+      <div className="self-start">
+        <span className="text-2xl">404</span>
+      </div>
+      <div className="h-16 w-[350px] whitespace-nowrap overflow-visible">
+        <span className="text-6xl">
+          <ChangingText text="NOT FOUND!" />
+        </span>
+      </div>
+      <div className="self-end">
+        <span className="text-xl text-sky-500">
+          <Link href="/">GO BACK</Link>
+        </span>
+      </div>
     </div>
   );
 }

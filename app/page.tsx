@@ -17,7 +17,7 @@ export default function Home() {
       <section className="flex items-center px-4">
         <div className="flex flex-col items-start">
           <div className="flex h-8 items-center">
-            <span className="text-xl sm:text-xl md:text-xl lg:text-2xl">
+            <span className="text-xl sm:text-xl md:text-xl lg:text-2xl text-sky-500">
               <ChangingText text={MY_NAME} />
             </span>
           </div>
