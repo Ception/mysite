@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
+
+const PARTICLE_COUNT = 10_000;
 
 export default function ThreeJs() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -14,7 +16,7 @@ export default function ThreeJs() {
 
     // Particles Geometry
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 50000;
+    const particlesCount = PARTICLE_COUNT;
     const positionArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {

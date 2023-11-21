@@ -1,4 +1,3 @@
-import React from "react";
 import { ForwardArrow } from "./_components/SvgIcons";
 import { ChangingText, ScramblePhrases } from "./_components/ChangingText";
 

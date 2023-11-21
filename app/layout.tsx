@@ -5,6 +5,7 @@ import Header from "./_components/Header";
 import Navbar from "./_components/Navbar";
 
 import dynamic from "next/dynamic";
+import Loading from "./loading";
 
 const ubuntu = Ubuntu({ subsets: ["latin"], weight: "400" });
 
@@ -36,7 +37,7 @@ export default function RootLayout({
           <Navbar />
         </nav>
         <div className="flex justify-center items-center h-screen">
-          <main className="relative m-2">{children}</main>
+          <main className="relative m-4">{children}</main>
         </div>
       </body>
     </html>
