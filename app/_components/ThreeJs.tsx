@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 const PARTICLE_COUNT = 10_000;
+const STAR_PARTICLE = "../star.png";
 
 export default function ThreeJs() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -12,7 +13,7 @@ export default function ThreeJs() {
     const canvas = canvasRef.current;
     const scene = new THREE.Scene();
     const loader = new THREE.TextureLoader();
-    const star = loader.load("../star.png");
+    const star = loader.load(STAR_PARTICLE);
 
     // Particles Geometry
     const particlesGeometry = new THREE.BufferGeometry();
