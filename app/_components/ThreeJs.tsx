@@ -125,5 +125,10 @@ export default function ThreeJs() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="three-js-landing"></canvas>;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="three-js-landing fixed w-full h-full bg-cover"
+    ></canvas>
+  );
 }

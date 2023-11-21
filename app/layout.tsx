@@ -13,7 +13,7 @@ const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
 });
 
 export const metadata: Metadata = {
-  title: "Aleks Manov | Development Portfolio",
+  title: "Aleks Manov's | Development Portfolio",
   description:
     "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
 };
@@ -27,18 +27,19 @@ export default function RootLayout({
     <html lang="en" className={ubuntu.className}>
       <body>
         <Providers>
-          <div className="fixed w-full h-full bg-cover">
-            <DynamicThreeJs />
-          </div>
-          <header className="fixed top-0 w-full px-8 pt-8 z-10">
+          <DynamicThreeJs />
+          <header className="z-20 relative">
             <Header />
           </header>
-          <nav className="fixed left-0 h-screen px-8">
+          <nav className="z-30 fixed top-[74px] h-[calc(100%_-_74px)]">
             <Navbar />
           </nav>
-          <div className="flex justify-center items-center h-screen">
-            <main className="relative m-4">{children}</main>
-          </div>
+          <main className="relative pl-32 pr-8">
+            <div className="grid grid-rows-2 items-start w-full h-screen overflow-auto">
+              <div></div>
+              <div className=" mt-[-8rem]">{children}</div>
+            </div>
+          </main>
         </Providers>
       </body>
     </html>

@@ -25,34 +25,36 @@ export default function Navbar() {
   };
 
   return (
-    <div className="flex h-screen items-center">
-      <ul className="flex flex-col space-y-2">
-        {menuItems.map((item) => (
-          <li
-            className={`px-1 py-2 text-lg ${
-              activeItem === item ? "text-sky-500" : "text-white"
-            }`}
-            key={item}
-            onMouseOver={() => setActiveItem(item)}
-            onClick={() => setActiveItem(item)}
-          >
-            <Link href={getHref(item)}>
-              <span
-                className="block transform rotate-180"
-                style={{ writingMode: "vertical-rl" }}
-              >
-                {item}
-              </span>
-            </Link>
-            <span
-              className={`absolute right-0 top-0 w-0.5 bg-blue-500 transition-all duration-300 ease-out sm:w-1 ${
-                activeItem === item ? "scale-y-100" : "scale-y-0"
+    <div className="fixed">
+      <div className="flex h-screen items-center pl-8">
+        <ul className="flex flex-col space-y-2 bottom-[74px] relative">
+          {menuItems.map((item) => (
+            <li
+              className={`py-2 text-lg leading-tight ${
+                activeItem === item ? "text-sky-500" : "text-white"
               }`}
-              style={{ transformOrigin: "bottom" }}
-            ></span>
-          </li>
-        ))}
-      </ul>
+              key={item}
+              onMouseOver={() => setActiveItem(item)}
+              onClick={() => setActiveItem(item)}
+            >
+              <Link href={getHref(item)}>
+                <span
+                  className="block transform rotate-180"
+                  style={{ writingMode: "vertical-rl" }}
+                >
+                  {item}
+                </span>
+              </Link>
+              <span
+                className={`absolute right-0 top-0 w-0.5 bg-blue-500 transition-all duration-300 ease-out sm:w-1 ${
+                  activeItem === item ? "scale-y-100" : "scale-y-0"
+                }`}
+                style={{ transformOrigin: "bottom" }}
+              ></span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
