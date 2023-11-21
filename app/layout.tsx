@@ -25,12 +25,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body className="fixed min-h-screen">
-        <DynamicThreeJs />
-        <div className="relative w-full h-full">
+      <body>
+        <div className="fixed w-full h-full bg-cover">
+          <DynamicThreeJs />
+        </div>
+        <header className="fixed top-0 w-full px-8 pt-8 z-10">
           <Header />
+        </header>
+        <nav className="fixed left-0 h-screen px-8">
           <Navbar />
-          {children}
+        </nav>
+        <div className="flex justify-center items-center h-screen">
+          <main className="relative m-2">{children}</main>
         </div>
       </body>
     </html>

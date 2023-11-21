@@ -122,10 +122,5 @@ export default function ThreeJs() {
     };
   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="three-js-landing fixed inset-0 z-[-1]"
-    ></canvas>
-  );
+  return <canvas ref={canvasRef} className="three-js-landing"></canvas>;
 }

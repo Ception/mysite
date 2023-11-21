@@ -14,16 +14,16 @@ export default function Home() {
   ];
 
   return (
-    <div className="fixed inset-0 w-full flex justify-center">
-      <section className="h-full max-w-4/5 flex items-center px-4">
+    <div className="flex justify-center items-center h-screen">
+      <section className="flex items-center px-4">
         <div className="flex flex-col items-start">
           <div className="flex h-8 items-center">
-            <span className="overflow-hidden text-xl sm:text-xl md:text-xl lg:text-2xl">
+            <span className="text-xl sm:text-xl md:text-xl lg:text-2xl">
               <ChangingText text={MY_NAME} />
             </span>
           </div>
           <div className="my-4 flex items-center justify-center">
-            <span className="overflow-hidden text-8xl sm:text-8xl md:text-8xl lg:text-9xl">
+            <span className="text-8xl sm:text-8xl md:text-8xl lg:text-9xl">
               {PREFIX}
             </span>
             <div className="line"></div>
