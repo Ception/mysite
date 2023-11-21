@@ -7,10 +7,10 @@ const PARTICLE_COUNT = 10_000;
 const STAR_PARTICLE = "../star.png";
 
 export default function ThreeJs() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRef.current!;
     const scene = new THREE.Scene();
     const loader = new THREE.TextureLoader();
     const star = loader.load(STAR_PARTICLE);
@@ -92,7 +92,7 @@ export default function ThreeJs() {
     const targetRotation = new THREE.Vector2();
     const currentRotation = new THREE.Quaternion();
 
-    const animateParticles = (event) => {
+    const animateParticles = (event: MouseEvent) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
 

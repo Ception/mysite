@@ -1,11 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const [activeItem, setActiveItem] = useState("Home");
-  const menuItems = ["Home", "About", "Projects", "Contact"];
+  const [activeItem, setActiveItem] = useState("");
+  // Memoize the menuItems array
+  const menuItems = useMemo(() => ["Home", "About", "Projects", "Contact"], []);
+  const pathname = usePathname(); // Use usePathname to get the current pathname
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Use the pathname from usePathname hook
+      const path = pathname.split("/")[1];
+      const currentItem = path.charAt(0).toUpperCase() + path.slice(1);
+
+      setActiveItem(menuItems.includes(currentItem) ? currentItem : "Home");
+    }
+  }, [menuItems, pathname]); // Add pathname to dependency array
+
+  const getHref = (item: string) => {
+    return item === "Home" ? "/" : `/${item.toLowerCase()}`;
+  };
 
   return (
     <div className="flex h-screen items-center">
@@ -17,8 +34,9 @@ export default function Navbar() {
             }`}
             key={item}
             onMouseOver={() => setActiveItem(item)}
+            onClick={() => setActiveItem(item)}
           >
-            <Link href={`/${item.toLowerCase()}`}>
+            <Link href={getHref(item)}>
               <span
                 className="block transform rotate-180"
                 style={{ writingMode: "vertical-rl" }}
