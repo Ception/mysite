@@ -13,13 +13,26 @@ export default function Home() {
   ];
 
   return (
-    <div>
-      <h1></h1><ChangingText text={MY_NAME} />
-      <h1></h1>
-      {PREFIX}
-      <ForwardArrow />
-      <h1></h1>
-      <ScramblePhrases text={SUFFIX_PHRASES} />
+    <div className="flex items-center justify-center">
+      <div className="flex flex-col items-start pt-4">
+        <div className="flex justify-center h-6">
+          <span className="text-lg text-cyan-500">
+            <ChangingText text={MY_NAME} />
+          </span>
+        </div>
+        <div className="flex justify-center">
+          <span className="text-8xl">{PREFIX}</span>
+          <div className="line pt-4"></div>
+        </div>
+        <div className="flex justify-center">
+          <div className="pt-4">
+            <ForwardArrow />
+          </div>
+          <span className="text-8xl">
+            <ScramblePhrases text={SUFFIX_PHRASES} />
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

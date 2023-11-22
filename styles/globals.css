@@ -12,9 +12,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
-  height: 1px;
-  margin-top: 1.5em;
+  width: 256px;
+  opacity: 0.5;
 }
 
 .line::before {
