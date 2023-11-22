@@ -28,10 +28,10 @@ export default function RootLayout({
       <body>
         <Providers>
           <DynamicThreeJs />
-          <header className="z-20 relative">
+          <header>
             <Header />
           </header>
-          <nav className="z-30 fixed top-[74px] h-[calc(100%_-_74px)]">
+          <nav>
             <Navbar />
           </nav>
           <main className="relative pl-32 pr-8">

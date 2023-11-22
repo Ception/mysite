@@ -8,32 +8,32 @@ export default function Home() {
   const SUFFIX_PHRASES = [
     // "Builder",
     // "Creator",
-    // "Advocate",
+    // "Geek",
     // "Engineer",
     "Enthusiast",
   ];
 
   return (
-    <div className="flex flex-col">
+    <div>
       {/* Main Section */}
-      <div className="h-screen flex items-center justify-center">
-        <div className="flex flex-col items-start">
-          <div className="flex justify-center h-6">
+      <div className="h-screen flex items-center self-center justify-center">
+        <div className="flex flex-col items-start leading-tight">
+          <div className="self-start h-6">
             <span className="text-xl text-cyan-500">
               <ChangingText text={MY_NAME} />
             </span>
           </div>
-          <div className="flex justify-center">
+          <div className="self-start">
             <span className="text-8xl">{PREFIX}</span>
-            <div className="line pt-4"></div>
+            <div className="line"></div>
           </div>
-          <div className="flex justify-center pl-8">
-            <div className="leading-[0.7]">
-              <ForwardArrow />
+          <div className="flex self-start">
+            <ForwardArrow />
+            <div className="h-24">
+              <span className="text-8xl leading-[0.7]">
+                <ScramblePhrases text={SUFFIX_PHRASES} />
+              </span>
             </div>
-            <span className="text-8xl h-6 leading-[0.7]">
-              <ScramblePhrases text={SUFFIX_PHRASES} />
-            </span>
           </div>
         </div>
       </div>
