@@ -35,9 +35,8 @@ export default function RootLayout({
             <Navbar />
           </nav>
           <main className="relative pl-32 pr-8">
-            <div className="grid grid-rows-2 items-start w-full h-screen overflow-auto">
-              <div></div>
-              <div className=" mt-[-8rem]">{children}</div>
+            <div className="flex flex-col items-start w-full h-screen overflow-auto">
+              {children}
             </div>
           </main>
         </Providers>

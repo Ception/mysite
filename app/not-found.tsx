@@ -3,19 +3,24 @@ import { ChangingText } from "./_components/ChangingText";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-[-0.5rem]">
-      <div className="self-start">
-        <span className="text-2xl">404</span>
-      </div>
-      <div className="h-16 w-[350px] whitespace-nowrap overflow-visible">
-        <span className="text-6xl">
-          <ChangingText text="NOT FOUND!" />
-        </span>
-      </div>
-      <div className="self-end">
-        <span className="text-xl text-sky-500">
-          <Link href="/">GO BACK</Link>
-        </span>
+    <div className="flex flex-col w-screen">
+      <div className="h-screen flex items-center justify-center">
+        <div className="flex flex-col items-start">
+          <div className="flex justify-center">
+            <span className="text-xl text-cyan-500">404</span>
+          </div>
+          <div className="flex justify-center">
+            <span className="text-6xl">
+              {/* <ChangingText text="NOT FOUND!" /> */}
+              NOT FOUND
+            </span>
+          </div>
+          <div className="flex justify-end w-full">
+            <Link href="/" className="text-xl text-cyan-500">
+              GO BACK
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

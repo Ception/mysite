@@ -2,8 +2,8 @@ export const ForwardArrow = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="64"
-      height="64"
+      width="72"
+      height="72"
       viewBox="0 0 24 24"
     >
       <path

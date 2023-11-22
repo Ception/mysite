@@ -1,0 +1,25 @@
+export default function AboutMe() {
+  return (
+    <div className="h-screen flex items-center justify-center" id="about-me">
+      <div className="flex flex-col items-start">
+        <div className="text-lg">About Me</div>
+        <div className="flex">
+          <div className="w-1/2">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              auctor, nunc id lacinia tincidunt, nisl justo lacinia metus, id
+              tincidunt lectus urna vel nunc.
+            </p>
+          </div>
+          <div className="w-1/2">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              auctor, nunc id lacinia tincidunt, nisl justo lacinia metus, id
+              tincidunt lectus urna vel nunc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
