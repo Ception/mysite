@@ -26,6 +26,7 @@ export default function Home() {
           <div className="self-start">
             <span className="text-8xl">{PREFIX}</span>
           </div>
+          <div className="line"></div>
           <div className="flex self-start pl-12">
             <div className="pt-3">
               <ForwardArrow />
