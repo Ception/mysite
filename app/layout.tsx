@@ -35,9 +35,7 @@ export default function RootLayout({
             <Navbar />
           </nav>
           <main className="relative pl-32 pr-8">
-            <div className="flex flex-col items-start w-full h-screen overflow-auto">
-              {children}
-            </div>
+            <div className="flex w-full h-screen overflow-auto">{children}</div>
           </main>
         </Providers>
       </body>

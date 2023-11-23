@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <div>
       {/* Main Section */}
-      <div className="h-screen flex items-center self-center justify-center">
-        <div className="flex flex-col items-start leading-tight w-[37.5rem]">
-          <div className="self-start h-6 pl-2">
+      <div className="h-screen flex items-center justify-center leading-[0.1]">
+        <div className="w-[37.5rem]">
+          <div className="self-start h-6 pl-1 pb-2">
             <span className="text-xl text-cyan-500">
               <ChangingText text={MY_NAME} />
             </span>
@@ -26,13 +26,12 @@ export default function Home() {
           <div className="self-start">
             <span className="text-8xl">{PREFIX}</span>
           </div>
-          <div className="line"></div>
           <div className="flex self-start pl-12">
-            <div className="pt-2">
+            <div className="pt-3">
               <ForwardArrow />
             </div>
             <div className="h-24">
-              <span className="text-8xl leading-[0.9]">
+              <span className="text-8xl">
                 <ScramblePhrases text={SUFFIX_PHRASES} />
               </span>
             </div>
