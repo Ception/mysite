@@ -6,10 +6,10 @@ export default function Home() {
   const MY_NAME = "Aleks Manov";
   const PREFIX = "Software";
   const SUFFIX_PHRASES = [
-    // "Builder",
-    // "Creator",
-    // "Geek",
-    // "Engineer",
+    "Builder",
+    "Creator",
+    "Geek",
+    "Engineer",
     "Enthusiast",
   ];
 
@@ -17,20 +17,22 @@ export default function Home() {
     <div>
       {/* Main Section */}
       <div className="h-screen flex items-center self-center justify-center">
-        <div className="flex flex-col items-start leading-tight">
-          <div className="self-start h-6">
+        <div className="flex flex-col items-start leading-tight w-[37.5rem]">
+          <div className="self-start h-6 pl-2">
             <span className="text-xl text-cyan-500">
               <ChangingText text={MY_NAME} />
             </span>
           </div>
           <div className="self-start">
             <span className="text-8xl">{PREFIX}</span>
-            <div className="line"></div>
           </div>
-          <div className="flex self-start">
-            <ForwardArrow />
+          <div className="line"></div>
+          <div className="flex self-start pl-12">
+            <div className="pt-2">
+              <ForwardArrow />
+            </div>
             <div className="h-24">
-              <span className="text-8xl leading-[0.7]">
+              <span className="text-8xl leading-[0.9]">
                 <ScramblePhrases text={SUFFIX_PHRASES} />
               </span>
             </div>

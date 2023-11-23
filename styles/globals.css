@@ -12,8 +12,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 256px;
-  height: 1px;
+  width: 83.33%;
   opacity: 0.3;
 }
 
@@ -23,7 +22,7 @@ body {
   border-bottom: 1px solid #fff;
   transform: scaleX(0);
   transform-origin: left;
-  animation: scaleX 1s forwards 0.1s;
+  animation: scaleX 1s forwards 0.3s;
 }
 
 @keyframes scaleX {

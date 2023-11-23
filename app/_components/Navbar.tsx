@@ -21,7 +21,13 @@ export default function Navbar() {
   }, [menuItems, pathname]); // Add pathname to dependency array
 
   const getHref = (item: string) => {
-    return item === "Home" ? "/" : `/${item.toLowerCase()}`;
+    if (item === "Home") {
+      return "/";
+    } else if (item === "About") {
+      return "/#about-me";
+    } else {
+      return `/${item.toLowerCase()}`;
+    }
   };
 
   return (

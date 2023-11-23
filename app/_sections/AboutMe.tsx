@@ -2,7 +2,7 @@ export default function AboutMe() {
   return (
     <div className="h-screen flex items-center justify-center" id="about-me">
       <div className="flex flex-col items-start">
-        <div className="text-lg">About Me</div>
+        <span className="text-xl top-0">About Me</span>
         <div className="flex">
           <div className="w-1/2">
             <p>

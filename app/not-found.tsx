@@ -14,8 +14,8 @@ export default function NotFound() {
           </span>
         </div>
         <div className="self-end pr-[7.8rem]">
-          <Link href="/" className="text-xl text-cyan-500">
-            GO BACK
+          <Link href="/">
+            <span className="text-xl text-cyan-500">GO BACK</span>
           </Link>
         </div>
       </div>
