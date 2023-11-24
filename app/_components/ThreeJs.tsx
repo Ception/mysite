@@ -128,7 +128,7 @@ export default function ThreeJs() {
   return (
     <canvas
       ref={canvasRef}
-      className="three-js-landing fixed w-full h-full bg-cover"
+      className="absolute w-full h-full bg-cover"
     ></canvas>
   );
 }

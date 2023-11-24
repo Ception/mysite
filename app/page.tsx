@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <div>
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="h-1/2 w-1/2 flex flex-col justify-center items-center p-12">
+      <div className="h-screen w-full flex justify-center items-center relative">
+        <div className="h-1/2 w-1/2 flex flex-col justify-center items-center p-12 border">
           <div className="self-start h-7 pl-12">
             <span className="text-xl text-cyan-500">
               <ChangingText text={MY_NAME} />
@@ -34,6 +34,9 @@ export default function Home() {
               <ScramblePhrases text={SUFFIX_PHRASES} />
             </span>
           </div>
+        </div>
+        <div className="absolute bottom-4 w-full flex justify-center">
+          <div className="mouse"></div>
         </div>
       </div>
       <AboutMe />

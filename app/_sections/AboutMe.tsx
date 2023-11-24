@@ -1,7 +1,7 @@
 export default function AboutMe() {
   return (
     <div
-      className="h-screen w-full flex justify-center items-center border"
+      className="h-screen w-full flex justify-center items-center border relative"
       id="about-me"
     >
       <div className="h-full w-1/2 flex flex-col justify-center items-center p-12 border">

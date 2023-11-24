@@ -3,7 +3,7 @@ import { ChangingText } from "./_components/ChangingText";
 
 export default function NotFound() {
   return (
-    <div className="h-screen w-full flex justify-center items-center">
+    <div className="h-screen w-full flex justify-center items-center relative">
       <div className="h-1/2 w-1/2 flex flex-col justify-center items-center">
         <div className="self-center pr-72">
           <span className="text-2xl text-cyan-500">404</span>

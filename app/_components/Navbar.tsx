@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="z-30 fixed top-[74px] h-[calc(100%_-_74px)]">
+    <div className="z-30 absolute top-[74px] h-[calc(100%_-_74px)]">
       <div className="fixed">
         <div className="flex h-screen items-center pl-8">
           <ul className="flex flex-col space-y-2 bottom-[74px] relative">
