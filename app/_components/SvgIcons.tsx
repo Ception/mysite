@@ -5,6 +5,7 @@ export const ForwardArrow = () => {
       width="72"
       height="72"
       viewBox="0 0 24 24"
+      className="md:w-14 md:h-14"
     >
       <path
         fill="currentColor"
