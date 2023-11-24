@@ -6,7 +6,7 @@ import Navbar from "./_components/Navbar";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
 
-const ubuntu = Ubuntu({ subsets: ["latin"], weight: "400" });
+const ubuntu = Ubuntu({ subsets: ["latin"], weight: "300" });
 
 const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
   ssr: false, // disable server-side rendering
@@ -34,9 +34,7 @@ export default function RootLayout({
           <nav>
             <Navbar />
           </nav>
-          <main className="relative pl-32 pr-8">
-            <div className="flex w-full h-screen overflow-auto">{children}</div>
-          </main>
+          <main className="relative pl-24 pr-8 h-full w-full">{children}</main>
         </Providers>
       </body>
     </html>

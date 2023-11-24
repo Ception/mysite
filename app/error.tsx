@@ -5,20 +5,24 @@ import { ChangingText } from "./_components/ChangingText";
 
 export default function Error() {
   return (
-    <div className="h-screen flex items-center self-center justify-center">
-      <div className="flex flex-col items-start w-[37.5rem] leading-tight">
-        <div className="self-start pl-[9.1rem]">
-          <span className="text-lg text-cyan-500">Whoops</span>
+    <div className="h-screen w-full flex justify-center items-center">
+      <div className="h-1/2 w-1/2 flex flex-col justify-center items-center">
+        <div className="self-center pr-72">
+          <span className="text-2xl text-cyan-500">404</span>
         </div>
-        <div className="self-center h-16">
-          <span className="text-2xl">
-            <ChangingText text="Something went wrong!" />
+        <div className="self-center">
+          <span className="text-6xl">
+            <ChangingText text="Not Found" />
           </span>
         </div>
-        <div className="self-end pr-[9.1rem]">
-          <Link href="/">
-            <span className="text-xl text-cyan-500">GO BACK</span>
-          </Link>
+        <div className="self-center pl-56">
+          <span className="text-2xl text-cyan-500">
+            <Link href="/">
+              <div className="self-center">
+                <span className="text-xl text-cyan-500">GO BACK</span>
+              </div>
+            </Link>
+          </span>
         </div>
       </div>
     </div>

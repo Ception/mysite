@@ -15,32 +15,27 @@ export default function Home() {
 
   return (
     <div>
-      {/* Main Section */}
-      <div className="h-screen flex items-center justify-center leading-[0.1]">
-        <div className="w-[37.5rem]">
-          <div className="self-start h-6 pl-1 pb-2">
+      <div className="h-screen w-full flex justify-center items-center">
+        <div className="h-1/2 w-1/2 flex flex-col justify-center items-center p-12">
+          <div className="self-start h-7 pl-12">
             <span className="text-xl text-cyan-500">
               <ChangingText text={MY_NAME} />
             </span>
           </div>
-          <div className="self-start">
+          <div className="self-start pl-12">
             <span className="text-8xl">{PREFIX}</span>
           </div>
           <div className="line"></div>
-          <div className="flex self-start pl-12">
-            <div className="pt-3">
+          <div className="flex self-end w-5/6 h-24">
+            <div className="pt-4">
               <ForwardArrow />
             </div>
-            <div className="h-24">
-              <span className="text-8xl">
-                <ScramblePhrases text={SUFFIX_PHRASES} />
-              </span>
-            </div>
+            <span className="text-8xl">
+              <ScramblePhrases text={SUFFIX_PHRASES} />
+            </span>
           </div>
         </div>
       </div>
-
-      {/* About Me Section */}
       <AboutMe />
     </div>
   );
