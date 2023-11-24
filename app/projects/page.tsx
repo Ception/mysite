@@ -6,9 +6,6 @@ export default function Projects() {
       <div className="h-1/2 w-full flex justify-center items-center border">
         <div className="self-center">
           <span className="text-4xl">Projects</span>
-          <span>
-            <CustomButton text="Testing" icon="FORWARD_ARROW" />
-          </span>
         </div>
       </div>
       <div className="h-1/2 w-full flex justify-center items-center border">
