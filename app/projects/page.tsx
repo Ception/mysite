@@ -1,5 +1,3 @@
-import CustomButton from "../_components/ui/CustomButton";
-
 export default function Projects() {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center relative">
