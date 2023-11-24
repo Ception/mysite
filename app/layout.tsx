@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "../styles/globals.css";
-import Header from "./_components/Header";
-import Navbar from "./_components/Navbar";
+import Header from "./_components/template/Header";
+import Navbar from "./_components/template/Navbar";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
 

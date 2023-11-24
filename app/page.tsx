@@ -1,9 +1,9 @@
-import { ForwardArrow } from "./_components/SvgIcons";
-import { ChangingText, ScramblePhrases } from "./_components/ChangingText";
+import { FORWARD_ARROW } from "./_components/utils/SvgIcons";
+import { ChangingText, ScramblePhrases } from "./_components/utils/ChangingText";
 import AboutMe from "./_sections/AboutMe";
 import dynamic from "next/dynamic";
 
-const DynamicMouseIcon = dynamic(() => import("./_components/MouseIcon"), {
+const DynamicMouseIcon = dynamic(() => import("./_components/ui/MouseIcon"), {
   ssr: false,
 });
 
@@ -33,7 +33,7 @@ export default function Home() {
           <div className="line"></div>
           <div className="flex self-end w-5/6 h-24">
             <div className="pt-4 md:pt-1">
-              <ForwardArrow />
+              <FORWARD_ARROW />
             </div>
             <span className="text-8xl md:text-6xl">
               <ScramblePhrases text={SUFFIX_PHRASES} />

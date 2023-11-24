@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChangingText } from "./_components/ChangingText";
+import { ChangingText } from "./_components/utils/ChangingText";
 
 export default function Error() {
   return (

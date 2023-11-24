@@ -1,9 +1,15 @@
-export const ForwardArrow = () => {
+interface IconProps {
+  size?: number;
+  width?: number;
+  height?: number;
+}
+
+export const FORWARD_ARROW = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="72"
-      height="72"
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 24 24"
       className="md:w-14 md:h-14"
     >
@@ -21,12 +27,12 @@ export const ForwardArrow = () => {
   );
 };
 
-export const MouseIcon = () => {
+export const MOUSE_ICON = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
+      width={size || width || 48}
+      height={size || height || 48}
       viewBox="0 0 24 24"
     >
       <path fill="#ffffff" d="m7 10l5 5l5-5H7Z" />
@@ -34,13 +40,13 @@ export const MouseIcon = () => {
   );
 };
 
-export const MyLogo = () => {
+export const LOGO = ({ size, width, height }: IconProps) => {
   return (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width="42"
-      height="42"
+      width={size || width || 42}
+      height={size || height || 42}
       viewBox="0 0 13475.000000 9884.000000"
       preserveAspectRatio="xMidYMid meet"
     >
@@ -68,12 +74,12 @@ export const MyLogo = () => {
   );
 };
 
-export const ToggleThemeIcon = () => {
+export const THEME_TOGGLE = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width={size || width || 32}
+      height={size || height || 32}
       viewBox="0 0 20 20"
     >
       <path
@@ -84,12 +90,12 @@ export const ToggleThemeIcon = () => {
   );
 };
 
-export const Tailwind = () => {
+export const TAILWIND_LOGO = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width={size || width || 32}
+      height={size || height || 32}
       viewBox="0 0 512 512"
     >
       <path
@@ -100,12 +106,12 @@ export const Tailwind = () => {
   );
 };
 
-export const ThreeJsLogo = () => {
+export const THREE_JS_LOGO = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width={size || width || 32}
+      height={size || height || 32}
       viewBox="0 0 24 24"
     >
       <g
