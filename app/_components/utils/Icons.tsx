@@ -11,7 +11,6 @@ export const FORWARD_ARROW = ({ size, width, height }: IconProps) => {
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
-      className="md:w-14 md:h-14"
     >
       <path
         fill="currentColor"

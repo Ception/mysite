@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LOGO, THEME_TOGGLE } from "../utils/SvgIcons";
+import { LOGO, THEME_TOGGLE } from "../utils/Icons";
 
 export default function Header() {
   return (

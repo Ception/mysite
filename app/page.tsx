@@ -1,4 +1,4 @@
-import { FORWARD_ARROW } from "./_components/utils/SvgIcons";
+import { FORWARD_ARROW } from "./_components/utils/Icons";
 import {
   ChangingText,
   ScramblePhrases,
