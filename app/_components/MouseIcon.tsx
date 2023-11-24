@@ -4,14 +4,10 @@ import { useEffect } from "react";
 
 export default function MouseIcon() {
   useEffect(() => {
-    const mouse = document.querySelector(".mouse");
+    const mouse = document.querySelector(".mouse") as HTMLElement;
 
     window.addEventListener("scroll", () => {
-      if (window.scrollY > 0) {
-        mouse.style.opacity = "0";
-      } else {
-        mouse.style.opacity = "1";
-      }
+      mouse.style.opacity = window.scrollY > 0 ? "0" : "1";
     });
   }, []);
   return <div className="mouse"></div>;

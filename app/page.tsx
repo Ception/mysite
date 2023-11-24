@@ -1,7 +1,6 @@
 import { ForwardArrow } from "./_components/SvgIcons";
 import { ChangingText, ScramblePhrases } from "./_components/ChangingText";
 import AboutMe from "./_sections/AboutMe";
-import MouseIcon from "./_components/MouseIcon";
 import dynamic from "next/dynamic";
 
 const DynamicMouseIcon = dynamic(() => import("./_components/MouseIcon"), {
