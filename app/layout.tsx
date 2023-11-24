@@ -34,7 +34,9 @@ export default function RootLayout({
           <nav>
             <Navbar />
           </nav>
-          <main className="relative pl-24 pr-8 h-full w-full">{children}</main>
+          <main className="relative pl-24 pr-8 h-full w-full overflow-auto">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
