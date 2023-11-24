@@ -46,16 +46,16 @@ export default function AboutMe() {
 
       {/* Right Column */}
       <div className="flex-1 w-1/2 flex flex-col">
-        <div className="flex flex-1 items-center justify-center">
+        {/* <div className="flex flex-1 items-center justify-center">
           <h2 className="text-4xl pt-8 font-semibold mb-4">Title</h2>
-        </div>
-        <div className="flex flex-row w-full h-full flex-3 overflow-hidden p-8">
+        </div> */}
+        <div className="flex w-full h-full overflow-hidden">
           <UnoptimizedImage
             src="https://stockimages.org/wp-content/uploads/2020/10/bigstock-Photography-Concept-African-A-381364544.jpg"
             alt="Your Name"
             width={500}
             height={500}
-            className="w-full h-auto rounded-lg shadow"
+            className="w-full h-auto rounded-sm shadow"
           />
         </div>
       </div>
