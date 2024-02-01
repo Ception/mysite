@@ -55,7 +55,7 @@ export default function AboutMe() {
             alt="Your Name"
             width={500}
             height={500}
-            className="w-full h-auto rounded-sm shadow"
+            className="w-full h-auto rounded-none shadow"
           />
         </div>
       </div>
