@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-4 w-full flex justify-center">
-          <DynamicMouseIcon />
+          <DynamicMouseIcon nextSectionId="about-me" />
         </div>
       </div>
       <AboutMe />

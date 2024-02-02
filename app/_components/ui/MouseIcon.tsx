@@ -5,9 +5,11 @@ import { useEffect } from "react";
 export default function MouseIcon({
   onClick,
   className,
+  nextSectionId,
 }: {
   onClick?: () => void;
   className?: string;
+  nextSectionId?: string;
 }) {
   useEffect(() => {
     const mouse = document.querySelector(".mouse") as HTMLElement;
@@ -17,5 +19,17 @@ export default function MouseIcon({
     });
   }, []);
 
-  return <div className={`mouse ${className}`} onClick={onClick}></div>;
+  const defaultOnClick = () => {
+    if (nextSectionId) {
+      const nextSection = document.getElementById(nextSectionId);
+      nextSection?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div
+      className={`mouse hover:cursor-pointer ${className}`}
+      onClick={onClick || defaultOnClick}
+    ></div>
+  );
 }
