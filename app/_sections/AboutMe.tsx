@@ -1,8 +1,5 @@
 import Image from "next/image";
-
-const UnoptimizedImage = (props) => {
-  return <Image {...props} unoptimized alt={props.alt} />;
-};
+import me from "../../public/me.png";
 
 export default function AboutMe() {
   interface IText {
@@ -29,13 +26,13 @@ export default function AboutMe() {
   return (
     <div className="h-screen w-full flex relative" id="about-me">
       {/* Left Column */}
-      <div className="flex-1 w-1/2 flex flex-col justify-center items-center leading-tight">
-        <div className="flex-1 flex justify-start items-start w-full h-full">
-          <div className="self-end pb-12">
-            <h1 className="text-2xl">{TEXT.title}</h1>
+      <div className="flex-1 w-1/2 flex flex-col justify-center items-center leading-relaxed">
+        <div className="flex-1 flex justify-start items-start w-5/6 h-full pb-8">
+          <div className="self-end">
+            <h1 className="text-4xl">{TEXT.title}</h1>
           </div>
         </div>
-        <div className="flex-[2] flex justify-start items-start w-full h-full">
+        <div className="flex-[2] flex justify-start items-start w-5/6 h-full">
           <div className="body">
             <p className="mb-4">{TEXT.body.firstParagraph}</p>
             <p className="mb-4">{TEXT.body.secondParagraph}</p>
@@ -45,17 +42,16 @@ export default function AboutMe() {
       </div>
 
       {/* Right Column */}
-      <div className="flex-1 w-1/2 flex flex-col">
-        {/* <div className="flex flex-1 items-center justify-center">
-          <h2 className="text-4xl pt-8 font-semibold mb-4">Title</h2>
-        </div> */}
-        <div className="flex w-full h-full overflow-hidden">
-          <UnoptimizedImage
-            src="https://stockimages.org/wp-content/uploads/2020/10/bigstock-Photography-Concept-African-A-381364544.jpg"
-            alt="Your Name"
-            width={500}
-            height={500}
-            className="w-full h-auto rounded-none shadow"
+      <div className="flex-1 w-1/2 flex flex-col items-center justify-center">
+        <div className="flex h-full w-full overflow-hidden justify-center items-center p-4">
+          <Image
+            src={me}
+            alt="Picture of me"
+            className="rounded"
+            width={400}
+            height={711}
+            priority={true}
+            quality={100}
           />
         </div>
       </div>

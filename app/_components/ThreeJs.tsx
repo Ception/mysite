@@ -128,7 +128,7 @@ export default function ThreeJs() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute w-full h-full bg-cover"
+      className="fixed top-0 left-0 w-full h-full bg-cover"
     ></canvas>
   );
 }
