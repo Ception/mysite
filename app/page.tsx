@@ -6,9 +6,12 @@ import {
 import AboutMe from "./_sections/AboutMe";
 import dynamic from "next/dynamic";
 
-const DynamicMouseIcon = dynamic(() => import("./_components/ui/MouseIcon"), {
-  ssr: false,
-});
+export const DynamicMouseIcon = dynamic(
+  () => import("./_components/ui/MouseIcon"),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   const MY_NAME = "Aleks Manov";

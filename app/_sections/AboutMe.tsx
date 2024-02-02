@@ -33,7 +33,7 @@ export default function AboutMe() {
           </div>
         </div>
         <div className="flex-[2] flex justify-start items-start w-5/6 h-full">
-          <div className="body">
+          <div className="body text-base">
             <p className="mb-4">{TEXT.body.firstParagraph}</p>
             <p className="mb-4">{TEXT.body.secondParagraph}</p>
             <p>{TEXT.body.thirdParagraph}</p>
@@ -47,7 +47,7 @@ export default function AboutMe() {
           <Image
             src={me}
             alt="Picture of me"
-            className="rounded"
+            className="rounded-lg shadow-lg border border-gray-300"
             width={400}
             height={711}
             priority={true}
