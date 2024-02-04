@@ -75,76 +75,82 @@ export const ChangingText = ({ text }: ChangingTextProps) => {
   return <span>{title.join("")}</span>;
 };
 
-interface ScramblePhrasesProps {
-  text: string[];
-}
-
-export const ScramblePhrases = ({ text }: ScramblePhrasesProps) => {
+export const ScramblePhrases = ({ text }: { text: string[] }) => {
   const FINAL_TEXT = text;
   const characters = "01";
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(Array(FINAL_TEXT[0].length).fill(""));
   const wordIndexRef = useRef(0);
   const intervalsRef = useRef<number[]>([]);
+  const scrambleTimeoutsRef = useRef<number[]>([]);
   const revealTimeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
-    const shuffleCharacter = (index: number, word: string) => {
+    const shuffleCharacter = (index: number, scramble: boolean) => {
       setTitle((prevTitle) => {
-        const newTitle =
-          prevTitle.substring(0, index) +
-          characters.charAt(Math.floor(Math.random() * characters.length)) +
-          prevTitle.substring(index + 1);
+        const newTitle = [...prevTitle];
+        newTitle[index] = scramble
+          ? characters.charAt(Math.floor(Math.random() * characters.length))
+          : FINAL_TEXT[wordIndexRef.current].charAt(index);
         return newTitle;
       });
     };
 
-    const revealCharacter = (index: number, word: string) => {
-      setTitle((prevTitle) => {
-        const newTitle =
-          prevTitle.substring(0, index) +
-          word.charAt(index) +
-          prevTitle.substring(index + 1);
-        return newTitle;
-      });
-    };
-
-    const shuffleWord = (word: string) => {
-      setTitle(new Array(word.length + 1).join(" "));
-      intervalsRef.current = [];
-      revealTimeoutsRef.current = [];
-      for (let i = 0; i < word.length; i++) {
-        startShuffling(i, word);
-      }
-    };
-
-    const startShuffling = (index: number, word: string) => {
-      intervalsRef.current[index] = window.setInterval(() => {
-        shuffleCharacter(index, word);
+    const scrambleWord = (word: string) => {
+      const longestWordLength = Math.max(
+        ...FINAL_TEXT.map((word) => word.length)
+      );
+      let scrambleIndex = longestWordLength;
+      const scrambleInterval = setInterval(() => {
+        if (scrambleIndex > 0) {
+          shuffleCharacter(--scrambleIndex, scrambleIndex < word.length);
+        } else {
+          clearInterval(scrambleInterval);
+          intervalsRef.current = intervalsRef.current.filter(
+            (id) => id !== scrambleInterval
+          );
+          revealWord(FINAL_TEXT[wordIndexRef.current]);
+        }
       }, 100);
-
-      revealTimeoutsRef.current[index] = window.setTimeout(() => {
-        stopShuffling(index, word);
-      }, 1500 + index * 100);
+      intervalsRef.current.push(scrambleInterval);
     };
 
-    const stopShuffling = (index: number, word: string) => {
-      clearInterval(intervalsRef.current[index]);
-      revealCharacter(index, word);
-      if (index === word.length - 1) {
-        setTimeout(() => {
-          wordIndexRef.current = (wordIndexRef.current + 1) % FINAL_TEXT.length;
-          shuffleWord(FINAL_TEXT[wordIndexRef.current]);
-        }, 2500);
-      }
+    const revealWord = (word: string) => {
+      let revealIndex = -1;
+      const revealInterval = setInterval(() => {
+        if (revealIndex < word.length - 1) {
+          shuffleCharacter(++revealIndex, false);
+        } else {
+          clearInterval(revealInterval);
+          intervalsRef.current = intervalsRef.current.filter(
+            (id) => id !== revealInterval
+          );
+          setTimeout(() => {
+            wordIndexRef.current =
+              (wordIndexRef.current + 1) % FINAL_TEXT.length;
+            scrambleWord(FINAL_TEXT[wordIndexRef.current]);
+          }, 2000);
+        }
+      }, 100);
+      intervalsRef.current.push(revealInterval);
     };
 
-    shuffleWord(FINAL_TEXT[wordIndexRef.current]);
+    // Start by scrambling the first word
+    scrambleWord(FINAL_TEXT[wordIndexRef.current]);
 
     return () => {
-      intervalsRef.current.forEach((interval) => clearInterval(interval));
-      revealTimeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
+      intervalsRef.current.forEach(clearInterval);
+      scrambleTimeoutsRef.current.forEach(clearTimeout);
+      revealTimeoutsRef.current.forEach(clearTimeout);
     };
   }, [FINAL_TEXT]);
 
-  return <span>{title}</span>;
+  return (
+    <span>
+      {title.map((char, index) => (
+        <span key={index} className="character-transition">
+          {char}
+        </span>
+      ))}
+    </span>
+  );
 };

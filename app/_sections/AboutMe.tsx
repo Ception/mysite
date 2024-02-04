@@ -47,7 +47,7 @@ export default function AboutMe() {
           <Image
             src={me}
             alt="Picture of me"
-            className="rounded-lg shadow-lg border border-gray-300"
+            className="rounded-lg shadow-lg border border-gray-300 transform perspective-500 rotate-y-20"
             width={400}
             height={711}
             priority={true}
