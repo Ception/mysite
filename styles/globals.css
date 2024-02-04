@@ -9,7 +9,6 @@ body {
   scroll-behavior: smooth;
   text-align: justify;
   hyphens: auto;
-  letter-spacing: 0.5px;
 }
 
 .mouse {
@@ -83,4 +82,3 @@ body {
   display: inline-block;
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
-

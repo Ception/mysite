@@ -29,7 +29,7 @@ export default function Home() {
       <div className="h-screen w-full flex justify-center items-center relative">
         <div className="h-1/2 w-1/2 flex flex-col justify-center items-center p-12 md:p-3">
           <div className="self-start h-7 pl-12">
-            <h1 className="text-xl text-cyan-500">
+            <h1 className="text-xl text-cyan-500 font-light">
               <ChangingText text={MY_NAME} />
             </h1>
           </div>

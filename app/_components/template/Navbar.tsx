@@ -37,7 +37,7 @@ export default function Navbar() {
           <ul className="flex flex-col space-y-2 bottom-[74px] relative">
             {menuItems.map((item) => (
               <li
-                className={`py-2 text-lg leading-tight ${
+                className={`py-2 text-lg leading-tight font-light ${
                   activeItem === item ? "text-sky-500" : "text-white"
                 }`}
                 key={item}

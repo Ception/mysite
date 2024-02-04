@@ -6,7 +6,10 @@ import Navbar from "./_components/template/Navbar";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
 
-const ubuntu = Ubuntu({ subsets: ["latin"], weight: "300" });
+const ubuntu = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
 
 const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
   ssr: false, // disable server-side rendering

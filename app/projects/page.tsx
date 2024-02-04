@@ -9,7 +9,7 @@ export default function Projects() {
           id="project-1"
         >
           <div className="self-center">
-            <span className="text-4xl">Projects</span>
+            <span className="text-4xl font-light">Projects</span>
           </div>
         </div>
         <div className="fixed bottom-4 w-full flex justify-center">

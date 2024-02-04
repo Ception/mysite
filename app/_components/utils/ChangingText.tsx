@@ -4,9 +4,10 @@ import { useState, useEffect, useRef } from "react";
 
 interface ChangingTextProps {
   text: string;
+  className?: string;
 }
 
-export const ChangingText = ({ text }: ChangingTextProps) => {
+export const ChangingText = ({ text, className }: ChangingTextProps) => {
   const FINAL_TEXT = text;
   const characters =
     "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
@@ -72,7 +73,7 @@ export const ChangingText = ({ text }: ChangingTextProps) => {
     };
   }, [FINAL_TEXT, characters]);
 
-  return <span>{title.join("")}</span>;
+  return <span className={className}>{title.join("")}</span>;
 };
 
 export const ScramblePhrases = ({ text }: { text: string[] }) => {
@@ -100,11 +101,11 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
         ...FINAL_TEXT.map((word) => word.length)
       );
       let scrambleIndex = longestWordLength;
-      const scrambleInterval = setInterval(() => {
+      const scrambleInterval = window.setInterval(() => {
         if (scrambleIndex > 0) {
           shuffleCharacter(--scrambleIndex, scrambleIndex < word.length);
         } else {
-          clearInterval(scrambleInterval);
+          window.clearInterval(scrambleInterval);
           intervalsRef.current = intervalsRef.current.filter(
             (id) => id !== scrambleInterval
           );
@@ -116,15 +117,15 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
 
     const revealWord = (word: string) => {
       let revealIndex = -1;
-      const revealInterval = setInterval(() => {
+      const revealInterval = window.setInterval(() => {
         if (revealIndex < word.length - 1) {
           shuffleCharacter(++revealIndex, false);
         } else {
-          clearInterval(revealInterval);
+          window.clearInterval(revealInterval);
           intervalsRef.current = intervalsRef.current.filter(
             (id) => id !== revealInterval
           );
-          setTimeout(() => {
+          window.setTimeout(() => {
             wordIndexRef.current =
               (wordIndexRef.current + 1) % FINAL_TEXT.length;
             scrambleWord(FINAL_TEXT[wordIndexRef.current]);
@@ -138,9 +139,9 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
     scrambleWord(FINAL_TEXT[wordIndexRef.current]);
 
     return () => {
-      intervalsRef.current.forEach(clearInterval);
-      scrambleTimeoutsRef.current.forEach(clearTimeout);
-      revealTimeoutsRef.current.forEach(clearTimeout);
+      intervalsRef.current.forEach(window.clearInterval);
+      scrambleTimeoutsRef.current.forEach(window.clearTimeout);
+      revealTimeoutsRef.current.forEach(window.clearTimeout);
     };
   }, [FINAL_TEXT]);
 
