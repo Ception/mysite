@@ -1,6 +1,13 @@
-import { DynamicMouseIcon } from "../page";
+import dynamic from "next/dynamic";
 
 export default function Projects() {
+  const DynamicMouseIcon = dynamic(
+    () => import("../_components/ui/MouseIcon"),
+    {
+      ssr: false,
+    }
+  );
+
   return (
     <div>
       <div className="h-screen w-full flex justify-center items-center relative">

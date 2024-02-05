@@ -129,7 +129,7 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
             wordIndexRef.current =
               (wordIndexRef.current + 1) % FINAL_TEXT.length;
             scrambleWord(FINAL_TEXT[wordIndexRef.current]);
-          }, 2000);
+          }, 1000);
         }
       }, 100);
       intervalsRef.current.push(revealInterval);
@@ -138,10 +138,15 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
     // Start by scrambling the first word
     scrambleWord(FINAL_TEXT[wordIndexRef.current]);
 
+    // Copy the current values of the refs to variables
+    const currentIntervals = intervalsRef.current;
+    const currentScrambleTimeouts = scrambleTimeoutsRef.current;
+    const currentRevealTimeouts = revealTimeoutsRef.current;
+
     return () => {
-      intervalsRef.current.forEach(window.clearInterval);
-      scrambleTimeoutsRef.current.forEach(window.clearTimeout);
-      revealTimeoutsRef.current.forEach(window.clearTimeout);
+      currentIntervals.forEach(window.clearInterval);
+      currentScrambleTimeouts.forEach(window.clearTimeout);
+      currentRevealTimeouts.forEach(window.clearTimeout);
     };
   }, [FINAL_TEXT]);
 
