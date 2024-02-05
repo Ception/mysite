@@ -57,7 +57,7 @@ export default function AboutMe() {
           <Image
             src={me}
             alt="Picture of me"
-            className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300"
+            className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300 w-auto h-auto"
             width={390}
             height={690}
             priority={true}
