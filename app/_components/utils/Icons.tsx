@@ -136,8 +136,27 @@ export const SHARP_ARROW_OUT = ({ size, width, height }: IconProps) => {
       height={size || height || 32}
       viewBox="0 0 24 24"
     >
-      <path fill="currentColor" d="M5 5h7V3H3v18h9v-2H5z" />
-      <path fill="currentColor" d="m21 12l-4-4v3H9v2h8v3z" />
+      <path
+        fill="currentColor"
+        d="M6.41 6L5 7.41L9.58 12L5 16.59L6.41 18l6-6z"
+      />
+      <path
+        fill="currentColor"
+        d="m13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"
+      />
+    </svg>
+  );
+};
+
+export const SEND_MAIL = ({ size, width, height }: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size || width || 32}
+      height={size || height || 32}
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z" />
     </svg>
   );
 };

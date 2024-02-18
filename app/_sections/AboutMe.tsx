@@ -1,6 +1,8 @@
 import Image from "next/image";
 import me from "../../public/me.png";
 import { ChangingText } from "../_components/utils/ChangingText";
+import { SendMailButton } from "../_components/ui/CustomButton";
+import Link from "next/link";
 
 export default function AboutMe() {
   interface IText {
@@ -40,6 +42,16 @@ export default function AboutMe() {
               <p className="mb-4">{profile.body.intro}</p>
               <p className="mb-4">{profile.body.journey}</p>
               <p>{profile.body.skills}</p>
+            </div>
+            <div className="pt-8">
+              <Link href="/contact">
+                <SendMailButton
+                  text="Get in touch"
+                  icon="SEND_MAIL"
+                  iconSize={24}
+                  buttonSize="md"
+                />
+              </Link>
             </div>
           </div>
         </div>

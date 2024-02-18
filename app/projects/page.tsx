@@ -19,7 +19,7 @@ export default function Projects() {
           <div className="self-center">
             <span className="text-4xl font-light">
               <CustomButton
-                text="See more"
+                text="View project"
                 icon="SHARP_ARROW_OUT"
                 iconSize={32}
                 buttonSize="xl"

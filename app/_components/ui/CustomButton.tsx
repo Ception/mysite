@@ -33,3 +33,28 @@ export default function CustomButton({
     </button>
   );
 }
+
+export function SendMailButton({
+  text,
+  icon,
+  iconSize,
+  buttonSize = "md",
+}: CustomButtonProps) {
+  const IconComponent = icons[icon];
+
+  const buttonSizeClasses = {
+    sm: "px-4 py-2 text-sm",
+    md: "px-4 py-2 text-base",
+    lg: "px-4 py-2 text-lg",
+    xl: "px-4 py-2 text-xl",
+  };
+
+  return (
+    <button
+      className={`inline-flex items-center justify-center ${buttonSizeClasses[buttonSize]} bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium folded-button p-4 pr-6`}
+    >
+      {IconComponent && <IconComponent size={iconSize} />}
+      <span className="pl-2">{text}</span>
+    </button>
+  );
+}
