@@ -81,3 +81,7 @@ body {
   display: inline-block;
   transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
+
+.folded-button {
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 93% 100%, 0 100%, 0 57%);
+}

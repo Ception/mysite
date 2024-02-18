@@ -127,3 +127,17 @@ export const THREE_JS_LOGO = ({ size, width, height }: IconProps) => {
     </svg>
   );
 };
+
+export const SHARP_ARROW_OUT = ({ size, width, height }: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size || width || 32}
+      height={size || height || 32}
+      viewBox="0 0 24 24"
+    >
+      <path fill="currentColor" d="M5 5h7V3H3v18h9v-2H5z" />
+      <path fill="currentColor" d="m21 12l-4-4v3H9v2h8v3z" />
+    </svg>
+  );
+};
