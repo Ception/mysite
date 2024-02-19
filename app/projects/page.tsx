@@ -17,7 +17,7 @@ export default function Projects() {
           className="h-full w-full flex justify-center items-center border"
           id="project-1"
         >
-          <CustomTitle text="Project 1" textSize="xxl" dividerSize="lg" />
+          <CustomTitle text="001" textSize="xxl" dividerSize="md" />
           <div className="self-center">
             {/* <span className="text-4xl font-light">
               <CustomButton

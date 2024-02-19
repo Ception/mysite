@@ -93,3 +93,16 @@ body {
 .divider-line {
   border-top: 3px solid rgb(229, 231, 235);
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 2s ease-in-out forwards 0.3s;
+}

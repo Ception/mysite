@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <div className="line"></div>
           <div className="flex items-center self-end w-full h-24 pl-24">
-            <div className="h-12 w-12">
+            <div className="h-12 w-12 opacity-0 animate-fadeIn text-slate-400">
               <FORWARD_ARROW width={48} height={48} />
             </div>
             <h2 className="text-8xl w-full h-28 pt-2 whitespace-nowrap">

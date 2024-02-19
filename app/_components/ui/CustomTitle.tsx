@@ -39,7 +39,7 @@ export default function CustomTitle({
         ></div>
       </div>
       <h1
-        className={`mt-[-4px] text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
+        className={`mt-[-10px] text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
       >
         {text.toLocaleUpperCase()}
       </h1>
