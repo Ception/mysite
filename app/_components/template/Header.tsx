@@ -6,10 +6,10 @@ export default function Header() {
     <div className="absolute w-full px-8 top-0 pt-8 z-10">
       <div className="flex justify-between">
         <Link href="/">
-          <LOGO />
+          <LOGO size={32} />
         </Link>
         <div className="cursor-pointer">
-          <THEME_TOGGLE />
+          <THEME_TOGGLE size={32} />
         </div>
       </div>
     </div>

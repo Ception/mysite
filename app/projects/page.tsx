@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import CustomButton from "../_components/ui/CustomButton";
+import CustomTitle from "../_components/ui/CustomTitle";
 
 export default function Projects() {
   const DynamicMouseIcon = dynamic(
@@ -16,15 +17,16 @@ export default function Projects() {
           className="h-full w-full flex justify-center items-center border"
           id="project-1"
         >
+          <CustomTitle text="Project 1" textSize="xxl" dividerSize="lg" />
           <div className="self-center">
-            <span className="text-4xl font-light">
+            {/* <span className="text-4xl font-light">
               <CustomButton
                 text="View project"
                 icon="SHARP_ARROW_OUT"
                 iconSize={32}
                 buttonSize="xl"
               />
-            </span>
+            </span> */}
           </div>
         </div>
         <div className="fixed bottom-4 w-full flex justify-center">

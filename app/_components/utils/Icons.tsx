@@ -30,8 +30,8 @@ export const MOUSE_ICON = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 48}
-      height={size || height || 48}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 24 24"
     >
       <path fill="#ffffff" d="m7 10l5 5l5-5H7Z" />
@@ -44,8 +44,8 @@ export const LOGO = ({ size, width, height }: IconProps) => {
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 42}
-      height={size || height || 42}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 13475.000000 9884.000000"
       preserveAspectRatio="xMidYMid meet"
     >
@@ -77,8 +77,8 @@ export const THEME_TOGGLE = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 32}
-      height={size || height || 32}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 20 20"
     >
       <path
@@ -93,8 +93,8 @@ export const TAILWIND_LOGO = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 32}
-      height={size || height || 32}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 512 512"
     >
       <path
@@ -109,8 +109,8 @@ export const THREE_JS_LOGO = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 32}
-      height={size || height || 32}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 24 24"
     >
       <g
@@ -132,8 +132,8 @@ export const SHARP_ARROW_OUT = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 32}
-      height={size || height || 32}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 24 24"
     >
       <path
@@ -152,8 +152,8 @@ export const SEND_MAIL = ({ size, width, height }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size || width || 32}
-      height={size || height || 32}
+      width={size || width || 24}
+      height={size || height || 24}
       viewBox="0 0 24 24"
     >
       <path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z" />

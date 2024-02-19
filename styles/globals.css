@@ -85,3 +85,11 @@ body {
 .folded-button {
   clip-path: polygon(0 0, 100% 0, 100% 78%, 93% 100%, 0 100%, 0 57%);
 }
+
+.divider {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 0%, 75% 100%, 25% 100%, 0% 0%);
+}
+
+.divider-line {
+  border-top: 3px solid rgb(229, 231, 235);
+}
