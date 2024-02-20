@@ -4,6 +4,8 @@ import CustomTitle from "../_components/ui/CustomTitle";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialOceanic } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ShutterEffect from "../_components/utils/ShutterEffect";
+import CodeBlinds from "../_components/utils/CodeBlinds";
+import Link from "next/link";
 
 export default function Projects() {
   const DynamicMouseIcon = dynamic(
@@ -75,12 +77,104 @@ export default function Projects() {
 	},
 };`;
 
+  const COMMERCE_CODE_SNIPPET = `export async function GET(req: NextRequest, { params }: any) {
+  const API = process.env.API_URL;
+  const AUTH_TOKEN = process.env.API_TOKEN;
+  const name = params.product;
+
+  try {
+    const response = await fetch(
+      {API}, // template literal for dynamic URL
+      {
+        headers: {
+          Authorization: \`Bearer \${AUTH_TOKEN}\`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      // throw new Error("Error fetching products");
+    }
+
+    const jsonResponse = await response.json();
+    return new Response(JSON.stringify(jsonResponse), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        cahe: "no-cache",
+      },
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({ message: "Error fetching products" }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+}`;
+
+  const PROJECT_DETAILS = {
+    "001": {
+      title: "Advanced DDoS Mitigation & Global Server Optimization",
+      description:
+        "A serverless solution for robust DDoS protection and worldwide low-latency content delivery. Leverages Cloudflare Workers, CDN, and DNS, alongside Express.js, Linux, and Debian servers (where applicable). Includes HAProxy, Docker, Ansible, Prometheus, and Grafana for scalability, deployment, automation, and monitoring.",
+      techStack: [
+        "Cloudflare Workers",
+        "Cloudflare Workers Wrangler API",
+        "Cloudflare CDN",
+        "Cloudflare DNS",
+        "Express.js",
+        "Linux",
+        "Debian",
+        "HAProxy",
+        "Docker",
+        "Ansible",
+        "Prometheus",
+        "Grafana",
+      ],
+    },
+    "002": {
+      title: "Full-Stack E-Commerce Platform with Custom CMS",
+      description:
+        "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, along with a custom CMS and Stripe payment integration.  Project resulted in a 35% sales increase for the client, improved customer engagement, and efficient site management.",
+      techStack: [
+        "React",
+        "Next.js 14",
+        "Tailwind CSS",
+        "Strapi",
+        "Stripe API",
+        "Cloudflare Pages",
+        "Vultr",
+        "Linux",
+      ],
+      githubURL: "https://github.com/Ception/alohakush",
+    },
+    "003": {
+      title: "Complete Custom CMS API",
+      description:
+        "Robust backend for content management systems, built with TypeScript, Node.js, and Express.js.  Features Redis caching, optimized MariaDB connectivity, secure JWT authentication, and rate limiting.",
+      techStack: [
+        "TypeScript",
+        "Node.js",
+        "Express.js",
+        "Redis",
+        "MariaDB",
+        "JSON Web Tokens (JWT)",
+      ],
+      availability: "Available on Request",
+    },
+  };
+
   return (
     <div>
       <div className="h-screen w-full flex justify-center items-center relative">
         <div className="h-full w-full flex flex-col" id="project-1">
           <div className="w-full flex-1">
-            <div className="self-start pt-12 pl-12 flex items-center">
+            <div className="self-start pt-12 flex items-start">
               <CustomTitle
                 text="001: Serverless DDOS Protection"
                 textSize="xxl"
@@ -108,15 +202,53 @@ export default function Projects() {
                 </ShutterEffect>
               </div>
             </div>
-            <div className="flex flex-col w-1/2 mt-[-124px] border">
-              <div className="self-end">
-                <CustomTitle
-                  text="Overview"
-                  textSize="xl"
-                  dividerSize="md"
-                  reverse={true}
-                />
-              </div>
+            <div className="flex flex-col w-1/2 mt-[-96px]">
+              <CodeBlinds>
+                <div className="flex flex-col w-full h-full p-8">
+                  <div className="self-end">
+                    <CustomTitle
+                      text="Overview"
+                      textSize="sm"
+                      dividerSize="sm"
+                      reverse={true}
+                    />
+                  </div>
+                  <div className="self-start mt-4">
+                    <span className="text-2xl">
+                      {PROJECT_DETAILS["001"].title}
+                    </span>
+                  </div>
+                  <div className="self-center mt-4">
+                    <span className="font-light">
+                      {PROJECT_DETAILS["001"].description}
+                    </span>
+                    <div className="mt-4">
+                      <span className="font-light">Tech Stack:</span>
+                      <div className="mt-2">
+                        <ul className="flex flex-wrap gap-2">
+                          {PROJECT_DETAILS["001"].techStack.map((techItem) => (
+                            <li
+                              key={techItem}
+                              className="inline-flex items-center justify-center bg-gray-200 text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
+                            >
+                              {techItem}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="self-end mt-4">
+                    <Link href="contact">
+                      <CustomButton
+                        text="Request Access"
+                        icon="SHARP_ARROW_OUT"
+                        iconSize={32}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </CodeBlinds>
             </div>
           </div>
         </div>
@@ -127,17 +259,81 @@ export default function Projects() {
       <div className="h-screen w-full flex flex-col justify-start items-start relative">
         <div className="h-full w-full flex flex-col" id="project-2">
           <div className="w-full flex-1">
-            <div className="self-start pt-12 pl-12 flex items-center justify-between">
+            <div className="self-start pt-12 pr-12 flex items-start justify-end">
               <CustomTitle
-                text="001: Serverless DDOS Protection"
+                text="Complete E-Commerce :002"
                 textSize="xxl"
                 dividerSize="md"
+                reverse={true}
               />
             </div>
           </div>
-          <div className="w-full flex-[3] border">
-            <div className="self-start">
-              <span>text</span>
+          <div className="w-full flex-[3] flex flex-row">
+            <div className="flex flex-col w-1/2 mt-[-28px]">
+              <CodeBlinds>
+                <div className="flex flex-col w-full h-full p-8">
+                  <div className="self-start ml-[-24px]">
+                    <CustomTitle
+                      text="Overview"
+                      textSize="sm"
+                      dividerSize="sm"
+                    />
+                  </div>
+                  <div className="self-start mt-4 text-justify">
+                    <span className="text-2xl">
+                      {PROJECT_DETAILS["002"].title}
+                    </span>
+                  </div>
+                  <div className="self-center mt-4">
+                    <span className="font-light">
+                      {PROJECT_DETAILS["002"].description}
+                    </span>
+                    <div className="mt-4">
+                      <span className="font-light">Tech Stack:</span>
+                      <div className="mt-2">
+                        <ul className="flex flex-wrap gap-2">
+                          {PROJECT_DETAILS["002"].techStack.map((techItem) => (
+                            <li
+                              key={techItem}
+                              className="inline-flex items-center justify-center bg-gray-200  text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
+                            >
+                              {techItem}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="self-start mt-8">
+                    <Link href="contact">
+                      <CustomButton
+                        text="Request Access"
+                        icon="SHARP_ARROW_OUT"
+                        iconSize={32}
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </CodeBlinds>
+            </div>
+            <div className="flex w-1/2 mt-[-124px]">
+              <div className="overflow-y-auto max-h-[560px] self-center">
+                <ShutterEffect reverse={true} backgroundReveal={true}>
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={materialOceanic}
+                    wrapLines={true}
+                    wrapLongLines={true}
+                    customStyle={{
+                      fontSize: "0.9rem",
+                      padding: "1rem",
+                      margin: "1rem",
+                    }}
+                  >
+                    {COMMERCE_CODE_SNIPPET}
+                  </SyntaxHighlighter>
+                </ShutterEffect>
+              </div>
             </div>
           </div>
         </div>

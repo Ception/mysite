@@ -43,7 +43,7 @@ export default function AboutMe() {
               <p className="mb-4">{profile.body.journey}</p>
               <p className="mb-8">{profile.body.skills}</p>
             </div>
-            <Link href="/contact">
+            <Link href="contact">
               <SendMailButton
                 text="Get in touch"
                 icon="SEND_MAIL"

@@ -1,7 +1,7 @@
 interface TitleStyling {
   text: string;
-  textSize?: "sm" | "md" | "lg" | "xl" | "xxl";
-  dividerSize?: "md" | "lg";
+  textSize?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+  dividerSize?: "sm" | "md";
   reverse?: boolean;
 }
 
@@ -12,16 +12,17 @@ export default function CustomTitle({
   reverse = false,
 }: TitleStyling) {
   const titleSizeClasses = {
-    sm: "px-4 text-sm",
-    md: "px-4 text-base",
-    lg: "px-4 text-lg",
-    xl: "px-4 text-xl",
-    xxl: "px-4 text-2xl",
+    xs: "px-4 text-xs mt-[-9px]",
+    sm: "px-4 text-sm mt-[-12px]",
+    md: "px-4 text-base mt-[-9px]",
+    lg: "px-4 text-lg mt-[-9px]",
+    xl: "px-4 text-xl mt-[-12px]",
+    xxl: "px-4 text-2xl mt-[-12px]",
   };
 
   const dividerSizeClasses = {
-    md: "h-5 w-[100px]",
-    lg: "h-5 w-[150px]",
+    sm: "h-3 w-[50px]",
+    md: "h-3 w-[75px]",
   };
 
   const calculateWidth = (size: string) => {
@@ -31,7 +32,7 @@ export default function CustomTitle({
 
   return (
     <div
-      className={`flex items-start ${
+      className={`flex items-center ${
         reverse ? "flex-row-reverse" : "flex-row"
       } p-8`}
     >
@@ -41,13 +42,13 @@ export default function CustomTitle({
         )}`}
       >
         <div
-          className={`divider bg-gray-200 hover:bg-gray-300 ${
-            dividerSizeClasses[dividerSize]
-          } ${reverse ? "ml-auto" : "mr-auto"}`}
+          className={`divider bg-gray-200 ${dividerSizeClasses[dividerSize]} ${
+            reverse ? "ml-auto" : "mr-auto"
+          }`}
         ></div>
       </div>
       <h1
-        className={`mt-[-9px] text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
+        className={`text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
       >
         {text.toLocaleUpperCase()}
       </h1>
