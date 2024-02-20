@@ -13,33 +13,45 @@ export default function Projects() {
   return (
     <div>
       <div className="h-screen w-full flex justify-center items-center relative">
-        <div
-          className="h-full w-full flex justify-center items-center border"
-          id="project-1"
-        >
-          <CustomTitle text="001" textSize="xxl" dividerSize="md" />
-          <div className="self-center">
-            {/* <span className="text-4xl font-light">
-              <CustomButton
-                text="View project"
-                icon="SHARP_ARROW_OUT"
-                iconSize={32}
-                buttonSize="xl"
+        <div className="h-full w-full flex flex-col border" id="project-1">
+          <div className="w-full flex-1 border">
+            <div className="self-start pt-12 pl-12">
+              <CustomTitle
+                text="001: Xenforo"
+                textSize="xxl"
+                dividerSize="md"
               />
-            </span> */}
+            </div>
+          </div>
+          <div className="w-full flex-[3] border">
+            <div className="self-start">
+              <span>text</span>
+              <span className="text-4xl font-light">
+                <CustomButton
+                  text="View project"
+                  icon="SHARP_ARROW_OUT"
+                  iconSize={32}
+                  buttonSize="xl"
+                />
+              </span>
+            </div>
           </div>
         </div>
-        <div className="fixed bottom-4 w-full flex justify-center">
+        <div className="fixed bottom-4 w-full flex justify-center items-center">
           <DynamicMouseIcon nextSectionId="project-2" />
         </div>
       </div>
-      <div className="h-screen w-full flex justify-center items-center relative">
-        <div
-          className="h-full w-full flex justify-center items-center border"
-          id="project-2"
-        >
-          <div className="self-center">
-            <span className="text-4xl">Projects</span>
+      <div className="h-screen w-full flex flex-col justify-start items-start relative">
+        <div className="h-full w-full flex flex-col border" id="project-2">
+          <div className="w-full flex-1 border">
+            <div className="self-start pt-12 pl-12">
+              <CustomTitle text="002: CMS" textSize="xxl" dividerSize="md" />
+            </div>
+          </div>
+          <div className="w-full flex-[3] border">
+            <div className="self-start">
+              <span>text</span>
+            </div>
           </div>
         </div>
       </div>
