@@ -15,14 +15,14 @@ export default function AboutMe() {
   }
 
   const profile: IText = {
-    title: "Hey there!",
+    title: "Hello World!",
     body: {
       intro:
-        "Hey there! I'm 32 and have been in love with technology since I was 12, thanks to my first computer. It's not just a career; it's my calling.",
+        "I'm Aleks, a 32-year-old tech enthusiast who fell in love with technology at the tender age of 12, thanks to my first computer. For me, technology is not just a career; it's a calling that I've been passionately pursuing.",
       journey:
-        "I've come a long way from spending a decade in the Towing Industry to chasing my tech dreams. Now, I'm soaking up knowledge at Sheridan College, getting hands-on with C#, JavaScript, React, and NodeJS.",
+        "From spending over a decade in the Towing Industry to diving deep into the tech world, my journey has been anything but ordinary. Now, I'm expanding my horizons at Sheridan College, mastering C#, JavaScript, React, and Node.js, and applying my skills in real-world projects like DDoS mitigation, e-commerce platforms, and custom CMS solutions.",
       skills:
-        "Beyond the books, I've got a knack for web and server management, driven by an endless curiosity. I'm on the lookout for the next adventure in software development, ready to pack my bags, join a vibrant team, and put my full-stack skills to work.",
+        "My adventure doesn't stop at academics; I've honed a diverse skill set in web and server management, full-stack development, and more, driven by an insatiable curiosity for the latest tech. Ready for my next challenge, I'm eager to join a vibrant team where I can contribute my full-stack expertise, innovative problem-solving, and a knack for creating efficient, scalable solutions.",
     },
   };
 
@@ -41,18 +41,16 @@ export default function AboutMe() {
             <div className="body text-base font-light text-white text-justify w-3/4 ml-auto">
               <p className="mb-4">{profile.body.intro}</p>
               <p className="mb-4">{profile.body.journey}</p>
-              <p>{profile.body.skills}</p>
+              <p className="mb-8">{profile.body.skills}</p>
             </div>
-            <div className="pt-8">
-              <Link href="/contact">
-                <SendMailButton
-                  text="Get in touch"
-                  icon="SEND_MAIL"
-                  iconSize={24}
-                  buttonSize="md"
-                />
-              </Link>
-            </div>
+            <Link href="/contact">
+              <SendMailButton
+                text="Get in touch"
+                icon="SEND_MAIL"
+                iconSize={24}
+                buttonSize="md"
+              />
+            </Link>
           </div>
         </div>
       </div>

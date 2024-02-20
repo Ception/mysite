@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState("");
   // Memoize the menuItems array
-  const menuItems = useMemo(() => ["Home", "About", "Projects", "Contact"], []);
+  const menuItems = useMemo(() => ["Who Am I?", "Projects", "Contact"], []);
   const pathname = usePathname(); // Use usePathname to get the current pathname
 
   useEffect(() => {
@@ -21,9 +21,7 @@ export default function Navbar() {
   }, [menuItems, pathname]); // Add pathname to dependency array
 
   const getHref = (item: string) => {
-    if (item === "Home") {
-      return "/";
-    } else if (item === "About") {
+    if (item === "Who Am I?") {
       return "/#about-me";
     } else {
       return `/${item.toLowerCase()}`;

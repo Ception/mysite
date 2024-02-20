@@ -5,6 +5,7 @@ import {
 } from "./_components/utils/ChangingText";
 import AboutMe from "./_sections/AboutMe";
 import dynamic from "next/dynamic";
+import CodeBlinds from "./_components/utils/CodeBlinds";
 
 export default function Home() {
   const MY_NAME = "Aleks Manov";
@@ -31,7 +32,9 @@ export default function Home() {
             </h1>
           </div>
           <div className="self-start pl-12">
-            <h2 className="text-8xl">{PREFIX}</h2>
+            <h2 className="text-8xl">
+              <CodeBlinds>{PREFIX}</CodeBlinds>
+            </h2>
           </div>
           <div className="line"></div>
           <div className="flex items-center self-end w-full h-24 pl-24">
