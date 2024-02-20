@@ -89,8 +89,8 @@ export default function Projects() {
             </div>
           </div>
           <div className="w-full flex-[3] flex flex-row">
-            <div className="flex w-2/3 mt-[-96px]">
-              <div className="overflow-y-auto max-h-[560px] self-center border">
+            <div className="flex w-2/3 mt-[-124px]">
+              <div className="overflow-y-auto max-h-[560px] self-center">
                 <ShutterEffect reverse={true} backgroundReveal={true}>
                   <SyntaxHighlighter
                     language="javascript"
@@ -108,15 +108,15 @@ export default function Projects() {
                 </ShutterEffect>
               </div>
             </div>
-            <div className="flex w-1/2 border">
-              <span className="text-4xl font-light">
-                <CustomButton
-                  text="Request Access"
-                  icon="SHARP_ARROW_OUT"
-                  iconSize={32}
-                  buttonSize="xl"
+            <div className="flex flex-col w-1/2 mt-[-124px] border">
+              <div className="self-end">
+                <CustomTitle
+                  text="Overview"
+                  textSize="xl"
+                  dividerSize="md"
+                  reverse={true}
                 />
-              </span>
+              </div>
             </div>
           </div>
         </div>

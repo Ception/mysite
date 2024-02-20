@@ -2,12 +2,14 @@ interface TitleStyling {
   text: string;
   textSize?: "sm" | "md" | "lg" | "xl" | "xxl";
   dividerSize?: "md" | "lg";
+  reverse?: boolean;
 }
 
 export default function CustomTitle({
   text,
   textSize = "md",
   dividerSize = "md",
+  reverse = false,
 }: TitleStyling) {
   const titleSizeClasses = {
     sm: "px-4 text-sm",
@@ -28,18 +30,24 @@ export default function CustomTitle({
   };
 
   return (
-    <div className="flex items-start flex-row p-8">
+    <div
+      className={`flex items-start ${
+        reverse ? "flex-row-reverse" : "flex-row"
+      } p-8`}
+    >
       <div
         className={`divider-line ${calculateWidth(
           dividerSizeClasses[dividerSize]
         )}`}
       >
         <div
-          className={`divider bg-gray-200 hover:bg-gray-300 ${dividerSizeClasses[dividerSize]}`}
+          className={`divider bg-gray-200 hover:bg-gray-300 ${
+            dividerSizeClasses[dividerSize]
+          } ${reverse ? "ml-auto" : "mr-auto"}`}
         ></div>
       </div>
       <h1
-        className={`mt-[-10px] text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
+        className={`mt-[-9px] text-gray-200 ${titleSizeClasses[textSize]} font-medium leading-none`}
       >
         {text.toLocaleUpperCase()}
       </h1>
