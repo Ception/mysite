@@ -14,13 +14,22 @@ export default function AboutMe() {
     };
   }
 
+  const myAge = () => {
+    const myBirthday = new Date(1991, 3, 28);
+    const today = new Date();
+
+    const diffInTime = today.getTime() - myBirthday.getTime();
+    const diffInYears = diffInTime / (1000 * 60 * 60 * 24 * 365);
+
+    return Math.floor(diffInYears);
+  };
+
   const profile: IText = {
     title: "Hello World!",
     body: {
-      intro:
-        "I'm Aleks, a 32-year-old tech enthusiast who fell in love with technology at the tender age of 12, thanks to my first computer. For me, technology is not just a career; it's a calling that I've been passionately pursuing.",
+      intro: `I'm Aleks, a ${myAge()}-year-old tech enthusiast who fell in love with technology at the age of 12, thanks to my first computer. For me, technology is not just a career; it's a calling that I've been passionately pursuing.`,
       journey:
-        "From spending over a decade in the Towing Industry to diving deep into the tech world, my journey has been anything but ordinary. Now, I'm expanding my horizons at Sheridan College, mastering C#, JavaScript, React, and Node.js, and applying my skills in real-world projects like DDoS mitigation, e-commerce platforms, and custom CMS solutions.",
+        "From spending over a decade in the Towing Industry to diving deep into the tech world, my journey has been anything but ordinary. Now, I'm expanding my horizons mastering C#, JavaScript, React, and Node.js, and applying my skills in real-world projects like DDoS mitigation, e-commerce platforms, and custom CMS solutions.",
       skills:
         "My adventure doesn't stop at academics; I've honed a diverse skill set in web and server management, full-stack development, and more, driven by an insatiable curiosity for the latest tech. Ready for my next challenge, I'm eager to join a vibrant team where I can contribute my full-stack expertise, innovative problem-solving, and a knack for creating efficient, scalable solutions.",
     },
