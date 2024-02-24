@@ -23,7 +23,7 @@ export default function CustomTitle({
   const dividerSizeClasses = {
     sm: "h-2 w-[50px]",
     md: "h-3 w-[75px]",
-    lg: "h-4 w-[100px]",
+    lg: "h-4 w-[150px] mt-[-0.2px]",
   };
 
   const calculateWidth = (size: string) => {
