@@ -1,9 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import { SendMailButton } from "../_components/ui/CustomButton";
 import CustomTitle from "../_components/ui/CustomTitle";
 import { ChangingText } from "../_components/utils/ChangingText";
-import { sendEmail } from "../_components/utils/sendEmail";
+import { validateForm } from "../_components/utils/sendEmail";
+import { useFormState } from "react-dom";
 
 export default function Contact() {
+  const [state, formAction] = useFormState(validateForm, null);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  if (!state?.success) {
+    setErrorMessage(state?.message as string);
+  }
+
   return (
     <div className="flex flex-col h-screen w-full justify-center items-center relative">
       <div className="flex flex-col w-1/2 p-12 mt-[-64px] items-center justify-center">
@@ -16,16 +27,18 @@ export default function Contact() {
             <CustomTitle dividerSize="lg" />
           </div>
         </div>
-        <form className="w-5/6" action={sendEmail}>
+        <form className="w-5/6" action={formAction}>
           <div className="w-full mb-4">
             <input
               type="email"
+              name="email"
               placeholder="Your email"
               className="text-gray-200 bg-transparent border-b border-gray-200 w-full py-2"
             />
           </div>
           <div className="w-full mb-16">
             <textarea
+              name="message"
               placeholder="Message"
               className="text-gray-200 bg-transparent border-b border-gray-200 w-full py-2"
               rows={4}
@@ -40,6 +53,9 @@ export default function Contact() {
             />
           </div>
         </form>
+        <div className="w-full mt-4">
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        </div>
       </div>
     </div>
   );
