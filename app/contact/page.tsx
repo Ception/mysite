@@ -1,6 +1,7 @@
 import { SendMailButton } from "../_components/ui/CustomButton";
 import CustomTitle from "../_components/ui/CustomTitle";
 import { ChangingText } from "../_components/utils/ChangingText";
+import { sendEmail } from "../_components/utils/sendEmail";
 
 export default function Contact() {
   return (
@@ -15,7 +16,7 @@ export default function Contact() {
             <CustomTitle dividerSize="lg" />
           </div>
         </div>
-        <div className="w-5/6">
+        <form className="w-5/6" action={sendEmail}>
           <div className="w-full mb-4">
             <input
               type="email"
@@ -38,7 +39,7 @@ export default function Contact() {
               buttonSize="lg"
             />
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

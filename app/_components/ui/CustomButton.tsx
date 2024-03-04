@@ -1,3 +1,6 @@
+"use client";
+
+import { useFormStatus } from "react-dom";
 import * as icons from "../utils/Icons";
 
 type IconType = keyof typeof icons;
@@ -40,6 +43,7 @@ export function SendMailButton({
   iconSize,
   buttonSize = "md",
 }: CustomButtonProps) {
+  const { pending } = useFormStatus();
   const IconComponent = icons[icon];
 
   const buttonSizeClasses = {
@@ -51,7 +55,13 @@ export function SendMailButton({
 
   return (
     <button
-      className={`inline-flex items-center justify-center ${buttonSizeClasses[buttonSize]} bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium folded-button p-4 pr-6`}
+      type="submit"
+      disabled={pending}
+      className={`inline-flex items-center justify-center ${
+        buttonSizeClasses[buttonSize]
+      } ${
+        pending ? "bg-gray-400" : "bg-gray-200 hover:bg-gray-300"
+      } text-gray-800 font-medium folded-button p-4 pr-6`}
     >
       {IconComponent && <IconComponent size={iconSize} />}
       <span className="pl-2">{text}</span>
