@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SendMailButton } from "../_components/ui/CustomButton";
 import CustomTitle from "../_components/ui/CustomTitle";
 import { ChangingText } from "../_components/utils/ChangingText";
@@ -11,9 +11,13 @@ export default function Contact() {
   const [state, formAction] = useFormState(validateForm, null);
   const [errorMessage, setErrorMessage] = useState("");
 
-  if (!state?.success) {
-    setErrorMessage(state?.message as string);
-  }
+  useEffect(() => {
+    if (!state?.success) {
+      setErrorMessage(state?.message as string);
+    } else {
+      setErrorMessage("");
+    }
+  }, [state]);
 
   return (
     <div className="flex flex-col h-screen w-full justify-center items-center relative">
