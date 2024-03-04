@@ -11,7 +11,7 @@ export async function validateForm(prevState: any, formData: FormData) {
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
 
-  const validateEmail = z.object({
+  const validateFormBody = z.object({
     email: z
       .string()
       .min(3, { message: "Email must be a minimum of 3 characters." })
@@ -22,7 +22,7 @@ export async function validateForm(prevState: any, formData: FormData) {
       .max(1000, { message: "Message must not exceed 1000 characters." }),
   });
 
-  const validationResult = validateEmail.safeParse({ email, message });
+  const validationResult = validateFormBody.safeParse({ email, message });
 
   if (!validationResult.success) {
     const errorMessage = validationResult.error.issues
