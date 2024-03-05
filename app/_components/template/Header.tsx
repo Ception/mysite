@@ -24,7 +24,7 @@ export default function Header() {
 
       {/* Mobile Navbar */}
       <div
-        className={`fixed inset-0 md:hidden bg-black bg-opacity-75 transform transition-transform duration-500 ease-in-out ${
+        className={`fixed inset-0 md:hidden bg-black bg-opacity-85 transform transition-transform duration-500 ease-in-out ${
           isNavOpen ? "flex justify-center items-center z-10" : "hidden"
         }`}
       >
