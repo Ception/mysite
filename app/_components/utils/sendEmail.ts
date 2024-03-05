@@ -7,33 +7,37 @@ import { ServerClient } from "postmark";
 const isDevelopmet = process.env.ENABLE_DEV === "true";
 console.log(`isDevelopment: ${isDevelopmet}`);
 
+const formSchema = z.object({
+  email: z
+    .string()
+    .min(3, { message: "Email must be a minimum of 3 characters." })
+    .email({ message: "Please enter a valid email address." }),
+  message: z
+    .string()
+    .min(10, { message: "Message must be at least 10 characters long." })
+    .max(1000, { message: "Message must not exceed 1000 characters." }),
+});
+
 export async function validateForm(prevState: any, formData: FormData) {
-  const email = formData.get("email") as string;
-  const message = formData.get("message") as string;
+  const input = {
+    email: formData.get("email") as string,
+    message: formData.get("message") as string,
+  };
 
-  const validateFormBody = z.object({
-    email: z
-      .string()
-      .min(3, { message: "Email must be a minimum of 3 characters." })
-      .email({ message: "Please enter a valid email address." }),
-    message: z
-      .string()
-      .min(10, { message: "Message must be at least 10 characters long." })
-      .max(1000, { message: "Message must not exceed 1000 characters." }),
-  });
-
-  const validationResult = validateFormBody.safeParse({ email, message });
+  const validationResult = formSchema.safeParse(input);
 
   if (!validationResult.success) {
-    const errorMessage = validationResult.error.issues
-      .map((issue: { message: any }) => issue.message)
-      .join(";");
-    return { success: false, message: errorMessage };
+    return {
+      success: false,
+      message: validationResult.error.issues
+        .map((issue: { message: any }) => issue.message)
+        .join(";"),
+    };
   }
 
+  const { email, message } = validationResult.data; // destructure for cleaner email sending
   try {
     await sendEmail(email, message);
-
     revalidatePath("/contact");
     return { success: true, message: "Email successfully sent" };
   } catch (error: any) {
