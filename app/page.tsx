@@ -25,28 +25,30 @@ export default function Home() {
   return (
     <div>
       <div className="h-screen w-full flex justify-center items-center relative">
-        <div className="h-1/2 w-1/2 flex flex-col justify-center items-center p-12 md:p-3">
-          <div className="self-start h-7 pl-14">
-            <h1 className="text-xl text-cyan-500 font-light">
-              <ChangingText text={MY_NAME} />
-            </h1>
-          </div>
-          <div className="self-start pl-12">
-            <h2 className="text-8xl">
+        <div className="flex flex-col justify-center items-center p-4 mx-auto md:h-1/2 md:w-5/6 h-1/2 w-2/3">
+          <div className="flex flex-col items-center justify-center w-full text-center">
+            <div className="self-start">
+              <h1 className="text-sm md:text-xl lg:text-2xl text-cyan-500 font-light pl-16 md:pl-[310px]">
+                <ChangingText text={MY_NAME} />
+              </h1>
+            </div>
+            <h2 className="text-6xl md:text-8xl pb-1 md:pb-0">
               <CodeBlinds>{PREFIX}</CodeBlinds>
             </h2>
           </div>
-          <div className="line"></div>
-          <div className="flex items-center self-end w-full h-24 pl-24">
-            <div className="h-12 w-12 opacity-0 animate-fadeIn text-slate-200">
-              <FORWARD_ARROW width={48} height={48} />
+
+          <div className="line self-start md:self-center w-2/3 md:w-2/3 pl-4 md:pl-0"></div>
+
+          <div className="flex items-center self-center w-5/6 h-16 md:h-16 pl-6 md:ml-32 md:pl-24 relative">
+            <div className="absolute left-6 md:left-24 h-7 w-12 md:h-20 md:w-44 flex justify-center items-center md:pt-9">
+              <FORWARD_ARROW className="opacity-0 animate-fadeIn text-slate-200" />
             </div>
-            <h2 className="text-8xl w-full h-28 pt-2 whitespace-nowrap">
+            <h2 className="text-6xl md:text-8xl w-auto h-[75px] pt-2 whitespace-nowrap overflow-visible pl-10 md:pl-28">
               <ScramblePhrases text={SUFFIX_PHRASES} />
             </h2>
           </div>
         </div>
-        <div className="absolute bottom-4 w-full flex justify-center">
+        <div className="absolute bottom-4 md:pb-0 w-full flex justify-center">
           <DynamicMouseIcon nextSectionId="about-me" />
         </div>
       </div>

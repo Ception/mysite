@@ -73,10 +73,16 @@ export const ChangingText = ({ text, className }: ChangingTextProps) => {
     };
   }, [FINAL_TEXT, characters]);
 
-  return <span className={className}>{title.join("")}</span>;
+  return <span className={`${className}`}>{title.join("")}</span>;
 };
 
-export const ScramblePhrases = ({ text }: { text: string[] }) => {
+export const ScramblePhrases = ({
+  text,
+  className,
+}: {
+  text: string[];
+  className?: string;
+}) => {
   const FINAL_TEXT = text;
   const characters = "01";
   const [title, setTitle] = useState(Array(FINAL_TEXT[0].length).fill(""));
@@ -151,7 +157,7 @@ export const ScramblePhrases = ({ text }: { text: string[] }) => {
   }, [FINAL_TEXT]);
 
   return (
-    <span>
+    <span className={`${className}`}>
       {title.map((char, index) => (
         <span key={index} className="character-transition">
           {char}

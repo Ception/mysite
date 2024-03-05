@@ -63,7 +63,7 @@ export function SendMailButton({
         pending ? "bg-gray-400" : "bg-gray-200 hover:bg-gray-300"
       } text-gray-800 font-medium folded-button p-4 pr-6`}
     >
-      {IconComponent && <IconComponent size={iconSize} />}
+      {IconComponent && <IconComponent />}
       <span className="pl-2">{text}</span>
     </button>
   );

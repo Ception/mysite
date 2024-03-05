@@ -4,62 +4,56 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Navbar() {
+export default function Navbar({
+  setIsNavOpen,
+}: {
+  setIsNavOpen?: (isOpen: boolean) => void;
+}) {
   const [activeItem, setActiveItem] = useState("");
-  // Memoize the menuItems array
   const menuItems = useMemo(() => ["Who Am I?", "Projects", "Contact"], []);
-  const pathname = usePathname(); // Use usePathname to get the current pathname
+  const pathname = usePathname();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Use the pathname from usePathname hook
       const path = pathname.split("/")[1];
       const currentItem = path.charAt(0).toUpperCase() + path.slice(1);
-
       setActiveItem(menuItems.includes(currentItem) ? currentItem : "Home");
     }
-  }, [menuItems, pathname]); // Add pathname to dependency array
+  }, [menuItems, pathname]);
 
   const getHref = (item: string) => {
-    if (item === "Who Am I?") {
-      return "/#about-me";
-    } else {
-      return `/${item.toLowerCase()}`;
+    return item === "Who Am I?" ? "/#about-me" : `/${item.toLowerCase()}`;
+  };
+
+  const handleLinkClick = (item: string) => {
+    setActiveItem(item);
+    if (setIsNavOpen) {
+      setIsNavOpen(false);
     }
   };
 
   return (
-    <div className="z-30 absolute top-[74px] h-[calc(100%_-_74px)]">
-      <div className="fixed">
-        <div className="flex h-screen items-center pl-8">
-          <ul className="flex flex-col space-y-2 bottom-[74px] relative">
-            {menuItems.map((item) => (
-              <li
-                className={`py-2 text-lg leading-tight font-light ${
-                  activeItem === item ? "text-sky-500" : "text-white"
-                }`}
-                key={item}
-                onMouseOver={() => setActiveItem(item)}
-                onClick={() => setActiveItem(item)}
+    <div className="z-30 absolute top-1/2 -translate-y-1/2 h-[calc(100vh_-_74px)] md:h-[calc(100%_-_74px)] w-full sm:w-auto">
+      <div className="flex h-screen justify-center items-center w-full sm:w-auto">
+        <ul className="flex flex-col space-y-2">
+          {menuItems.map((item) => (
+            <li
+              className={`py-2 text-base md:text-lg leading-tight font-light ${
+                activeItem === item ? "text-sky-500" : "text-white"
+              }`}
+              key={item}
+              onMouseOver={() => setActiveItem(item)}
+            >
+              <Link
+                href={getHref(item)}
+                onClick={() => handleLinkClick(item)}
+                className="block vertical-links-desktop"
               >
-                <Link href={getHref(item)}>
-                  <span
-                    className="block transform rotate-180"
-                    style={{ writingMode: "vertical-rl" }}
-                  >
-                    {item}
-                  </span>
-                </Link>
-                <span
-                  className={`absolute right-0 top-0 w-0.5 bg-blue-500 transition-all duration-300 ease-out sm:w-1 ${
-                    activeItem === item ? "scale-y-100" : "scale-y-0"
-                  }`}
-                  style={{ transformOrigin: "bottom" }}
-                ></span>
-              </li>
-            ))}
-          </ul>
-        </div>
+                {item}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

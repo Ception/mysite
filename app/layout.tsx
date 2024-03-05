@@ -31,13 +31,10 @@ export default function RootLayout({
       <body>
         <Providers>
           <DynamicThreeJs />
-          <header>
+          <header className="container mx-auto px-4">
             <Header />
           </header>
-          <nav>
-            <Navbar />
-          </nav>
-          <main className="relative pl-24 pr-8 h-full w-full overflow-auto">
+          <main className="container mx-auto px-4 relative h-full w-full overflow-auto">
             {children}
           </main>
         </Providers>

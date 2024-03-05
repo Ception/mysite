@@ -106,3 +106,10 @@ body {
 .animate-fadeIn {
   animation: fadeIn 2s ease-in-out forwards 0.3s;
 }
+
+@media (min-width: 768px) {
+  .vertical-links-desktop {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+}

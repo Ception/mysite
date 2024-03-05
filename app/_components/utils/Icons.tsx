@@ -2,15 +2,23 @@ interface IconProps {
   size?: number;
   width?: number;
   height?: number;
+  className?: string;
 }
 
-export const FORWARD_ARROW = ({ size, width, height }: IconProps) => {
+export const FORWARD_ARROW = ({
+  size,
+  width,
+  height,
+  className,
+}: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path fill="currentColor" d="M15.5 5H11l5 7l-5 7h4.5l5-7z" />
       <path fill="currentColor" d="M8.5 5H4l5 7l-5 7h4.5l5-7z" />
@@ -18,20 +26,22 @@ export const FORWARD_ARROW = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const MOUSE_ICON = ({ size, width, height }: IconProps) => {
+export const MOUSE_ICON = ({ size, width, height, className }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path fill="#ffffff" d="m7 10l5 5l5-5H7Z" />
     </svg>
   );
 };
 
-export const LOGO = ({ size, width, height }: IconProps) => {
+export const LOGO = ({ size, width, height, className }: IconProps) => {
   return (
     <svg
       version="1.0"
@@ -40,6 +50,8 @@ export const LOGO = ({ size, width, height }: IconProps) => {
       height={size || height || 24}
       viewBox="0 0 13475.000000 9884.000000"
       preserveAspectRatio="xMidYMid meet"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <g
         transform="translate(0.000000,9884.000000) scale(0.100000,-0.100000)"
@@ -65,13 +77,15 @@ export const LOGO = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const THEME_TOGGLE = ({ size, width, height }: IconProps) => {
+export const THEME_TOGGLE = ({ size, width, height, className }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 20 20"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path
         fill="currentColor"
@@ -81,13 +95,20 @@ export const THEME_TOGGLE = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const TAILWIND_LOGO = ({ size, width, height }: IconProps) => {
+export const TAILWIND_LOGO = ({
+  size,
+  width,
+  height,
+  className,
+}: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 512 512"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path
         fill="currentColor"
@@ -97,13 +118,20 @@ export const TAILWIND_LOGO = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const THREE_JS_LOGO = ({ size, width, height }: IconProps) => {
+export const THREE_JS_LOGO = ({
+  size,
+  width,
+  height,
+  className,
+}: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <g
         fill="none"
@@ -120,13 +148,20 @@ export const THREE_JS_LOGO = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const SHARP_ARROW_OUT = ({ size, width, height }: IconProps) => {
+export const SHARP_ARROW_OUT = ({
+  size,
+  width,
+  height,
+  className,
+}: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path
         fill="currentColor"
@@ -140,15 +175,32 @@ export const SHARP_ARROW_OUT = ({ size, width, height }: IconProps) => {
   );
 };
 
-export const SEND_MAIL = ({ size, width, height }: IconProps) => {
+export const SEND_MAIL = ({ size, width, height, className }: IconProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size || width || 24}
       height={size || height || 24}
       viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
     >
       <path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z" />
+    </svg>
+  );
+};
+
+export const MENU = ({ size, width, height, className }: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size || width || 24}
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      className={`fill-current ${className}`}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <path fill="currentColor" d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z" />
     </svg>
   );
 };
