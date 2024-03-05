@@ -67,7 +67,7 @@ const sendEmail = async (email: string, message: string) => {
     console.log(`Successfully sent message: ${response.MessageID}`);
     return response.MessageID;
   } catch (error: any) {
-    // this is only for us
+    // this is only for me
     console.error(`Error: ${error}`);
     throw new Error("Something's wrong with postmark mail sending");
   }
