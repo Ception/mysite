@@ -38,6 +38,7 @@ export default function Contact() {
               name="email"
               placeholder="Your email"
               className="text-gray-200 bg-transparent border-b border-gray-200 w-full py-2"
+              required={true}
             />
           </div>
           <div className="w-full mb-16">

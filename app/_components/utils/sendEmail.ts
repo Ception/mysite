@@ -7,22 +7,22 @@ import { ServerClient } from "postmark";
 const isDevelopmet = process.env.ENABLE_DEV === "true";
 console.log(`isDevelopment: ${isDevelopmet}`);
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .min(3, { message: "Email must be a minimum of 3 characters." })
-    .email({ message: "Please enter a valid email address." }),
-  message: z
-    .string()
-    .min(10, { message: "Message must be at least 10 characters long." })
-    .max(1000, { message: "Message must not exceed 1000 characters." }),
-});
-
 export async function validateForm(prevState: any, formData: FormData) {
   const input = {
     email: formData.get("email") as string,
     message: formData.get("message") as string,
   };
+
+  const formSchema = z.object({
+    email: z
+      .string()
+      .min(3, "Email is required")
+      .email("Please enter a valid email address."),
+    message: z
+      .string()
+      .min(10, "Message must be at least 10 characters long.")
+      .max(1000, "Message must not exceed 1000 characters."),
+  });
 
   const validationResult = formSchema.safeParse(input);
 
@@ -30,12 +30,12 @@ export async function validateForm(prevState: any, formData: FormData) {
     return {
       success: false,
       message: validationResult.error.issues
-        .map((issue: { message: any }) => issue.message)
-        .join(";"),
+        .map((issue) => issue.message)
+        .join("; "),
     };
   }
 
-  const { email, message } = validationResult.data; // destructure for cleaner email sending
+  const { email, message } = validationResult.data;
   try {
     await sendEmail(email, message);
     revalidatePath("/contact");
@@ -67,10 +67,8 @@ const sendEmail = async (email: string, message: string) => {
     console.log(`Successfully sent message: ${response.MessageID}`);
     return response.MessageID;
   } catch (error: any) {
-    console.log(`Error: ${error}`);
-    return {
-      success: false,
-      message: "Whoops, something went wrong! Please try again later.",
-    };
+    // this is only for us
+    console.error(`Error: ${error}`);
+    throw new Error("Something's wrong with postmark mail sending");
   }
 };
