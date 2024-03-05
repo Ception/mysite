@@ -21,18 +21,18 @@ export default function Contact() {
 
   return (
     <div className="flex flex-col h-screen w-full justify-center items-center relative">
-      <div className="flex flex-col w-1/2 p-12 mt-[-64px] items-center justify-center">
+      <div className="container mx-auto px-4 max-w-screen-md flex flex-col items-center justify-center p-12 mt-[-64px]">
         <div className="pl-4 w-full">
-          <h1 className="self-start py-12 h-2 pl-9">
-            <ChangingText text="Say hi!" className="text-5xl" />
+          <h1 className="self-start py-12 h-2 pl-9 text-5xl">
+            <ChangingText text="Say hi!" />
           </h1>
 
           <div className="w-full mb-12">
             <CustomTitle dividerSize="lg" />
           </div>
         </div>
-        <form className="w-5/6" action={formAction}>
-          <div className="w-full mb-4">
+        <form className="w-full" action={formAction}>
+          <div className="mb-4">
             <input
               type="email"
               name="email"
@@ -41,7 +41,7 @@ export default function Contact() {
               required
             />
           </div>
-          <div className="w-full mb-16">
+          <div className="mb-16">
             <textarea
               name="message"
               placeholder="Message"
@@ -50,7 +50,7 @@ export default function Contact() {
               required
             ></textarea>
           </div>
-          <div className="flex w-full justify-end">
+          <div className="flex justify-end">
             <SendMailButton
               text={"Send Message"}
               icon="SEND_MAIL"
