@@ -47,7 +47,7 @@ export default function AboutMe() {
       <div className="w-full md:flex-1 md:w-1/2 flex flex-col justify-center items-center leading-relaxed p-5 md:p-10">
         <div className="flex flex-col justify-center items-center w-5/6 md:w-full h-full">
           <div className="text-right md:text-right">
-            <h1 className="text-2xl md:text-4xl font-bold text-white pb-8 md:pb-8">
+            <h1 className="h-12 w-full text-2xl md:text-4xl font-bold text-white pb-8 md:pb-8 md:h-24">
               <ChangingText text={profile.title} />
             </h1>
             <div className="body text-sm md:text-base font-light text-white text-justify w-full md:w-3/4 ml-auto">
