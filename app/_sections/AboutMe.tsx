@@ -73,7 +73,7 @@ export default function AboutMe() {
           <h4 className="text-white text-2xl absolute md:top-1/2 md:left-1/4 transform md:-translate-x-1/2 md:-translate-y-1/2 md:-rotate-90 z-10 whitespace-nowrap pb-12 font-light">
             {LEFT_TITLE}
           </h4>
-          <span className="text-white text-8xl absolute transform md:translate-x-1/2 md:-translate-y-full rotate-45 z-10 whitespace-nowrap font-bold md:top-32 md:right-36">
+          <span className="text-white text-8xl absolute transform md:translate-x-1/2 md:-translate-y-full rotate-45 z-10 whitespace-nowrap font-bold md:top-40 md:right-40">
             {RIGHT_TITLE}
           </span>
           {/* Image visible only on desktop */}

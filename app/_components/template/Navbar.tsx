@@ -33,8 +33,8 @@ export default function Navbar({
   };
 
   return (
-    <div className="z-30 absolute top-1/2 -translate-y-1/2 h-[calc(100vh_-_74px)] md:h-[calc(100%_-_74px)] w-full sm:w-auto">
-      <div className="flex h-screen justify-center items-center w-full sm:w-auto">
+    <div className="md:ml-[-24px] z-30 fixed top-1/2 transform -translate-y-1/2 h-[calc(100vh_-_74px)] md:h-[calc(100%_-_74px)] w-full sm:w-auto">
+    <div className="flex h-full justify-center items-center w-full sm:w-auto">
         <ul className="flex flex-col space-y-2">
           {menuItems.map((item) => (
             <li

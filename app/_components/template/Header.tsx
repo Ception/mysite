@@ -21,7 +21,7 @@ export default function Header() {
           <MENU className="h-6 w-6 text-white" />
         </button>
       </div>
-
+  
       {/* Mobile Navbar */}
       <div
         className={`fixed inset-0 md:hidden bg-black bg-opacity-85 transform transition-transform duration-500 ease-in-out ${
@@ -30,7 +30,7 @@ export default function Header() {
       >
         <Navbar setIsNavOpen={setIsNavOpen} />
       </div>
-
+  
       {/* Desktop Navbar */}
       <div className="hidden md:block mx-auto">
         <Navbar setIsNavOpen={setIsNavOpen} />

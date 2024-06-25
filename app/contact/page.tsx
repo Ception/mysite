@@ -20,13 +20,13 @@ export default function Contact() {
   }, [state]);
 
   return (
-    <div className="flex flex-col h-screen w-full justify-center items-center relative">
-      <div className="container mx-auto px-4 max-w-screen-md flex flex-col items-center justify-center p-12 mt-[-64px]">
+    <div className="flex flex-col min-h-screen w-full justify-center items-center overflow-hidden">
+      <div className="container mx-auto px-4 max-w-screen-md flex flex-col items-center justify-center p-12">
         <div className="pl-4 w-full">
           <h1 className="self-start py-12 h-2 pl-9 text-5xl">
             <ChangingText text="Say hi!" />
           </h1>
-
+  
           <div className="w-full mb-12">
             <CustomTitle dividerSize="lg" />
           </div>

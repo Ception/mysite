@@ -28,13 +28,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body>
+      <body className="overflow-hidden">
         <Providers>
           <DynamicThreeJs />
           <header className="container mx-auto px-4">
             <Header />
           </header>
-          <main className="container mx-auto px-4 relative h-full w-full overflow-auto">
+          <main className="container mx-auto px-4 relative h-full w-full overflow-hidden">
             {children}
           </main>
         </Providers>

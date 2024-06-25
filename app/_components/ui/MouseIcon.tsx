@@ -13,10 +13,25 @@ export default function MouseIcon({
 }) {
   useEffect(() => {
     const mouse = document.querySelector(".mouse") as HTMLElement;
+    console.log("Inside useEffect, mouse element:", mouse);
 
-    window.addEventListener("scroll", () => {
-      mouse.style.opacity = window.scrollY > 0 ? "0" : "1";
-    });
+    const handleScroll = () => {
+      console.log("inside handleScroll");
+      if (mouse) {
+        console.log("Scroll position:", window.scrollY);
+        mouse.style.opacity = window.scrollY > 50 ? "0" : "1";
+      } else {
+        console.log("Mouse element not found");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    console.log("added window event");
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      console.log("removed window event");
+    };
   }, []);
 
   const defaultOnClick = () => {

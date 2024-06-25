@@ -6,15 +6,9 @@ import { materialOceanic } from "react-syntax-highlighter/dist/esm/styles/prism"
 import ShutterEffect from "../_components/utils/ShutterEffect";
 import CodeBlinds from "../_components/utils/CodeBlinds";
 import Link from "next/link";
+import MouseIcon from "../_components/ui/MouseIcon";
 
 export default function Projects() {
-  const DynamicMouseIcon = dynamic(
-    () => import("../_components/ui/MouseIcon"),
-    {
-      ssr: false,
-    }
-  );
-
   const CF_WORKERS_API_SNIPPET = `export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const responseHeaders = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
@@ -101,7 +95,7 @@ export default function Projects() {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        cahe: "no-cache",
+        cache: "no-cache",
       },
     });
   } catch (error) {
@@ -170,8 +164,8 @@ export default function Projects() {
   };
 
   return (
-    <div>
-      <div className="h-screen w-full flex justify-center items-center relative">
+    <div className="overflow-auto h-screen w-full scrollbar-hide">
+      <div className="h-screen w-full flex justify-center items-center relative px-4 md:px-[70px]">
         <div className="h-full w-full flex flex-col" id="project-1">
           <div className="w-full flex-1">
             <div className="self-start pt-12 flex items-start">
@@ -186,19 +180,21 @@ export default function Projects() {
             <div className="flex w-2/3 mt-[-124px]">
               <div className="overflow-y-auto max-h-[560px] self-center">
                 <ShutterEffect reverse={true} backgroundReveal={true}>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={materialOceanic}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      fontSize: "0.9rem",
-                      padding: "1rem",
-                      margin: "1rem",
-                    }}
-                  >
-                    {CF_WORKERS_API_SNIPPET}
-                  </SyntaxHighlighter>
+                  <div className="overflow-y-auto max-h-[560px]">
+                    <SyntaxHighlighter
+                      language="javascript"
+                      style={materialOceanic}
+                      wrapLines={true}
+                      wrapLongLines={true}
+                      customStyle={{
+                        fontSize: "0.9rem",
+                        padding: "1rem",
+                        margin: "1rem",
+                      }}
+                    >
+                      {CF_WORKERS_API_SNIPPET}
+                    </SyntaxHighlighter>
+                  </div>
                 </ShutterEffect>
               </div>
             </div>
@@ -253,13 +249,13 @@ export default function Projects() {
           </div>
         </div>
         <div className="fixed bottom-4 w-full flex justify-center items-center">
-          <DynamicMouseIcon nextSectionId="project-2" />
+          <MouseIcon nextSectionId="project-2" />
         </div>
       </div>
-      <div className="h-screen w-full flex flex-col justify-start items-start relative">
+      <div className="h-screen w-full flex flex-col justify-start items-start relative px-4 md:px-[70px]">
         <div className="h-full w-full flex flex-col" id="project-2">
           <div className="w-full flex-1">
-            <div className="self-start pt-12 pr-12 flex items-start justify-end">
+            <div className="self-start pt-12 flex items-start justify-end">
               <CustomTitle
                 text="Complete E-Commerce :002"
                 textSize="xxl"
@@ -295,7 +291,7 @@ export default function Projects() {
                           {PROJECT_DETAILS["002"].techStack.map((techItem) => (
                             <li
                               key={techItem}
-                              className="inline-flex items-center justify-center bg-gray-200  text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
+                              className="inline-flex items-center justify-center bg-gray-200 text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
                             >
                               {techItem}
                             </li>
@@ -319,19 +315,21 @@ export default function Projects() {
             <div className="flex w-1/2 mt-[-124px]">
               <div className="overflow-y-auto max-h-[560px] self-center">
                 <ShutterEffect reverse={true} backgroundReveal={true}>
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={materialOceanic}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      fontSize: "0.9rem",
-                      padding: "1rem",
-                      margin: "1rem",
-                    }}
-                  >
-                    {COMMERCE_CODE_SNIPPET}
-                  </SyntaxHighlighter>
+                  <div className="overflow-y-auto max-h-[560px]">
+                    <SyntaxHighlighter
+                      language="javascript"
+                      style={materialOceanic}
+                      wrapLines={true}
+                      wrapLongLines={true}
+                      customStyle={{
+                        fontSize: "0.9rem",
+                        padding: "1rem",
+                        margin: "1rem",
+                      }}
+                    >
+                      {COMMERCE_CODE_SNIPPET}
+                    </SyntaxHighlighter>
+                  </div>
                 </ShutterEffect>
               </div>
             </div>
