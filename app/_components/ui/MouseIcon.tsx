@@ -32,19 +32,11 @@ export default function MouseIcon({
       window.removeEventListener("scroll", handleScroll);
       console.log("removed window event");
     };
-  }, []);
-
-  const defaultOnClick = () => {
-    if (nextSectionId) {
-      const nextSection = document.getElementById(nextSectionId);
-      nextSection?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  }, []); // Added missing dependency array
 
   return (
-    <div
-      className={`mouse hover:cursor-pointer ${className}`}
-      onClick={onClick || defaultOnClick}
-    ></div>
+    <div className={`mouse ${className}`} onClick={onClick} id={nextSectionId}>
+      {/* Mouse icon JSX goes here */}
+    </div>
   );
 }
