@@ -19,8 +19,8 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-auto h-screen w-full scrollbar-hide">
-      <div className="h-screen w-full flex justify-center items-center relative">
+    <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full flex flex-col justify-center items-center relative">
         <div className="flex flex-col justify-center items-center p-4 mx-auto md:h-1/2 md:w-5/6 h-1/2 w-2/3">
           <div className="flex flex-col items-center justify-center w-full text-center">
             <div className="self-start">
@@ -44,7 +44,7 @@ export default function Home() {
             </h2>
           </div>
         </div>
-        <div className="absolute bottom-4 md:pb-0 w-full flex justify-center">
+        <div className="absolute bottom-4 w-full flex justify-center">
           <MouseIcon nextSectionId="about-me" />
         </div>
       </div>

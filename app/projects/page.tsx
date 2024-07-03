@@ -1,4 +1,5 @@
-import dynamic from "next/dynamic";
+"use client";
+
 import CustomButton from "../_components/ui/CustomButton";
 import CustomTitle from "../_components/ui/CustomTitle";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -7,8 +8,29 @@ import ShutterEffect from "../_components/utils/ShutterEffect";
 import CodeBlinds from "../_components/utils/CodeBlinds";
 import Link from "next/link";
 import MouseIcon from "../_components/ui/MouseIcon";
+import { useRef, useEffect } from "react";
 
 export default function Projects() {
+const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+useEffect(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-slide');
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  // Filter out null values before observing and assert that the remaining refs are Elements
+  projectRefs.current.filter((ref): ref is HTMLDivElement => ref !== null).forEach((ref) => observer.observe(ref as Element));
+
+  return () => observer.disconnect();
+}, []);
+
   const CF_WORKERS_API_SNIPPET = `export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		const responseHeaders = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
@@ -164,23 +186,59 @@ export default function Projects() {
   };
 
   return (
-    <div className="overflow-auto h-screen w-full scrollbar-hide">
-      <div className="h-screen w-full flex justify-center items-center relative px-4 md:px-[70px]">
-        <div className="h-full w-full flex flex-col" id="project-1">
-          <div className="w-full flex-1">
-            <div className="self-start pt-12 flex items-start">
-              <CustomTitle
-                text="001: Serverless DDOS Protection"
-                textSize="xxl"
-                dividerSize="md"
-              />
-            </div>
-          </div>
-          <div className="w-full flex-[3] flex flex-row">
-            <div className="flex w-2/3 mt-[-124px]">
-              <div className="overflow-y-auto max-h-[560px] self-center">
-                <ShutterEffect reverse={true} backgroundReveal={true}>
-                  <div className="overflow-y-auto max-h-[560px]">
+    <div className="min-h-screen w-full overflow-y-auto bg-[#21282a] text-white">
+      <div className="container mx-auto px-4 md:px-[70px] pt-24 md:pt-32">
+        <h1 className="text-4xl md:text-6xl font-bold mb-16 text-center">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+            Featured Projects
+          </span>
+        </h1>
+        
+        {Object.entries(PROJECT_DETAILS).map(([key, project], index) => (
+          <div
+            key={key}
+            ref={(el) => {
+  projectRefs.current[index] = el;
+}}
+            className={`mb-32 opacity-0 transition-all duration-1000 ease-out ${
+              index % 2 === 0 ? 'translate-x-[-50px]' : 'translate-x-[50px]'
+            }`}
+          >
+            <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center`}>
+              <div className="w-full md:w-1/2">
+                <CustomTitle
+                  text={`${key}: ${project.title}`}
+                  textSize="xl"
+                  dividerSize="md"
+                  reverse={index % 2 !== 0}
+                />
+                <p className="mt-4 text-gray-300">{project.description}</p>
+                <div className="mt-6">
+                  <h3 className="text-lg font-semibold mb-2">Tech Stack:</h3>
+                  <ul className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <li
+                        key={tech}
+                        className="px-3 py-1 bg-gray-700 text-cyan-300 rounded-full text-sm"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-8">
+                  <Link href="/contact">
+                    <CustomButton
+                      text="Request Access"
+                      icon="SHARP_ARROW_OUT"
+                      iconSize={24}
+                    />
+                  </Link>
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <ShutterEffect reverse={index % 2 !== 0} backgroundReveal={true}>
                     <SyntaxHighlighter
                       language="javascript"
                       style={materialOceanic}
@@ -188,153 +246,23 @@ export default function Projects() {
                       wrapLongLines={true}
                       customStyle={{
                         fontSize: "0.9rem",
-                        padding: "1rem",
-                        margin: "1rem",
+                        padding: "1.5rem",
+                        margin: "0",
+                        borderRadius: "0.5rem",
                       }}
                     >
-                      {CF_WORKERS_API_SNIPPET}
+                      {index === 0 ? CF_WORKERS_API_SNIPPET : COMMERCE_CODE_SNIPPET}
                     </SyntaxHighlighter>
-                  </div>
-                </ShutterEffect>
+                  </ShutterEffect>
+                </div>
               </div>
             </div>
-            <div className="flex flex-col w-1/2 mt-[-96px]">
-              <CodeBlinds>
-                <div className="flex flex-col w-full h-full p-8">
-                  <div className="self-end">
-                    <CustomTitle
-                      text="Overview"
-                      textSize="sm"
-                      dividerSize="sm"
-                      reverse={true}
-                    />
-                  </div>
-                  <div className="self-start mt-4">
-                    <span className="text-2xl">
-                      {PROJECT_DETAILS["001"].title}
-                    </span>
-                  </div>
-                  <div className="self-center mt-4">
-                    <span className="font-light">
-                      {PROJECT_DETAILS["001"].description}
-                    </span>
-                    <div className="mt-4">
-                      <span className="font-light">Tech Stack:</span>
-                      <div className="mt-2">
-                        <ul className="flex flex-wrap gap-2">
-                          {PROJECT_DETAILS["001"].techStack.map((techItem) => (
-                            <li
-                              key={techItem}
-                              className="inline-flex items-center justify-center bg-gray-200 text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
-                            >
-                              {techItem}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-end mt-4">
-                    <Link href="contact">
-                      <CustomButton
-                        text="Request Access"
-                        icon="SHARP_ARROW_OUT"
-                        iconSize={32}
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </CodeBlinds>
-            </div>
           </div>
-        </div>
-        <div className="fixed bottom-4 w-full flex justify-center items-center">
-          <MouseIcon nextSectionId="project-2" />
-        </div>
+        ))}
       </div>
-      <div className="h-screen w-full flex flex-col justify-start items-start relative px-4 md:px-[70px]">
-        <div className="h-full w-full flex flex-col" id="project-2">
-          <div className="w-full flex-1">
-            <div className="self-start pt-12 flex items-start justify-end">
-              <CustomTitle
-                text="Complete E-Commerce :002"
-                textSize="xxl"
-                dividerSize="md"
-                reverse={true}
-              />
-            </div>
-          </div>
-          <div className="w-full flex-[3] flex flex-row">
-            <div className="flex flex-col w-1/2 mt-[-28px]">
-              <CodeBlinds>
-                <div className="flex flex-col w-full h-full p-8">
-                  <div className="self-start ml-[-24px]">
-                    <CustomTitle
-                      text="Overview"
-                      textSize="sm"
-                      dividerSize="sm"
-                    />
-                  </div>
-                  <div className="self-start mt-4 text-justify">
-                    <span className="text-2xl">
-                      {PROJECT_DETAILS["002"].title}
-                    </span>
-                  </div>
-                  <div className="self-center mt-4">
-                    <span className="font-light">
-                      {PROJECT_DETAILS["002"].description}
-                    </span>
-                    <div className="mt-4">
-                      <span className="font-light">Tech Stack:</span>
-                      <div className="mt-2">
-                        <ul className="flex flex-wrap gap-2">
-                          {PROJECT_DETAILS["002"].techStack.map((techItem) => (
-                            <li
-                              key={techItem}
-                              className="inline-flex items-center justify-center bg-gray-200 text-gray-800 px-4 py-2 text-sm font-semibold transition-colors duration-200"
-                            >
-                              {techItem}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="self-start mt-8">
-                    <Link href="contact">
-                      <CustomButton
-                        text="Request Access"
-                        icon="SHARP_ARROW_OUT"
-                        iconSize={32}
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </CodeBlinds>
-            </div>
-            <div className="flex w-1/2 mt-[-124px]">
-              <div className="overflow-y-auto max-h-[560px] self-center">
-                <ShutterEffect reverse={true} backgroundReveal={true}>
-                  <div className="overflow-y-auto max-h-[560px]">
-                    <SyntaxHighlighter
-                      language="javascript"
-                      style={materialOceanic}
-                      wrapLines={true}
-                      wrapLongLines={true}
-                      customStyle={{
-                        fontSize: "0.9rem",
-                        padding: "1rem",
-                        margin: "1rem",
-                      }}
-                    >
-                      {COMMERCE_CODE_SNIPPET}
-                    </SyntaxHighlighter>
-                  </div>
-                </ShutterEffect>
-              </div>
-            </div>
-          </div>
-        </div>
+      
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
+        <MouseIcon nextSectionId="project-2" />
       </div>
     </div>
   );

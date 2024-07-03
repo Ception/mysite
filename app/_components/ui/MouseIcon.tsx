@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function MouseIcon({
   onClick,
@@ -11,32 +11,34 @@ export default function MouseIcon({
   className?: string;
   nextSectionId?: string;
 }) {
-  useEffect(() => {
-    const mouse = document.querySelector(".mouse") as HTMLElement;
-    console.log("Inside useEffect, mouse element:", mouse);
+  const [isVisible, setIsVisible] = useState(true);
 
+  useEffect(() => {
     const handleScroll = () => {
-      console.log("inside handleScroll");
-      if (mouse) {
-        console.log("Scroll position:", window.scrollY);
-        mouse.style.opacity = window.scrollY > 50 ? "0" : "1";
-      } else {
-        console.log("Mouse element not found");
-      }
+      const scrollPosition = window.pageYOffset;
+      const shouldBeVisible = scrollPosition < 50;
+      setIsVisible(shouldBeVisible);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    console.log("added window event");
+    // Initial check
+    handleScroll();
 
+    // Add event listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Cleanup
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      console.log("removed window event");
     };
-  }, []); // Added missing dependency array
+  }, []);
 
   return (
-    <div className={`mouse ${className}`} onClick={onClick} id={nextSectionId}>
-      {/* Mouse icon JSX goes here */}
+    <div 
+      className={`mouse ${className} transition-opacity duration-300 ease-in-out ${
+        isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`} 
+      onClick={onClick}
+    >
     </div>
   );
 }
