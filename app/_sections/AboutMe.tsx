@@ -1,93 +1,128 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import me from "../../public/me.png";
-import { ChangingText } from "../_components/utils/ChangingText";
+import { motion } from "framer-motion";
 import { SendMailButton } from "../_components/ui/CustomButton";
 import Link from "next/link";
 
+const categories = ["Skills", "Experience", "Passions"] as const;
+type Category = (typeof categories)[number];
+
+interface ContentType {
+  [key: string]: string[];
+}
+
+const content: ContentType = {
+  Skills: [
+    "Full-stack development",
+    "React & Next.js",
+    "Node.js & Express",
+    "Database management",
+    "UI/UX design",
+  ],
+  Experience: [
+    "5+ years in web development",
+    "Led multiple successful projects",
+    "Mentored junior developers",
+    "Contributed to open-source",
+  ],
+  Passions: [
+    "Creating intuitive interfaces",
+    "Solving complex challenges",
+    "Continuous learning",
+    "Building impactful applications",
+  ],
+};
+
 export default function AboutMe() {
-  interface IText {
-    title: string;
-    body: {
-      intro: string;
-      journey: string;
-      skills: string;
-    };
-  }
+  const [activeCategory, setActiveCategory] = useState<Category>("Skills");
 
-  const myAge = () => {
-    const myBirthday = new Date(1991, 3, 28);
+  const myAge = (): number => {
+    const birthDate = new Date(1991, 3, 28);
     const today = new Date();
-
-    const diffInTime = today.getTime() - myBirthday.getTime();
-    const diffInYears = diffInTime / (1000 * 60 * 60 * 24 * 365);
-
-    return Math.floor(diffInYears);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   };
-
-  const profile: IText = {
-    title: "Hello World!",
-    body: {
-      intro: `I'm Aleks, a ${myAge()}-year-old tech enthusiast who fell in love with technology at the age of 12, thanks to my first computer. For me, technology is not just a career; it's a calling that I've been passionately pursuing.`,
-      journey:
-        "From spending over a decade in the Towing Industry to diving deep into the tech world, my journey has been anything but ordinary. Now, I'm expanding my horizons mastering C#, JavaScript, React, and Node.js, and applying my skills in real-world projects like DDoS mitigation, e-commerce platforms, and custom CMS solutions.",
-      skills:
-        "My adventure doesn't stop at academics; I've honed a diverse skill set in web and server management, full-stack development, and more, driven by an insatiable curiosity for the latest tech. Ready for my next challenge, I'm eager to join a vibrant team where I can contribute my full-stack expertise, innovative problem-solving, and a knack for creating efficient, scalable solutions.",
-    },
-  };
-
-  const LEFT_TITLE = "オタク {noun} [coll.] nerd (also: enthusiast, geek)";
-  const RIGHT_TITLE = "オタク!";
 
   return (
     <div
-      className="h-screen w-full flex flex-col md:flex-row relative justify-center items-center"
+      className="min-h-screen w-full flex flex-col md:flex-row relative justify-center items-center bg-[#21282a] text-white"
       id="about-me"
     >
-      {/* Left Column */}
-      <div className="w-full md:flex-1 md:w-1/2 flex flex-col justify-center items-center leading-relaxed p-5 md:p-10">
-        <div className="flex flex-col justify-center items-center w-5/6 md:w-full h-full">
-          <div className="text-right md:text-right">
-            <h1 className="h-12 w-full text-2xl md:text-4xl font-bold text-white pb-8 md:pb-8 md:h-24">
-              <ChangingText text={profile.title} />
-            </h1>
-            <div className="body text-sm md:text-base font-light text-white text-justify w-full md:w-3/4 ml-auto">
-              <p className="mb-4">{profile.body.intro}</p>
-              <p className="mb-4">{profile.body.journey}</p>
-              <p className="mb-8">{profile.body.skills}</p>
-            </div>
-            <Link href="contact">
-              <SendMailButton
-                text="Get in touch"
-                icon="SEND_MAIL"
-                iconSize={24}
-                buttonSize="md"
-              />
-            </Link>
+      <div className="w-full md:w-1/2 p-8 md:p-16 pt-24">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">Hello World!</h2>
+        <p className="mb-4 text-gray-300">
+          I&apos;m Aleks, a {myAge()}-year-old tech enthusiast who fell in love
+          with technology at the age of 12. For me, technology is not just a
+          career; it&apos;s a calling that I&apos;ve been passionately pursuing.
+        </p>
+        <div className="mb-8">
+          <h3 className="text-2xl font-semibold mb-4 text-cyan-500">
+            What I Do
+          </h3>
+          <div className="flex mb-4">
+            {categories.map((category) => (
+              <button
+                key={category}
+                className={`mr-4 px-4 py-2 rounded-full ${
+                  activeCategory === category
+                    ? "bg-cyan-500 text-white"
+                    : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                }`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
           </div>
+          <motion.ul
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="list-disc list-inside text-gray-300"
+          >
+            {content[activeCategory].map((item, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                {item}
+              </motion.li>
+            ))}
+          </motion.ul>
         </div>
-      </div>
-
-      {/* Right Column */}
-      <div className="hidden md:flex md:flex-1 md:w-1/2 items-center justify-center">
-        <div className="flex h-full w-full overflow-show justify-center items-center relative">
-          <h4 className="text-white text-2xl absolute md:top-1/2 md:left-1/4 transform md:-translate-x-1/2 md:-translate-y-1/2 md:-rotate-90 z-10 whitespace-nowrap pb-12 font-light">
-            {LEFT_TITLE}
-          </h4>
-          <span className="text-white text-8xl absolute transform md:translate-x-1/2 md:-translate-y-full rotate-45 z-10 whitespace-nowrap font-bold md:top-40 md:right-40">
-            {RIGHT_TITLE}
-          </span>
-          {/* Image visible only on desktop */}
-          <Image
-            src={me}
-            alt="Picture of me"
-            className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300"
-            width={390}
-            height={690}
-            priority={true}
-            quality={80}
-            placeholder="blur"
+        <Link href="/contact">
+          <SendMailButton
+            text="Get in touch"
+            icon="SEND_MAIL"
+            iconSize={24}
+            buttonSize="md"
           />
-        </div>
+        </Link>
+      </div>
+      <div className="hidden md:flex md:w-1/2 h-full items-center justify-center relative">
+        <h4 className="text-white text-2xl absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap font-light">
+          オタク {"{noun}"} [coll.] nerd (also: enthusiast, geek)
+        </h4>
+        <span className="text-white text-8xl absolute top-40 right-40 transform translate-x-1/2 -translate-y-full rotate-45 whitespace-nowrap font-bold">
+          オタク!
+        </span>
+        <Image
+          src="/me.png"
+          alt="Picture of me"
+          width={390}
+          height={690}
+          className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300"
+          priority={true}
+          quality={80}
+        />
       </div>
     </div>
   );
