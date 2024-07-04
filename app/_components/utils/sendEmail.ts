@@ -60,6 +60,7 @@ const sendEmail = async (email: string, message: string) => {
     const response = await client.sendEmailWithTemplate({
       From: email,
       To: "contact@aleksmanov.me",
+      MessageStream: "outbound",
       TemplateAlias: templateName,
       TemplateModel: {
         message: message,
