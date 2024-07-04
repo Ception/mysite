@@ -17,14 +17,16 @@ export default function Projects() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in-slide');
+            entry.target.classList.add("fade-in-slide");
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    projectRefs.current.filter((ref): ref is HTMLDivElement => ref !== null).forEach((ref) => observer.observe(ref));
+    projectRefs.current
+      .filter((ref): ref is HTMLDivElement => ref !== null)
+      .forEach((ref) => observer.observe(ref));
 
     return () => observer.disconnect();
   }, []);
@@ -174,20 +176,47 @@ export default router;`;
   const PROJECT_DETAILS = {
     "001": {
       title: "Advanced DDoS Mitigation & Global Server Optimization",
-      description: "A serverless solution for robust DDoS protection and worldwide low-latency content delivery.",
-      techStack: ["Cloudflare Workers", "CDN", "DNS", "Express.js", "Linux", "Docker", "Ansible", "Prometheus", "Grafana"],
+      description:
+        "A serverless solution for robust DDoS protection and worldwide low-latency content delivery.",
+      techStack: [
+        "Cloudflare Workers",
+        "CDN",
+        "DNS",
+        "Express.js",
+        "Linux",
+        "Docker",
+        "Ansible",
+        "Prometheus",
+        "Grafana",
+      ],
       codeSnippet: CF_WORKERS_SNIPPET,
     },
     "002": {
       title: "Full-Stack E-Commerce Platform with Custom CMS",
-      description: "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, with custom CMS and Stripe integration.",
-      techStack: ["React", "Next.js 14", "Tailwind CSS", "Strapi", "Stripe API", "Cloudflare Pages"],
+      description:
+        "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, with custom CMS and Stripe integration.",
+      techStack: [
+        "React",
+        "Next.js 14",
+        "Tailwind CSS",
+        "Strapi",
+        "Stripe API",
+        "Cloudflare Pages",
+      ],
       codeSnippet: COMMERCE_CODE_SNIPPET,
     },
     "003": {
       title: "Complete Custom CMS API",
-      description: "Robust backend for content management systems with Redis caching, MariaDB connectivity, and JWT authentication.",
-      techStack: ["TypeScript", "Node.js", "Express.js", "Redis", "MariaDB", "JWT"],
+      description:
+        "Robust backend for content management systems with Redis caching, MariaDB connectivity, and JWT authentication.",
+      techStack: [
+        "TypeScript",
+        "Node.js",
+        "Express.js",
+        "Redis",
+        "MariaDB",
+        "JWT",
+      ],
       codeSnippet: API_CODE_SNIPPET,
     },
   };
@@ -200,22 +229,28 @@ export default router;`;
             Featured Projects
           </span>
         </h1>
-        
+
         {Object.entries(PROJECT_DETAILS).map(([key, project], index) => (
           <div
             key={key}
-            ref={(el) => { projectRefs.current[index] = el; }}
+            ref={(el) => {
+              projectRefs.current[index] = el;
+            }}
             className={`mb-32 opacity-0 transition-all duration-1000 ease-out ${
-              index % 2 === 0 ? 'translate-x-[-50px]' : 'translate-x-[50px]'
+              index % 2 === 0 ? "translate-x-[-50px]" : "translate-x-[50px]"
             }`}
           >
-            <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-start`}>
+            <div
+              className={`flex flex-col ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              } gap-8 items-start`}
+            >
               <div className="w-full md:w-1/2">
-<CustomTitle
-  text={`${key}: ${project.title}`}
-  textSize="xl"
-  reverse={index % 2 !== 0}
-/>
+                <CustomTitle
+                  text={`${key}: ${project.title}`}
+                  textSize="xl"
+                  reverse={index % 2 !== 0}
+                />
                 <p className="mt-4 text-gray-300">{project.description}</p>
                 <div className="mt-6">
                   <h3 className="text-lg font-semibold mb-2">Tech Stack:</h3>
@@ -242,7 +277,10 @@ export default router;`;
               </div>
               <div className="w-full md:w-1/2">
                 <div className="rounded-lg overflow-hidden shadow-lg">
-                  <ShutterEffect reverse={index % 2 !== 0} backgroundReveal={true}>
+                  <ShutterEffect
+                    reverse={index % 2 !== 0}
+                    backgroundReveal={true}
+                  >
                     <SyntaxHighlighter
                       language="javascript"
                       style={materialOceanic}
@@ -254,7 +292,7 @@ export default router;`;
                         margin: "0",
                         borderRadius: "0.5rem",
                         maxHeight: "400px",
-                        overflow: "auto"
+                        overflow: "auto",
                       }}
                     >
                       {project.codeSnippet}
@@ -266,7 +304,7 @@ export default router;`;
           </div>
         ))}
       </div>
-      
+
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
         <MouseIcon nextSectionId="project-2" />
       </div>
