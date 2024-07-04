@@ -17,6 +17,9 @@ const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
 export const metadata: Metadata = {
   title: "Aleks Manov's | Development Portfolio",
   description: "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export const viewport: Viewport = {
