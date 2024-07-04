@@ -56,10 +56,11 @@ const sendEmail = async (email: string, message: string) => {
   const client = new ServerClient(apiKey);
 
   try {
+    const templateName = isDevelopment ? "contact-me" : "contact-me-prod";
     const response = await client.sendEmailWithTemplate({
       From: email,
       To: "contact@aleksmanov.me",
-      TemplateAlias: "contact-me",
+      TemplateAlias: templateName,
       TemplateModel: {
         message: message,
       },
