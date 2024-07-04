@@ -23,12 +23,12 @@ export default function Contact() {
     <div className="flex flex-col min-h-screen w-full justify-center items-center overflow-hidden">
       <div className="container mx-auto px-4 max-w-screen-md flex flex-col items-center justify-center p-12">
         <div className="pl-4 w-full">
-          <h1 className="self-start py-12 h-2 pl-9 text-5xl">
+          <h1 className="self-start py-16 h-2 text-5xl">
             <ChangingText text="Say hi!" />
           </h1>
   
           <div className="w-full mb-12">
-            <CustomTitle dividerSize="lg" />
+            <CustomTitle textSize="xl" />
           </div>
         </div>
         <form className="w-full" action={formAction}>

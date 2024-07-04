@@ -80,11 +80,12 @@ export default function AboutMe() {
           <Image
             src={me}
             alt="Picture of me"
-            className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300 w-auto h-auto"
+            className="rounded-lg shadow-lg opacity-35 hover:opacity-75 transition-opacity duration-300"
             width={390}
             height={690}
             priority={true}
-            quality={100}
+            quality={80}
+            placeholder="blur"
           />
         </div>
       </div>

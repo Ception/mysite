@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "../styles/globals.css";
 import Header from "./_components/template/Header";
-import Navbar from "./_components/template/Navbar";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
 
@@ -12,7 +11,7 @@ const ubuntu = Ubuntu({
 });
 
 const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
-  ssr: false, // disable server-side rendering
+  ssr: false,
 });
 
 export const metadata: Metadata = {
@@ -28,13 +27,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={ubuntu.className}>
-      <body className="overflow-hidden">
+      <body className="overflow-x-hidden">
         <Providers>
           <DynamicThreeJs />
-          <header className="container mx-auto px-4">
+          <header className="container mx-auto px-4 sm:px-6 lg:px-8">
             <Header />
           </header>
-          <main className="container mx-auto px-4 relative h-full w-full overflow-hidden">
+          <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen w-full">
             {children}
           </main>
         </Providers>
