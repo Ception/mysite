@@ -15,7 +15,7 @@ export default function Home() {
     "Creator",
     "Geek",
     "Engineer",
-    "Enthusiast",
+    "Fan",
   ];
 
   return (
@@ -24,11 +24,11 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center p-4 mx-auto md:h-1/2 md:w-5/6 h-1/2 w-2/3">
           <div className="flex flex-col items-center justify-center w-full text-center">
             <div className="self-start">
-              <h1 className="text-sm md:text-xl lg:text-2xl text-cyan-500 font-light pl-16 md:pl-[310px]">
+              <h1 className="text-lg md:text-xl lg:text-2xl text-cyan-500 font-light pl-1 md:pl-[300px]">
                 <ChangingText text={MY_NAME} />
               </h1>
             </div>
-            <h2 className="text-6xl md:text-8xl pb-1 md:pb-0">
+            <h2 className="text-5xl md:text-8xl pb-1 md:pb-0">
               <CodeBlinds>{PREFIX}</CodeBlinds>
             </h2>
           </div>
@@ -36,10 +36,10 @@ export default function Home() {
           <div className="line self-start md:self-center w-2/3 md:w-2/3 pl-4 md:pl-0"></div>
   
           <div className="flex items-center self-center w-5/6 h-16 md:h-16 pl-6 md:ml-32 md:pl-24 relative">
-            <div className="absolute left-6 md:left-24 h-7 w-12 md:h-20 md:w-44 flex justify-center items-center md:pt-9">
+            <div className="absolute ml-[-25px] md:ml-10 md:left-24 h-7 w-12 md:h-20 md:w-44 flex justify-center items-center md:pt-9 mt-[-10px] md:mt-1">
               <FORWARD_ARROW className="opacity-0 animate-fadeIn text-slate-200" />
             </div>
-            <h2 className="text-6xl md:text-8xl w-auto h-[75px] pt-2 whitespace-nowrap overflow-visible pl-10 md:pl-28">
+            <h2 className="text-5xl md:text-8xl w-auto h-[75px] pt-2 whitespace-nowrap overflow-visible pl-4 md:pl-[150px]">
               <ScramblePhrases text={SUFFIX_PHRASES} />
             </h2>
           </div>

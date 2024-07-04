@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Ubuntu } from "next/font/google";
 import "../styles/globals.css";
 import Header from "./_components/template/Header";
@@ -16,8 +16,12 @@ const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
 
 export const metadata: Metadata = {
   title: "Aleks Manov's | Development Portfolio",
-  description:
-    "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
+  description: "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
