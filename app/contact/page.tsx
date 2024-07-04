@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { SendMailButton } from "../_components/ui/CustomButton";
 import CustomTitle from "../_components/ui/CustomTitle";
 import { ChangingText } from "../_components/utils/ChangingText";
@@ -10,12 +10,15 @@ import { useFormState } from "react-dom";
 export default function Contact() {
   const [state, formAction] = useFormState(validateForm, null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isErrorVisible, setIsErrorVisible] = useState(false); // State to manage error message visibility
 
   useEffect(() => {
     if (!state?.success) {
       setErrorMessage(state?.message as string);
+      setIsErrorVisible(true); // Show error message by default if there is an error
     } else {
       setErrorMessage("");
+      setIsErrorVisible(false); // Hide error message on success
     }
   }, [state]);
 
@@ -23,7 +26,7 @@ export default function Contact() {
     <div className="flex flex-col min-h-screen w-full justify-center items-center overflow-hidden">
       <div className="container mx-auto px-4 max-w-screen-md flex flex-col items-center justify-center p-12">
         <div className="pl-4 w-full">
-          <h1 className="self-start py-16 h-2 text-5xl">
+          <h1 className="self-start py-12 md:py-16 h-2 text-4xl md:text-5xl">
             <ChangingText text="Say hi!" />
           </h1>
   
@@ -60,7 +63,15 @@ export default function Contact() {
           </div>
         </form>
         <div className="w-full mt-4">
-          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {errorMessage && (
+            <>
+              {isErrorVisible && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2">
+                  <span className="block sm:inline">{errorMessage}</span>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
