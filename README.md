@@ -1,14 +1,15 @@
-# My Personal Website 🙏🏻
+# My Personal Website 
 
 ## Description
 
-Leveraging the power of Next.js 13, Tailwind CSS, and Three.js, this portfolio offers a state-of-the-art digital showcase. The combination of Next.js's intuitive routing, Tailwind's contemporary design approach, and Three.js's dynamic 3D graphics creates a visually striking and high-performing platform to exhibit professional achievements.
+Leveraging Next.js 14, Tailwind CSS, Three.js, and Postmark Mail for a state-of-the-art portfolio. Next.js's powerful SSR capabilities, Tailwind's modern design, Three.js's immersive 3D graphics, and Postmark Mail's reliable email service combine to deliver a high-performance, visually captivating showcase of professional endeavors.
 
 ## Technologies
 
-- **Next.js**: A React framework providing server-side rendering and generating static websites for React-based web applications.
-- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom designs.
-- **Three.js**: A cross-browser JavaScript library/API for creating and displaying animated 3D computer graphics in a web browser.
+- **Next.js 14**: A powerful React framework with server-side rendering and static site generation.
+- **Tailwind CSS**: A utility-first CSS framework for modern, responsive design.
+- **Three.js**: A cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser.
+- **Postmark Mail**: A reliable email service for sending and receiving emails.
 
 ## Setup
 
@@ -22,9 +23,13 @@ Follow the [official Tailwind CSS documentation](https://tailwindcss.com/docs) f
 
 ### Three.js
 
-Follow the [official Three.js documentation](https://threejs.org/docs) for setup and usage instructions.
+Follow the [official Three.js documentation](https://threejs.org/docs/) for setup and usage instructions.
+
+### Postmark Mail
+
+Follow the [official Postmark Mail documentation](https://postmarkapp.com/developer) for setup and usage instructions.
 
 ## Contact
 
-Aleks Manov - contact@aleksmanov.me
+Aleks Manov - contact@aleksmanov.me  
 Project Link: [Personal Website Project Repo](https://github.com/Ception/mysite)
