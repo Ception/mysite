@@ -5,7 +5,6 @@ import { z } from "zod";
 import { ServerClient } from "postmark";
 
 const isDevelopment = process.env.ENABLE_DEV === "true";
-//console.log(`isDevelopment: ${isDevelopment}`);
 
 export async function validateForm(prevState: any, formData: FormData) {
   const input = {
@@ -66,10 +65,8 @@ const sendEmail = async (email: string, message: string) => {
         message: message,
       },
     });
-    //console.log(`Successfully sent message: ${response.MessageID}`);
     return response.MessageID;
   } catch (error: any) {
-    // this is only for me
     console.error(`Error: ${error}`);
     throw new Error("Something's wrong with postmark mail sending");
   }

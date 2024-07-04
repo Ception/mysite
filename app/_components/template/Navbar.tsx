@@ -10,7 +10,10 @@ export default function Navbar({
   setIsNavOpen?: (isOpen: boolean) => void;
 }) {
   const [activeItem, setActiveItem] = useState("");
-  const menuItems = useMemo(() => ["Who Am I?", "Projects", "Contact"], []);
+  const menuItems = useMemo(
+    () => ["Home", "Who Am I?", "Projects", "Contact"],
+    []
+  );
   const pathname = usePathname();
 
   useEffect(() => {
@@ -22,7 +25,13 @@ export default function Navbar({
   }, [menuItems, pathname]);
 
   const getHref = (item: string) => {
-    return item === "Who Am I?" ? "/#about-me" : `/${item.toLowerCase()}`;
+    if (item === "Home") {
+      return "/";
+    } else if (item === "Who Am I?") {
+      return "/#about-me";
+    } else {
+      return `/${item.toLocaleLowerCase()}`;
+    }
   };
 
   const handleLinkClick = (item: string) => {
@@ -34,7 +43,7 @@ export default function Navbar({
 
   return (
     <div className="md:ml-[-36px] z-30 fixed top-1/2 transform -translate-y-1/2 h-[calc(100vh_-_74px)] md:h-[calc(100%_-_74px)] w-full sm:w-auto">
-    <div className="flex h-full justify-center items-center w-full sm:w-auto">
+      <div className="flex h-full justify-center items-center w-full sm:w-auto">
         <ul className="flex flex-col space-y-2">
           {menuItems.map((item) => (
             <li
