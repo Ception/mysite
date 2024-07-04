@@ -19,14 +19,16 @@ export default function ThreeJs() {
   const [isMounted, setIsMounted] = useState(false);
 
   const handleResize = useCallback(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const width = window.innerWidth;
       const height = window.innerHeight;
       setSize({ width, height });
       setIsMobile(width < 768);
 
       if (rendererRef.current && sceneRef.current) {
-        const camera = sceneRef.current.children.find(child => child instanceof THREE.PerspectiveCamera) as THREE.PerspectiveCamera;
+        const camera = sceneRef.current.children.find(
+          (child) => child instanceof THREE.PerspectiveCamera
+        ) as THREE.PerspectiveCamera;
         if (camera) {
           camera.aspect = width / height;
           camera.updateProjectionMatrix();
@@ -52,15 +54,15 @@ export default function ThreeJs() {
     const scene = new THREE.Scene();
     sceneRef.current = scene;
     const loader = new THREE.TextureLoader();
-    
+
     let animationFrameId: number;
     const mouse = new THREE.Vector2();
     let mouseX = 0;
     let mouseY = 0;
 
     const updateMousePosition = (event: MouseEvent | TouchEvent) => {
-      const x = 'touches' in event ? event.touches[0].clientX : event.clientX;
-      const y = 'touches' in event ? event.touches[0].clientY : event.clientY;
+      const x = "touches" in event ? event.touches[0].clientX : event.clientX;
+      const y = "touches" in event ? event.touches[0].clientY : event.clientY;
 
       mouse.x = (x / size.width) * 2 - 1;
       mouse.y = -(y / size.height) * 2 + 1;
@@ -77,9 +79,12 @@ export default function ThreeJs() {
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: true });
 
-    loader.load(STAR_PARTICLE, 
+    loader.load(
+      STAR_PARTICLE,
       (star) => {
-        const particleCount = isMobile ? MOBILE_PARTICLE_COUNT : DESKTOP_PARTICLE_COUNT;
+        const particleCount = isMobile
+          ? MOBILE_PARTICLE_COUNT
+          : DESKTOP_PARTICLE_COUNT;
         const particlesGeometry = new THREE.BufferGeometry();
         const positionArray = new Float32Array(particleCount * 3);
 
@@ -100,15 +105,27 @@ export default function ThreeJs() {
           depthWrite: false,
         });
 
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        const particlesMesh = new THREE.Points(
+          particlesGeometry,
+          particlesMaterial
+        );
         particlesMeshRef.current = particlesMesh;
         scene.add(particlesMesh);
 
-        const camera = new THREE.PerspectiveCamera(75, size.width / size.height, 0.1, 100);
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          size.width / size.height,
+          0.1,
+          100
+        );
         camera.position.z = 2;
         scene.add(camera);
 
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: "high-performance" });
+        const renderer = new THREE.WebGLRenderer({
+          canvas,
+          antialias: false,
+          powerPreference: "high-performance",
+        });
         rendererRef.current = renderer;
         renderer.setSize(size.width, size.height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -117,22 +134,24 @@ export default function ThreeJs() {
         const animate = () => {
           if (!particlesMesh || !camera || !renderer) return;
 
-          // Slower base rotation speed
           const baseRotationSpeed = 0.0001;
           particlesMesh.rotation.x += baseRotationSpeed;
           particlesMesh.rotation.y += baseRotationSpeed;
 
-          // Slower parallax effect
           const normalizedMouseX = mouse.x * 0.3;
           const normalizedMouseY = mouse.y * 0.3;
 
           const easing = 0.03;
-          particlesMesh.rotation.y += (normalizedMouseX - particlesMesh.rotation.y) * easing;
-          particlesMesh.rotation.x += (-normalizedMouseY - particlesMesh.rotation.x) * easing;
+          particlesMesh.rotation.y +=
+            (normalizedMouseX - particlesMesh.rotation.y) * easing;
+          particlesMesh.rotation.x +=
+            (-normalizedMouseY - particlesMesh.rotation.x) * easing;
 
           const parallaxStrength = isMobile ? 0.00003 : 0.00006;
-          camera.position.x += (mouseX * parallaxStrength - camera.position.x) * easing;
-          camera.position.y += (-mouseY * parallaxStrength - camera.position.y) * easing;
+          camera.position.x +=
+            (mouseX * parallaxStrength - camera.position.x) * easing;
+          camera.position.y +=
+            (-mouseY * parallaxStrength - camera.position.y) * easing;
           camera.lookAt(scene.position);
 
           renderer.render(scene, camera);
@@ -180,7 +199,7 @@ export default function ThreeJs() {
       <canvas
         ref={canvasRef}
         className="fixed top-0 left-0 w-full h-full bg-cover touch-none"
-        style={{ display: isLoading ? 'none' : 'block' }}
+        style={{ display: isLoading ? "none" : "block" }}
       />
     </>
   );

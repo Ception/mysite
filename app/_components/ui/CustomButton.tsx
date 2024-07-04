@@ -1,6 +1,5 @@
 "use client";
 
-import { useFormStatus } from "react-dom";
 import * as icons from "../utils/Icons";
 
 type IconType = keyof typeof icons;
@@ -10,6 +9,9 @@ interface CustomButtonProps {
   icon: IconType;
   iconSize?: number;
   buttonSize?: "sm" | "md" | "lg" | "xl";
+  disabled?: boolean;
+  isSubmitting?: boolean;
+  className?: string;
 }
 
 const buttonSizeClasses = {
@@ -24,12 +26,19 @@ export default function CustomButton({
   icon,
   iconSize,
   buttonSize = "md",
+  disabled = false,
+  className = "",
 }: CustomButtonProps) {
   const IconComponent = icons[icon];
 
   return (
     <button
-      className={`inline-flex items-center justify-center ${buttonSizeClasses[buttonSize]} bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium folded-button p-4 pr-6`}
+      className={`inline-flex items-center justify-center ${
+        buttonSizeClasses[buttonSize]
+      } bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium folded-button p-4 pr-6 ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      } ${className}`}
+      disabled={disabled}
     >
       <span className="pr-2 flex-shrink-0 whitespace-nowrap">{text}</span>
       {IconComponent && <IconComponent size={iconSize} />}
@@ -42,22 +51,29 @@ export function SendMailButton({
   icon,
   iconSize,
   buttonSize = "md",
+  disabled = false,
+  isSubmitting = false,
+  className = "",
 }: CustomButtonProps) {
-  const { pending } = useFormStatus();
   const IconComponent = icons[icon];
+
+  const isDisabled = disabled || isSubmitting;
+  const buttonText = isSubmitting ? "Sending..." : text;
 
   return (
     <button
       type="submit"
-      disabled={pending}
+      disabled={isDisabled}
       className={`inline-flex items-center justify-center ${
         buttonSizeClasses[buttonSize]
       } ${
-        pending ? "bg-gray-400" : "bg-gray-200 hover:bg-gray-300"
-      } text-gray-800 font-medium folded-button p-4 pr-6`}
+        isDisabled
+          ? "bg-gray-400 opacity-50 cursor-not-allowed"
+          : "bg-gray-200 hover:bg-gray-300"
+      } text-gray-800 font-medium folded-button p-4 pr-6 ${className}`}
     >
       {IconComponent && <IconComponent size={iconSize} />}
-      <span className="pl-2 flex-shrink-0 whitespace-nowrap">{text}</span>
+      <span className="pl-2 flex-shrink-0 whitespace-nowrap">{buttonText}</span>
     </button>
   );
 }
