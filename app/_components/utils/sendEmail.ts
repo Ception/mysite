@@ -5,7 +5,7 @@ import { z } from "zod";
 import { ServerClient } from "postmark";
 
 const isDevelopment = process.env.ENABLE_DEV === "true";
-console.log(`isDevelopment: ${isDevelopment}`);
+//console.log(`isDevelopment: ${isDevelopment}`);
 
 export async function validateForm(prevState: any, formData: FormData) {
   const input = {
