@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import * as THREE from "three";
 import Loading from "../loading";
 
-const MOBILE_PARTICLE_COUNT = 3000;
-const DESKTOP_PARTICLE_COUNT = 5000;
+const MOBILE_PARTICLE_COUNT = 5000;
+const DESKTOP_PARTICLE_COUNT = 10000;
 const STAR_PARTICLE = "../star.png";
 
 export default function ThreeJs() {
