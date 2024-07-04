@@ -4,8 +4,8 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { ServerClient } from "postmark";
 
-const isDevelopmet = process.env.ENABLE_DEV === "true";
-//console.log(`isDevelopment: ${isDevelopmet}`);
+const isDevelopment = process.env.ENABLE_DEV === "true";
+//console.log(`isDevelopment: ${isDevelopment}`);
 
 export async function validateForm(prevState: any, formData: FormData) {
   const input = {
@@ -50,7 +50,7 @@ export async function validateForm(prevState: any, formData: FormData) {
 }
 
 const sendEmail = async (email: string, message: string) => {
-  const apiKey = isDevelopmet
+  const apiKey = isDevelopment
     ? (process.env.POSTMARK_API_KEY_DEV as string)
     : (process.env.POSTMARK_API_KEY as string);
   const client = new ServerClient(apiKey);
