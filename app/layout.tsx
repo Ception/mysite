@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Header from "./_components/template/Header";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
           </header>
           <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen w-full">
             {children}
+            <SpeedInsights />
           </main>
         </Providers>
       </body>
