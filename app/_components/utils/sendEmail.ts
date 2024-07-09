@@ -57,8 +57,9 @@ const sendEmail = async (email: string, message: string) => {
   try {
     const templateName = isDevelopment ? "contact-me" : "contact-me-prod";
     const response = await client.sendEmailWithTemplate({
-      From: email,
+      From: "contact@aleksmanov.me",
       To: "contact@aleksmanov.me",
+      ReplyTo: email,
       MessageStream: "outbound",
       TemplateAlias: templateName,
       TemplateModel: {
