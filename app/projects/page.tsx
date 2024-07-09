@@ -222,7 +222,7 @@ export default router;`;
   };
 
   return (
-    <div className="min-h-screen w-full overflow-y-auto text-white pt-12 md:pt-12">
+    <div className="min-h-screen w-full overflow-y-auto text-white pt-10 md:pt-12">
       <div className="container mx-auto px-4 md:px-[70px] pt-20 md:pt-12">
         <h1 className="text-4xl md:text-6xl font-bold mb-12 md:mb-24 text-center">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
