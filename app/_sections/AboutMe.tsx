@@ -54,7 +54,7 @@ export default function AboutMe() {
       className="min-h-screen w-full flex flex-col md:flex-row relative justify-center items-center bg-[#21282a] text-white"
       id="about-me"
     >
-      <div className="w-full md:w-1/2 p-8 md:p-16 pt-24">
+      <div className="w-full md:w-1/2 p-8 md:p-16 pt-16">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">Hello World!</h2>
         <p className="mb-4 text-gray-300">
           I&apos;m Aleks, a {myAge()}-year-old tech enthusiast who fell in love
