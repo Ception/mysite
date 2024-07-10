@@ -4,7 +4,7 @@ import "../styles/globals.css";
 import Header from "./_components/template/Header";
 import dynamic from "next/dynamic";
 import { Providers } from "./providers";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -17,9 +17,15 @@ const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
 
 export const metadata: Metadata = {
   title: "Aleks Manov's | Development Portfolio",
-  description: "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
+  description:
+    "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/favicon.ico",
+        href: "/favicon.ico",
+      },
+    ],
   },
 };
 
@@ -39,6 +45,7 @@ export default function RootLayout({
         <Providers>
           <DynamicThreeJs />
           <header className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <link rel="icon" href="/favicon.ico" />
             <Header />
           </header>
           <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen w-full">
