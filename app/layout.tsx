@@ -44,8 +44,8 @@ export default function RootLayout({
       <body className="overflow-x-hidden">
         <Providers>
           <DynamicThreeJs />
-          <link rel="icon" href="/favicon.ico" />
           <header className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <link rel="icon" href="/favicon.ico" />
             <Header />
           </header>
           <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen w-full">
