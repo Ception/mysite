@@ -87,11 +87,13 @@ export default function Navbar({
             onMouseOver={() => setActiveItem(item)}
           >
             <Link
+              key={item}
               href={getHref(item)}
               onClick={() => handleLinkClick(item)}
               className={`block ${
                 activeItem === item ? "text-sky-500" : "text-white"
               } ${!isMobile ? "vertical-links-desktop" : ""}`}
+              aria-current={activeItem === item ? "page" : undefined}
             >
               {item}
             </Link>

@@ -258,7 +258,7 @@ export default function ProjectsPage() {
                 </ul>
               </div>
               <div className="mt-8">
-                <Link href="/contact">
+                <Link href="/contact" aria-label="Request project access">
                   <CustomButton
                     text="Request Access"
                     icon="SHARP_ARROW_OUT"

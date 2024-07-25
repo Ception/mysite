@@ -87,8 +87,12 @@ export default function Header() {
   return (
     <>
       <div className="fixed top-0 right-0 z-50 w-full pt-8 md:pt-16 px-10 md:px-[70px] flex justify-between items-center bg-transparent">
-        <Link href="/" className="h-9 w-9 md:h-12 md:w-12">
-          <LOGO className="fill-current text-white" />
+        <Link
+          href="/"
+          aria-label="Go to homepage"
+          className="h-9 w-9 md:h-12 md:w-12"
+        >
+          <LOGO className="fill-current text-white" aria-hidden="true" />
         </Link>
         <div className="flex items-center space-x-4">
           <div className="hidden md:block">

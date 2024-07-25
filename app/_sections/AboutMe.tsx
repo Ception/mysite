@@ -98,7 +98,7 @@ export default function AboutMe() {
             ))}
           </motion.ul>
         </div>
-        <Link href="/contact">
+        <Link href="/contact" aria-label="Get in touch">
           <SendMailButton
             text="Get in touch"
             icon="SEND_MAIL"

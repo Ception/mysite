@@ -15,8 +15,8 @@ export default function NotFound() {
         </div>
         <div className="self-center ml-24 md:ml-52">
           <span className="text-cyan-500">
-            <Link href="/">
-              <span className="text-xl text-cyan-500">GO BACK</span>
+            <Link href="/" aria-label="Go back to homepage">
+              <span className="text-2xl text-cyan-500">GO BACK</span>
             </Link>
           </span>
         </div>
