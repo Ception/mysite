@@ -87,8 +87,12 @@ export default function Header() {
   return (
     <>
       <div className="fixed top-0 right-0 z-50 w-full pt-8 md:pt-16 px-10 md:px-[70px] flex justify-between items-center bg-transparent">
-        <Link href="/" className="h-9 w-9 md:h-12 md:w-12">
-          <LOGO className="fill-current text-white" />
+        <Link
+          href="/"
+          aria-label="Go to homepage"
+          className="h-9 w-9 md:h-12 md:w-12"
+        >
+          <LOGO className="fill-current text-white" aria-hidden="true" />
         </Link>
         <div className="flex items-center space-x-4">
           <div className="hidden md:block">
@@ -97,8 +101,12 @@ export default function Header() {
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="block md:hidden"
+            aria-label={
+              isNavOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={isNavOpen}
           >
-            <MENU className="h-6 w-6 text-white" />
+            <MENU className="h-6 w-6 text-white" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -116,8 +124,9 @@ export default function Header() {
             <button
               onClick={() => setIsNavOpen(false)}
               className="absolute top-8 right-10 text-white text-2xl"
+              aria-label="Close navigation menu"
             >
-              &times;
+              <span aria-hidden="true">&times;</span>
             </button>
             <Navbar setIsNavOpen={setIsNavOpen} isMobile />
             <SocialLinks isMobile />

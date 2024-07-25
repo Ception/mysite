@@ -17,7 +17,7 @@ export default function Error() {
         </div>
         <div className="self-center pl-12 md:pl-16">
           <span className="text-2xl text-cyan-500">
-            <Link href="/">
+            <Link href="/" aria-label="Go back to homepage">
               <span className="text-2xl text-cyan-500">GO BACK</span>
             </Link>
           </span>

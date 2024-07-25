@@ -7,31 +7,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialOceanic } from "react-syntax-highlighter/dist/esm/styles/prism";
 import ShutterEffect from "../_components/utils/ShutterEffect";
 import Link from "next/link";
-import MouseIcon from "../_components/ui/MouseIcon";
 
-export default function Projects() {
-  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in-slide");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    projectRefs.current
-      .filter((ref): ref is HTMLDivElement => ref !== null)
-      .forEach((ref) => observer.observe(ref));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const CF_WORKERS_SNIPPET = `
+const CF_WORKERS_SNIPPET = `
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const responseHeaders = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
@@ -94,7 +71,7 @@ export default {
   },
 };`;
 
-  const COMMERCE_CODE_SNIPPET = `
+const COMMERCE_CODE_SNIPPET = `
 export async function GET(req: NextRequest, { params }: any) {
   const API = process.env.API_URL;
   const AUTH_TOKEN = process.env.API_TOKEN;
@@ -135,7 +112,7 @@ export async function GET(req: NextRequest, { params }: any) {
   }
 }`;
 
-  const API_CODE_SNIPPET = `
+const API_CODE_SNIPPET = `
 const router = Router();
 router.get("/verify-discord", async (req: Request, res: Response) => {
   try {
@@ -173,141 +150,151 @@ router.get("/verify-discord", async (req: Request, res: Response) => {
 });
 export default router;`;
 
-  const PROJECT_DETAILS = {
-    "001": {
-      title: "Advanced DDoS Mitigation & Global Server Optimization",
-      description:
-        "A serverless solution for robust DDoS protection and worldwide low-latency content delivery.",
-      techStack: [
-        "Cloudflare Workers",
-        "CDN",
-        "DNS",
-        "Express.js",
-        "Linux",
-        "Docker",
-        "Ansible",
-        "Prometheus",
-        "Grafana",
-      ],
-      codeSnippet: CF_WORKERS_SNIPPET,
-    },
-    "002": {
-      title: "Full-Stack E-Commerce Platform with Custom CMS",
-      description:
-        "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, with custom CMS and Stripe integration.",
-      techStack: [
-        "React",
-        "Next.js 14",
-        "Tailwind CSS",
-        "Strapi",
-        "Stripe API",
-        "Cloudflare Pages",
-      ],
-      codeSnippet: COMMERCE_CODE_SNIPPET,
-    },
-    "003": {
-      title: "Complete Custom CMS API",
-      description:
-        "Robust backend for content management systems with Redis caching, MariaDB connectivity, and JWT authentication.",
-      techStack: [
-        "TypeScript",
-        "Node.js",
-        "Express.js",
-        "Redis",
-        "MariaDB",
-        "JWT",
-      ],
-      codeSnippet: API_CODE_SNIPPET,
-    },
-  };
+const PROJECT_DETAILS = {
+  "001": {
+    title: "Advanced DDoS Mitigation & Global Server Optimization",
+    description:
+      "A serverless solution for robust DDoS protection and worldwide low-latency content delivery.",
+    techStack: [
+      "Cloudflare Workers",
+      "CDN",
+      "DNS",
+      "Express.js",
+      "Linux",
+      "Docker",
+      "Ansible",
+      "Prometheus",
+      "Grafana",
+    ],
+    codeSnippet: CF_WORKERS_SNIPPET,
+  },
+  "002": {
+    title: "Full-Stack E-Commerce Platform with Custom CMS",
+    description:
+      "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, with custom CMS and Stripe integration.",
+    techStack: [
+      "React",
+      "Next.js 14",
+      "Tailwind CSS",
+      "Strapi",
+      "Stripe API",
+      "Cloudflare Pages",
+    ],
+    codeSnippet: COMMERCE_CODE_SNIPPET,
+  },
+  "003": {
+    title: "Complete Custom CMS API",
+    description:
+      "Robust backend for content management systems with Redis caching, MariaDB connectivity, and JWT authentication.",
+    techStack: [
+      "TypeScript",
+      "Node.js",
+      "Express.js",
+      "Redis",
+      "MariaDB",
+      "JWT",
+    ],
+    codeSnippet: API_CODE_SNIPPET,
+  },
+};
+
+export default function ProjectsPage() {
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-slide");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    projectRefs.current
+      .filter((ref): ref is HTMLDivElement => ref !== null)
+      .forEach((ref) => observer.observe(ref));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-y-auto text-white pt-10 md:pt-12">
-      <div className="container mx-auto px-4 md:px-[70px] pt-20 md:pt-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-12 md:mb-24 text-center">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
-            Featured Projects
-          </span>
-        </h1>
-
-        {Object.entries(PROJECT_DETAILS).map(([key, project], index) => (
+    <>
+      {Object.entries(PROJECT_DETAILS).map(([key, project], index) => (
+        <div
+          key={key}
+          ref={(el) => {
+            projectRefs.current[index] = el;
+          }}
+          className={`mb-32 opacity-0 transition-all duration-1000 ease-out ${
+            index % 2 === 0 ? "translate-x-[-50px]" : "translate-x-[50px]"
+          }`}
+        >
           <div
-            key={key}
-            ref={(el) => {
-              projectRefs.current[index] = el;
-            }}
-            className={`mb-32 opacity-0 transition-all duration-1000 ease-out ${
-              index % 2 === 0 ? "translate-x-[-50px]" : "translate-x-[50px]"
-            }`}
+            className={`flex flex-col ${
+              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            } gap-8 items-start`}
           >
-            <div
-              className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } gap-8 items-start`}
-            >
-              <div className="w-full md:w-1/2">
-                <CustomTitle
-                  text={`${key}: ${project.title}`}
-                  textSize="xl"
-                  reverse={index % 2 !== 0}
-                />
-                <p className="mt-4 text-gray-300">{project.description}</p>
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold mb-2">Tech Stack:</h3>
-                  <ul className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <li
-                        key={tech}
-                        className="px-3 py-1 bg-gray-700 text-cyan-300 rounded-full text-sm"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-8">
-                  <Link href="/contact">
-                    <CustomButton
-                      text="Request Access"
-                      icon="SHARP_ARROW_OUT"
-                      iconSize={24}
-                    />
-                  </Link>
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <ShutterEffect
-                    reverse={index % 2 !== 0}
-                    backgroundReveal={true}
-                  >
-                    <SyntaxHighlighter
-                      language="javascript"
-                      style={materialOceanic}
-                      wrapLines={true}
-                      wrapLongLines={true}
-                      customStyle={{
-                        fontSize: "0.9rem",
-                        padding: "1.5rem",
-                        margin: "0",
-                        borderRadius: "0.5rem",
-                        maxHeight: "400px",
-                        overflow: "auto",
-                      }}
+            <div className="w-full md:w-1/2">
+              <CustomTitle
+                text={`${key}: ${project.title}`}
+                textSize="xl"
+                reverse={index % 2 !== 0}
+              />
+              <p className="mt-4 text-gray-300">{project.description}</p>
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold mb-2">Tech Stack:</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <li
+                      key={tech}
+                      className="px-3 py-1 bg-gray-700 text-cyan-300 rounded-full text-sm"
                     >
-                      {project.codeSnippet}
-                    </SyntaxHighlighter>
-                  </ShutterEffect>
-                </div>
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-8">
+                <Link href="/contact" aria-label="Request project access">
+                  <CustomButton
+                    text="Request Access"
+                    icon="SHARP_ARROW_OUT"
+                    iconSize={24}
+                  />
+                </Link>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2">
+              <div className="rounded-lg overflow-hidden shadow-lg">
+                <ShutterEffect
+                  reverse={index % 2 !== 0}
+                  backgroundReveal={true}
+                >
+                  <SyntaxHighlighter
+                    language="javascript"
+                    style={materialOceanic}
+                    wrapLines={true}
+                    wrapLongLines={true}
+                    customStyle={{
+                      fontSize: "0.9rem",
+                      padding: "1.5rem",
+                      margin: "0",
+                      borderRadius: "0.5rem",
+                      maxHeight: "400px",
+                      overflow: "auto",
+                    }}
+                  >
+                    {project.codeSnippet}
+                  </SyntaxHighlighter>
+                </ShutterEffect>
               </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2">
-        <MouseIcon nextSectionId="project-2" />
-      </div>
-    </div>
+        </div>
+      ))}
+    </>
   );
 }
