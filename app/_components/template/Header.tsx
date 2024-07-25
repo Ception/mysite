@@ -101,8 +101,12 @@ export default function Header() {
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
             className="block md:hidden"
+            aria-label={
+              isNavOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={isNavOpen}
           >
-            <MENU className="h-6 w-6 text-white" />
+            <MENU className="h-6 w-6 text-white" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -120,8 +124,9 @@ export default function Header() {
             <button
               onClick={() => setIsNavOpen(false)}
               className="absolute top-8 right-10 text-white text-2xl"
+              aria-label="Close navigation menu"
             >
-              &times;
+              <span aria-hidden="true">&times;</span>
             </button>
             <Navbar setIsNavOpen={setIsNavOpen} isMobile />
             <SocialLinks isMobile />

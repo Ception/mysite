@@ -39,9 +39,10 @@ export default function CustomButton({
         disabled ? "opacity-50 cursor-not-allowed" : ""
       } ${className}`}
       disabled={disabled}
+      aria-label={text}
     >
       <span className="pr-2 flex-shrink-0 whitespace-nowrap">{text}</span>
-      {IconComponent && <IconComponent size={iconSize} />}
+      {IconComponent && <IconComponent size={iconSize} aria-hidden="true" />}
     </button>
   );
 }
@@ -71,8 +72,9 @@ export function SendMailButton({
           ? "bg-gray-400 opacity-50 cursor-not-allowed"
           : "bg-gray-200 hover:bg-gray-300"
       } text-gray-800 font-medium folded-button p-4 pr-6 ${className}`}
+      aria-label={buttonText}
     >
-      {IconComponent && <IconComponent size={iconSize} />}
+      {IconComponent && <IconComponent size={iconSize} aria-hidden="true" />}
       <span className="pl-2 flex-shrink-0 whitespace-nowrap">{buttonText}</span>
     </button>
   );

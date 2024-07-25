@@ -75,6 +75,8 @@ export default function AboutMe() {
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                 }`}
                 onClick={() => setActiveCategory(category)}
+                aria-pressed={activeCategory === category}
+                aria-label={`Select ${category} category`}
               >
                 {category}
               </button>
