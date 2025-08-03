@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import EnhancedContactForm from "../components/EnhancedContactForm";
 import ClientOnlyParticleSystem from "../components/ClientOnlyParticleSystem";
@@ -9,7 +9,6 @@ import {
   Linkedin,
   Github,
   ArrowRight,
-  Send,
   Clock,
   Shield,
   Zap,
@@ -18,22 +17,9 @@ import {
   Calendar,
   Coffee,
   Code,
-  Heart,
 } from "lucide-react";
 
-interface ValidationResult {
-  success: boolean;
-  message: string;
-}
-
 export default function ContactPage() {
-  const [email, setEmail] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
-  const [responseMessage, setResponseMessage] = useState<string>("");
-  const [isMessageVisible, setIsMessageVisible] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [hasError, setHasError] = useState<boolean>(false);
   const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
@@ -56,147 +42,6 @@ export default function ContactPage() {
 
     return () => clearInterval(interval);
   }, []);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setHasError(false);
-    setIsMessageVisible(false);
-
-    const formData = new FormData(e.currentTarget);
-    try {
-      const response = await fetch("/api/validateForm", {
-        method: "POST",
-        body: formData,
-      });
-      const formState: ValidationResult = await response.json();
-
-      if (formState.success) {
-        setIsSuccess(true);
-        setResponseMessage("Message sent successfully!");
-        setEmail("");
-        setMessage("");
-      } else {
-        setIsSuccess(false);
-        setHasError(true);
-        setResponseMessage(formState.message);
-      }
-    } catch (error) {
-      setIsSuccess(false);
-      setHasError(true);
-      setResponseMessage("Failed to send message. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-      setIsMessageVisible(true);
-      setTimeout(() => {
-        setIsMessageVisible(false);
-        setHasError(false);
-      }, 5000);
-    }
-  };
-
-  const resetForm = () => {
-    setIsSuccess(false);
-    setHasError(false);
-    setIsMessageVisible(false);
-    setEmail("");
-    setMessage("");
-  };
-
-  if (isSuccess) {
-    return (
-      <div className="min-h-screen pt-24 pb-16 flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-success/10 rounded-full blur-3xl animate-pulse"></div>
-          <div
-            className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-pulse"
-            style={{ animationDelay: "2s" }}
-          ></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-secondary/5 rounded-full blur-xl"></div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-2xl mx-auto px-4 text-center relative z-10"
-        >
-          <div className="modern-card p-12 lg:p-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8"
-            >
-              <div className="w-24 h-24 bg-gradient-to-br from-success to-primary rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                <CheckCircle className="w-12 h-12 text-nord-0" />
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                <span className="text-gradient">Message Sent!</span>
-              </h1>
-
-              <p className="text-xl md:text-2xl text-muted leading-relaxed mb-8">
-                Thank you for reaching out! I'll get back to you within 24
-                hours.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-6"
-            >
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="modern-card p-4 bg-success/10 border-success/20">
-                  <Clock className="w-6 h-6 text-success mx-auto mb-2" />
-                  <div className="text-sm text-success">Response Time</div>
-                  <div className="text-lg font-bold text-success">
-                    &lt; 24 hours
-                  </div>
-                </div>
-
-                <div className="modern-card p-4 bg-primary/10 border-primary/20">
-                  <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-sm text-primary">Secure</div>
-                  <div className="text-lg font-bold text-primary">
-                    Encrypted
-                  </div>
-                </div>
-
-                <div className="modern-card p-4 bg-secondary/10 border-secondary/20">
-                  <Heart className="w-6 h-6 text-secondary mx-auto mb-2" />
-                  <div className="text-sm text-secondary">Status</div>
-                  <div className="text-lg font-bold text-secondary">
-                    Delivered
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={resetForm}
-                  className="modern-btn primary px-8 py-4 flex items-center gap-3 group"
-                >
-                  <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  Send Another Message
-                </button>
-
-                <a
-                  href="/"
-                  className="modern-btn accent px-8 py-4 flex items-center gap-3 group"
-                >
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  Back to Home
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">

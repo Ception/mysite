@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 
 export default function Home() {
-  const [currentSkill, setCurrentSkill] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const skills = [
@@ -32,10 +31,6 @@ export default function Home() {
 
   useEffect(() => {
     setIsVisible(true);
-    const interval = setInterval(() => {
-      setCurrentSkill((prev) => (prev + 1) % skills.length);
-    }, 3000);
-    return () => clearInterval(interval);
   }, []);
 
   const techCategories = [
