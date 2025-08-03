@@ -70,13 +70,17 @@ export default function TypingAnimation({
   }, []);
 
   return (
-    <div className={`inline-flex items-center ${className}`}>
+    <div
+      className={`inline-flex items-baseline ${className}`}
+      style={{ lineHeight: "1.2" }}
+    >
       <motion.span
         key={currentTextIndex}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="text-primary"
+        style={{ lineHeight: "inherit" }}
       >
         {currentText}
       </motion.span>
@@ -84,6 +88,7 @@ export default function TypingAnimation({
         className="text-primary ml-1"
         animate={{ opacity: isBlinking ? 1 : 0 }}
         transition={{ duration: 0.1 }}
+        style={{ lineHeight: "inherit" }}
       >
         |
       </motion.span>

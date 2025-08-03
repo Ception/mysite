@@ -114,7 +114,7 @@ export default function HomePage() {
             </motion.h1>
 
             <motion.div
-              className="h-20 flex items-center justify-center mb-8 relative"
+              className="h-24 flex items-center justify-center mb-8 relative"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -1176,7 +1176,8 @@ export default function HomePage() {
           >
             <div className="mb-16">
               <motion.h2
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8"
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight"
+                style={{ lineHeight: "1.2" }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
