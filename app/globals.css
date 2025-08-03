@@ -1,25 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  /* Nord Color Palette */
-  --nord-0: #2e3440; /* Polar Night - darkest */
-  --nord-1: #3b4252; /* Polar Night */
-  --nord-2: #434c5e; /* Polar Night */
-  --nord-3: #4c566a; /* Polar Night - lightest */
-  --nord-4: #d8dee9; /* Snow Storm - darkest */
-  --nord-5: #e5e9f0; /* Snow Storm */
-  --nord-6: #eceff4; /* Snow Storm - lightest */
-  --nord-7: #8fbcbb; /* Frost - light blue */
-  --nord-8: #88c0d0; /* Frost - blue */
-  --nord-9: #81a1c1; /* Frost - darker blue */
-  --nord-10: #5e81ac; /* Frost - darkest blue */
-  --nord-11: #bf616a; /* Aurora - red */
-  --nord-12: #d08770; /* Aurora - orange */
-  --nord-13: #ebcb8b; /* Aurora - yellow */
-  --nord-14: #a3be8c; /* Aurora - green */
-  --nord-15: #b48ead; /* Aurora - purple */
-
-  /* Design System Colors */
+  --nord-0: #2e3440;
+  --nord-1: #3b4252;
+  --nord-2: #434c5e;
+  --nord-3: #4c566a;
+  --nord-4: #d8dee9;
+  --nord-5: #e5e9f0;
+  --nord-6: #eceff4;
+  --nord-7: #8fbcbb;
+  --nord-8: #88c0d0;
+  --nord-9: #81a1c1;
+  --nord-10: #5e81ac;
+  --nord-11: #bf616a;
+  --nord-12: #d08770;
+  --nord-13: #ebcb8b;
+  --nord-14: #a3be8c;
+  --nord-15: #b48ead;
   --background: var(--nord-0);
   --background-elevated: var(--nord-1);
   --background-card: var(--nord-2);
@@ -93,7 +90,6 @@ body {
   min-height: 100vh;
 }
 
-/* Subtle geometric background pattern */
 body::before {
   content: "";
   position: fixed;
@@ -128,7 +124,6 @@ body::before {
   }
 }
 
-/* Modern Text Effects */
 .text-gradient {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   background-clip: text;
@@ -184,7 +179,6 @@ body::before {
   color: var(--foreground-subtle);
 }
 
-/* Modern Border Effects */
 .border-gradient {
   border: 1px solid var(--border);
   position: relative;
@@ -215,7 +209,6 @@ body::before {
   opacity: 1;
 }
 
-/* Modern Button */
 .modern-btn {
   background: linear-gradient(
     135deg,
@@ -285,7 +278,6 @@ body::before {
   color: var(--nord-0);
 }
 
-/* Modern Card */
 .modern-card {
   background: linear-gradient(
     135deg,
@@ -337,7 +329,6 @@ body::before {
   box-shadow: 0 8px 32px rgba(46, 52, 64, 0.3);
 }
 
-/* Modern Animation Effects */
 .fade-in {
   animation: fadeIn 0.6s ease-out;
 }
@@ -382,7 +373,6 @@ body::before {
   }
 }
 
-/* Smooth focus styles */
 .focus-ring {
   transition: all 0.2s ease;
 }
@@ -393,7 +383,6 @@ body::before {
   border-color: var(--primary);
 }
 
-/* Modern Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -411,7 +400,6 @@ body::before {
   background: linear-gradient(var(--secondary), var(--accent));
 }
 
-/* Modern Input Styles */
 .modern-input {
   background: rgba(59, 66, 82, 0.5);
   border: 1px solid var(--border);
@@ -433,7 +421,6 @@ body::before {
   color: var(--foreground-subtle);
 }
 
-/* Modern Badge */
 .modern-badge {
   display: inline-flex;
   align-items: center;
@@ -446,7 +433,6 @@ body::before {
   border: 1px solid rgba(136, 192, 208, 0.2);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   body::before {
     background-size: 200px 200px;

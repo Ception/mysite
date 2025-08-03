@@ -206,7 +206,6 @@ export const cacheService = new CacheService();`,
 ];
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [showCode, setShowCode] = useState<{ [key: string]: boolean }>({});
 
   const toggleCode = (projectId: string) => {
@@ -261,7 +260,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
         <div
@@ -272,7 +270,6 @@ export default function ProjectsPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
-        {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -308,7 +305,6 @@ export default function ProjectsPage() {
             represents a commitment to excellence and technical innovation.
           </motion.p>
 
-          {/* Project Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -351,7 +347,6 @@ export default function ProjectsPage() {
           </motion.div>
         </motion.div>
 
-        {/* Enhanced Projects Grid */}
         <div className="space-y-20">
           {projects.map((project, index) => {
             const CategoryIcon = getCategoryIcon(project.category);
@@ -366,7 +361,6 @@ export default function ProjectsPage() {
                 viewport={{ once: true }}
                 className="modern-card p-8 lg:p-12 relative overflow-hidden group hover:scale-[1.02] transition-all duration-500"
               >
-                {/* Enhanced Gradient Bar */}
                 <motion.div
                   className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${project.gradient}`}
                   initial={{ scaleX: 0 }}
@@ -377,10 +371,8 @@ export default function ProjectsPage() {
                   <div className="absolute inset-0 bg-white/20 -skew-x-12 group-hover:translate-x-full transition-transform duration-1000"></div>
                 </motion.div>
 
-                {/* Project Header */}
                 <div className="flex flex-col lg:flex-row justify-between items-start mb-10">
                   <div className="flex-1 mb-8 lg:mb-0 py-2">
-                    {/* Project Meta */}
                     <div className="flex items-center gap-4 mb-6">
                       <div
                         className={`w-16 h-16 bg-gradient-to-br ${project.gradient} rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300`}
@@ -424,7 +416,6 @@ export default function ProjectsPage() {
                       </div>
                     </div>
 
-                    {/* Project Titles */}
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                       {project.shortTitle}
                     </h2>
@@ -433,7 +424,6 @@ export default function ProjectsPage() {
                     </h3>
                   </div>
 
-                  {/* Enhanced Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <motion.button
                       onClick={() => toggleCode(project.id)}
@@ -478,9 +468,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Project Content Grid */}
                 <div className="grid lg:grid-cols-2 gap-10">
-                  {/* Description & Features */}
                   <div className="space-y-8">
                     <div>
                       <h4 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
@@ -522,7 +510,6 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  {/* Tech Stack */}
                   <div>
                     <h4 className="text-xl font-bold text-foreground mb-6 flex items-center gap-3">
                       <div className="w-6 h-6 bg-gradient-to-br from-accent to-warning rounded-lg flex items-center justify-center">
@@ -550,7 +537,6 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Code Preview */}
                 <AnimatePresence>
                   {showCode[project.id] && (
                     <motion.div
@@ -590,12 +576,10 @@ export default function ProjectsPage() {
                   )}
                 </AnimatePresence>
 
-                {/* Background Decoration */}
                 <div
                   className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${project.gradient} opacity-5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
                 ></div>
 
-                {/* Floating Elements */}
                 <div className="absolute top-8 right-8 w-3 h-3 bg-primary/30 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                 <div
                   className="absolute bottom-8 left-8 w-2 h-2 bg-secondary/30 rounded-full group-hover:scale-150 transition-transform duration-500"
@@ -606,7 +590,6 @@ export default function ProjectsPage() {
           })}
         </div>
 
-        {/* Enhanced Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -665,17 +648,14 @@ export default function ProjectsPage() {
               </motion.div>
             </div>
 
-            {/* Animated Background */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            {/* Background Decoration */}
             <div className="absolute top-8 right-8 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
             <div className="absolute bottom-8 left-8 w-16 h-16 bg-secondary/5 rounded-full blur-lg group-hover:scale-150 transition-transform duration-700"></div>
           </div>
         </motion.div>
       </div>
 
-      {/* Floating Elements */}
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}

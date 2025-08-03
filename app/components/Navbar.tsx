@@ -30,7 +30,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <Link
             href="/"
             className="text-2xl font-bold text-gradient relative group"
@@ -39,7 +38,6 @@ export default function Navbar() {
             <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></div>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/"
@@ -79,7 +77,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center space-y-1.5 group"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -103,7 +100,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ${
             isMobileMenuOpen ? "max-h-64 opacity-100 pb-4" : "max-h-0 opacity-0"

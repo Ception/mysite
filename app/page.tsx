@@ -122,9 +122,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
           <div
@@ -141,7 +139,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="mb-12"
           >
-            {/* Enhanced Name Display */}
             <motion.h1
               className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-8 relative"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -160,7 +157,6 @@ export default function Home() {
               <span className="text-foreground block mt-4">MANOV</span>
             </motion.h1>
 
-            {/* Enhanced Role Display */}
             <motion.div
               className="h-20 flex items-center justify-center mb-8 relative"
               initial={{ opacity: 0 }}
@@ -174,7 +170,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Enhanced Description */}
             <motion.div
               className="max-w-4xl mx-auto mb-8"
               initial={{ opacity: 0, y: 20 }}
@@ -203,7 +198,6 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Enhanced CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -226,7 +220,6 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Enhanced Floating Elements */}
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
@@ -252,7 +245,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -272,7 +264,6 @@ export default function Home() {
           </motion.div>
 
           <div className="space-y-20">
-            {/* Interactive Timeline */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -280,9 +271,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              {/* Timeline Container */}
               <div className="relative overflow-visible">
-                {/* Central Timeline Line */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent opacity-30"></div>
                 <motion.div
                   initial={{ scaleY: 0 }}
@@ -293,7 +282,6 @@ export default function Home() {
                 ></motion.div>
 
                 <div className="space-y-20 px-4">
-                  {/* Philosophy Node */}
                   <motion.div
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -349,7 +337,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Timeline Node */}
                     <div className="relative z-10 flex-shrink-0 my-4 lg:my-0">
                       <motion.div
                         initial={{ scale: 0 }}
@@ -364,7 +351,6 @@ export default function Home() {
                     <div className="hidden lg:block w-full max-w-md ml-8 lg:ml-16 opacity-0"></div>
                   </motion.div>
 
-                  {/* Innovation Node */}
                   <motion.div
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -374,7 +360,6 @@ export default function Home() {
                   >
                     <div className="hidden lg:block w-full max-w-md mr-8 lg:mr-16 opacity-0"></div>
 
-                    {/* Timeline Node */}
                     <div className="relative z-10 flex-shrink-0 my-4 lg:my-0 order-1 lg:order-2">
                       <motion.div
                         initial={{ scale: 0 }}
@@ -435,7 +420,6 @@ export default function Home() {
                     </div>
                   </motion.div>
 
-                  {/* Impact Node */}
                   <motion.div
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -493,7 +477,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Timeline Node */}
                     <div className="relative z-10 flex-shrink-0 my-4 lg:my-0">
                       <motion.div
                         initial={{ scale: 0 }}
@@ -511,7 +494,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Personal Brand Showcase */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -519,7 +501,6 @@ export default function Home() {
               viewport={{ once: true }}
               className="modern-card p-0 relative overflow-hidden group"
             >
-              {/* Animated Grid Background */}
               <div className="absolute inset-0 opacity-5">
                 <div className="grid grid-cols-12 gap-4 h-full p-8">
                   {Array.from({ length: 48 }).map((_, i) => (
@@ -537,7 +518,6 @@ export default function Home() {
 
               <div className="relative z-10 p-6 lg:p-12">
                 <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center">
-                  {/* Profile Section */}
                   <div className="text-center lg:text-left">
                     <motion.div
                       initial={{ scale: 0 }}
@@ -551,7 +531,7 @@ export default function Home() {
                           AM
                         </span>
                       </div>
-                      {/* Orbiting Elements */}
+
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{
@@ -591,7 +571,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Core Values */}
                   <div className="space-y-6">
                     <h4 className="text-xl font-bold text-center text-gradient">
                       Core Values
@@ -648,7 +627,6 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Quick Stats */}
                   <div className="space-y-6">
                     <h4 className="text-xl font-bold text-center text-gradient">
                       By The Numbers
@@ -702,14 +680,12 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Floating Elements */}
               <div className="absolute top-8 right-8 w-16 h-16 border border-primary/10 rounded-full opacity-50 group-hover:rotate-45 transition-transform duration-1000"></div>
               <div className="absolute bottom-8 left-8 w-12 h-12 border border-secondary/10 rounded-lg rotate-12 opacity-50 group-hover:rotate-45 transition-transform duration-1000"></div>
             </motion.div>
           </div>
         </div>
 
-        {/* Background Decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
           <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-secondary/5 rounded-full blur-2xl"></div>
@@ -717,7 +693,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -784,12 +759,10 @@ export default function Home() {
                   viewport={{ once: true }}
                   className="modern-card p-8 group hover:scale-105 transition-all duration-300 relative overflow-hidden"
                 >
-                  {/* Top gradient bar */}
                   <div
                     className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${colors.bg}`}
                   ></div>
 
-                  {/* Icon section */}
                   <div className="mb-6 relative">
                     <div
                       className={`w-16 h-16 bg-gradient-to-br ${colors.bg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
@@ -805,12 +778,10 @@ export default function Home() {
                     />
                   </div>
 
-                  {/* Title */}
                   <h3 className={`text-2xl font-bold mb-6 ${colors.title}`}>
                     {category.title}
                   </h3>
 
-                  {/* Tech badges */}
                   <div className="flex flex-wrap gap-2">
                     {category.techs.map((tech, techIndex) => (
                       <motion.span
@@ -829,7 +800,6 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Background decoration */}
                   <div
                     className={`absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br ${colors.bg} opacity-10 rounded-full blur-sm group-hover:scale-150 transition-transform duration-500`}
                   ></div>
@@ -838,7 +808,6 @@ export default function Home() {
             })}
           </div>
 
-          {/* Tech proficiency showcase */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -882,7 +851,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
       <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -910,7 +878,6 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="modern-card p-8 group hover:scale-105 transition-all duration-500 relative overflow-hidden"
               >
-                {/* Enhanced gradient bar with animation */}
                 <motion.div
                   className={`w-full h-2 bg-gradient-to-r ${project.gradient} rounded-full mb-8 relative overflow-hidden`}
                   initial={{ scaleX: 0 }}
@@ -921,7 +888,6 @@ export default function Home() {
                   <div className="absolute inset-0 bg-white/20 -skew-x-12 group-hover:translate-x-full transition-transform duration-1000"></div>
                 </motion.div>
 
-                {/* Project icon/number */}
                 <div className="flex justify-between items-start mb-6">
                   <div
                     className={`w-12 h-12 bg-gradient-to-br ${project.gradient} rounded-xl flex items-center justify-center text-nord-0 font-bold text-lg group-hover:rotate-12 transition-transform duration-300`}
@@ -933,17 +899,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Enhanced title */}
                 <h3 className="text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
 
-                {/* Enhanced description */}
                 <p className="text-muted mb-8 leading-relaxed group-hover:text-foreground transition-colors duration-300">
                   {project.description}
                 </p>
 
-                {/* Enhanced tech badges */}
                 <div className="flex flex-wrap gap-2 mb-8">
                   {project.tech.map((tech, techIndex) => (
                     <motion.span
@@ -962,7 +925,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Enhanced CTA */}
                 <div className="relative">
                   <Link
                     href="/projects"
@@ -980,7 +942,6 @@ export default function Home() {
                   className={`absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br ${project.gradient} opacity-5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
                 ></div>
 
-                {/* Floating elements */}
                 <div className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
                 <div
                   className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-secondary/30 rounded-full group-hover:scale-150 transition-transform duration-500"
@@ -990,7 +951,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Enhanced CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1016,7 +976,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Animated background */}
               <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           </motion.div>
@@ -1030,7 +989,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Innovation Journey */}
       <section className="py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -1049,9 +1007,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Journey Map */}
           <div className="relative">
-            {/* Central Hub */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -1059,7 +1015,6 @@ export default function Home() {
               viewport={{ once: true }}
               className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20"
             >
-              {/* Left Column - Cloud Architecture */}
               <motion.div
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1101,7 +1056,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Innovation Lab */}
                 <div className="modern-card p-8 w-full max-w-sm hover:scale-105 transition-all duration-300 group">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="w-12 h-12 bg-gradient-to-br from-accent to-warning rounded-lg flex items-center justify-center">
@@ -1137,7 +1091,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Center - Your Name */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -1156,17 +1109,14 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Animated Rings */}
                 <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping"></div>
                 <div className="absolute inset-4 rounded-full border border-secondary/40 animate-pulse"></div>
                 <div className="absolute inset-8 rounded-full border border-accent/20 pulse-subtle"></div>
 
-                {/* Connection Lines */}
                 <div className="absolute top-1/2 left-full w-20 h-px bg-gradient-to-r from-primary to-transparent hidden lg:block"></div>
                 <div className="absolute top-1/2 right-full w-20 h-px bg-gradient-to-l from-primary to-transparent hidden lg:block"></div>
               </motion.div>
 
-              {/* Right Column - Full Stack Development */}
               <motion.div
                 initial={{ opacity: 0, x: 100 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -1210,7 +1160,6 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Floating Elements */}
             {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
@@ -1232,7 +1181,6 @@ export default function Home() {
               />
             ))}
 
-            {/* Background Decoration */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
               <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
@@ -1242,9 +1190,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact CTA */}
       <section className="py-32 relative overflow-hidden">
-        {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
           <div
@@ -1262,7 +1208,6 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center relative z-10"
           >
-            {/* Enhanced Header */}
             <div className="mb-16">
               <motion.h2
                 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8"
@@ -1298,7 +1243,6 @@ export default function Home() {
                 extraordinary.
               </motion.p>
 
-              {/* Value proposition cards */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1344,7 +1288,6 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Enhanced CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1372,7 +1315,6 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Contact options */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1407,7 +1349,6 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Floating elements */}
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}

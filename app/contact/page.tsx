@@ -103,11 +103,9 @@ export default function ContactPage() {
     setMessage("");
   };
 
-  // Success Page
   if (isSuccess) {
     return (
       <div className="min-h-screen pt-24 pb-16 flex items-center justify-center relative overflow-hidden">
-        {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-success/10 rounded-full blur-3xl animate-pulse"></div>
           <div
@@ -213,7 +211,6 @@ export default function ContactPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
-        {/* Enhanced Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -247,7 +244,6 @@ export default function ContactPage() {
             Let's start a conversation about your next project.
           </motion.p>
 
-          {/* Contact Methods Preview */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -269,7 +265,6 @@ export default function ContactPage() {
           </motion.div>
         </motion.div>
 
-        {/* Enhanced Progress Indicator */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -322,9 +317,7 @@ export default function ContactPage() {
           </div>
         </motion.div>
 
-        {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
-          {/* Enhanced Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -332,7 +325,6 @@ export default function ContactPage() {
             className="space-y-8"
           >
             <div className="modern-card p-6 lg:p-10 relative overflow-hidden group">
-              {/* Form Header */}
               <div className="mb-8 lg:mb-10">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-4 flex items-center gap-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
@@ -411,7 +403,6 @@ export default function ContactPage() {
                 </motion.button>
               </form>
 
-              {/* Success/Error Messages */}
               <AnimatePresence>
                 {isMessageVisible && (
                   <motion.div
@@ -435,19 +426,16 @@ export default function ContactPage() {
                 )}
               </AnimatePresence>
 
-              {/* Background decoration */}
               <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
             </div>
           </motion.div>
 
-          {/* Enhanced Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="space-y-8"
           >
-            {/* Contact Methods */}
             <div className="modern-card p-6 lg:p-10 relative overflow-hidden group">
               <h3 className="text-2xl sm:text-3xl font-bold text-gradient mb-6 lg:mb-8 flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center">
@@ -510,11 +498,9 @@ export default function ContactPage() {
                 </motion.a>
               </div>
 
-              {/* Background decoration */}
               <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
             </div>
 
-            {/* Quick Info */}
             <div className="modern-card p-6 lg:p-10 relative overflow-hidden group">
               <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                 <div className="w-8 h-8 bg-gradient-to-br from-success to-primary rounded-lg flex items-center justify-center">
@@ -553,14 +539,12 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Background decoration */}
               <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-success/10 to-primary/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
             </div>
           </motion.div>
         </div>
       </div>
 
-      {/* Floating Elements */}
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
