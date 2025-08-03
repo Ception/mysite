@@ -1,24 +1,69 @@
-import type { Metadata, Viewport } from "next";
-import { Ubuntu } from "next/font/google";
-import "../styles/globals.css";
-import Header from "./_components/template/Header";
-import dynamic from "next/dynamic";
-import { Providers } from "./providers";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Inter, Fira_Code } from "next/font/google";
+import "./globals.css";
+import Navbar from "./components/Navbar";
+import {
+  PersonStructuredData,
+  WebsiteStructuredData,
+} from "./components/StructuredData";
 
-const ubuntu = Ubuntu({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const DynamicThreeJs = dynamic(() => import("./_components/ThreeJs"), {
-  ssr: false,
+const firaCode = Fira_Code({
+  subsets: ["latin"],
+  variable: "--font-fira-code",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Aleks Manov's | Development Portfolio",
+  metadataBase: new URL("https://aleksmanov.me"),
+  title: "Aleks Manov - Full Stack Developer & Cloud Architect",
   description:
-    "Aleks Manov's Portfolio: Combining Next.js, Tailwind CSS, and Three.js for Innovative, High-Performance Development Portfolio.",
+    "Innovative Full Stack Developer and Cloud Architecture Expert specializing in scalable web applications, serverless solutions, and cutting-edge technologies. Experience in React, Next.js, AWS, and modern development practices.",
+  keywords: [
+    "Full Stack Developer",
+    "Cloud Architecture",
+    "React Developer",
+    "Next.js Expert",
+    "AWS Solutions",
+    "TypeScript",
+    "Node.js",
+    "Serverless",
+    "Web Development",
+    "Software Engineer",
+  ],
+  authors: [{ name: "Aleks Manov" }],
+  creator: "Aleks Manov",
+  openGraph: {
+    title: "Aleks Manov - Full Stack Developer & Cloud Architect",
+    description:
+      "Innovative developer creating cutting-edge web applications and cloud solutions",
+    url: "https://aleksmanov.me",
+    siteName: "Aleks Manov Portfolio",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aleks Manov - Full Stack Developer & Cloud Architect",
+    description:
+      "Innovative developer creating cutting-edge web applications and cloud solutions",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       {
@@ -29,30 +74,20 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
-
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={ubuntu.className}>
-      <body className="overflow-x-hidden">
-        <Providers>
-          <DynamicThreeJs />
-          <header className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <link rel="icon" href="/favicon.ico" />
-            <Header />
-          </header>
-          <main className="container mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen w-full">
-            {children}
-            <SpeedInsights />
-          </main>
-        </Providers>
+    <html lang="en">
+      <head>
+        <PersonStructuredData />
+        <WebsiteStructuredData />
+      </head>
+      <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
+        <Navbar />
+        {children}
       </body>
     </html>
   );

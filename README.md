@@ -1,35 +1,52 @@
-# My Personal Website 
+# Aleks Manov - Portfolio Website
 
-## Description
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
-Leveraging Next.js 14, Tailwind CSS, Three.js, and Postmark Mail for a state-of-the-art portfolio. Next.js's powerful SSR capabilities, Tailwind's modern design, Three.js's immersive 3D graphics, and Postmark Mail's reliable email service combine to deliver a high-performance, visually captivating showcase of professional endeavors.
+## Features
 
-## Technologies
+- Modern responsive design with Nord color scheme
+- Smooth animations with Framer Motion
+- Contact form with email integration
+- Project showcase with syntax highlighting
+- TypeScript for type safety
+- Optimized performance and SEO
 
-- **Next.js 14**: A powerful React framework with server-side rendering and static site generation.
-- **Tailwind CSS**: A utility-first CSS framework for modern, responsive design.
-- **Three.js**: A cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser.
-- **Postmark Mail**: A reliable email service for sending and receiving emails.
+## Tech Stack
 
-## Setup
+- **Framework:** Next.js 15
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Email:** Postmark
+- **Validation:** Zod
 
-### Next.js
+## Getting Started
 
-Follow the [official Next.js documentation](https://nextjs.org/docs) for setup and usage instructions.
+```bash
+# Install dependencies
+pnpm install
 
-### Tailwind CSS
+# Run development server
+pnpm dev
 
-Follow the [official Tailwind CSS documentation](https://tailwindcss.com/docs) for setup and usage instructions.
+# Build for production
+pnpm build
 
-### Three.js
+# Start production server
+pnpm start
+```
 
-Follow the [official Three.js documentation](https://threejs.org/docs/) for setup and usage instructions.
+## Environment Variables
 
-### Postmark Mail
+Create a `.env.local` file with:
 
-Follow the [official Postmark Mail documentation](https://postmarkapp.com/developer) for setup and usage instructions.
+```
+POSTMARK_API_KEY=your_postmark_api_key
+POSTMARK_API_KEY_DEV=your_dev_api_key
+ENABLE_DEV=true
+```
 
-## Contact
+## License
 
-Aleks Manov - contact@aleksmanov.me  
-Project Link: [Personal Website Project Repo](https://github.com/Ception/mysite)
+© 2024 Aleks Manov. All rights reserved.
