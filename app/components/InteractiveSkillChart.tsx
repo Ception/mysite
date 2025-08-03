@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Palette, Settings, Cloud, Smartphone } from "lucide-react";
 
 interface Skill {
   name: string;
@@ -25,10 +26,10 @@ const skills: Skill[] = [
 ];
 
 const categories = {
-  frontend: { name: "Frontend", icon: "🎨" },
-  backend: { name: "Backend", icon: "⚙️" },
-  cloud: { name: "Cloud", icon: "☁️" },
-  mobile: { name: "Mobile", icon: "📱" },
+  frontend: { name: "Frontend", icon: Palette },
+  backend: { name: "Backend", icon: Settings },
+  cloud: { name: "Cloud", icon: Cloud },
+  mobile: { name: "Mobile", icon: Smartphone },
 };
 
 export default function InteractiveSkillChart() {
@@ -143,20 +144,23 @@ export default function InteractiveSkillChart() {
           >
             All Skills
           </motion.button>
-          {Object.entries(categories).map(([key, category]) => (
-            <motion.button
-              key={key}
-              onClick={() => setSelectedCategory(key)}
-              className={`modern-btn text-sm px-6 py-3 flex items-center gap-2 ${
-                selectedCategory === key ? "primary" : ""
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>{category.icon}</span>
-              {category.name}
-            </motion.button>
-          ))}
+          {Object.entries(categories).map(([key, category]) => {
+            const IconComponent = category.icon;
+            return (
+              <motion.button
+                key={key}
+                onClick={() => setSelectedCategory(key)}
+                className={`modern-btn text-sm px-6 py-3 flex items-center gap-2 ${
+                  selectedCategory === key ? "primary" : ""
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <IconComponent className="w-4 h-4" />
+                {category.name}
+              </motion.button>
+            );
+          })}
         </div>
 
         {/* Skills Grid */}
@@ -256,9 +260,12 @@ export default function InteractiveSkillChart() {
                   {/* Category Badge */}
                   <div className="mt-4">
                     <span
-                      className={`text-xs px-3 py-1 rounded-full border ${colors.text} ${colors.border}/20 bg-${skill.color}/10`}
+                      className={`text-xs px-3 py-1 rounded-full border ${colors.text} ${colors.border}/20 bg-${skill.color}/10 flex items-center gap-1 w-fit`}
                     >
-                      {categories[skill.category].icon}{" "}
+                      {(() => {
+                        const IconComponent = categories[skill.category].icon;
+                        return <IconComponent className="w-3 h-3" />;
+                      })()}
                       {categories[skill.category].name}
                     </span>
                   </div>
@@ -307,13 +314,16 @@ export default function InteractiveSkillChart() {
               categorySkills.reduce((acc, skill) => acc + skill.level, 0) /
                 categorySkills.length
             );
+            const IconComponent = category.icon;
 
             return (
               <div
                 key={key}
                 className="text-center p-4 rounded-xl bg-background-elevated hover:bg-background-card transition-colors duration-300"
               >
-                <div className="text-2xl mb-2">{category.icon}</div>
+                <div className="flex items-center justify-center mb-2">
+                  <IconComponent className="w-6 h-6 text-primary" />
+                </div>
                 <div className="text-sm text-muted">{category.name}</div>
                 <div className="text-xl font-bold text-primary">
                   {avgLevel}%
