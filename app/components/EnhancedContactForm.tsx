@@ -116,7 +116,7 @@ export default function EnhancedContactForm() {
       } else {
         setSubmitStatus({ type: "error", message: result.message });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: "error",
         message: "Failed to send message. Please try again.",
@@ -156,7 +156,7 @@ export default function EnhancedContactForm() {
           Enhanced Contact Form
         </h2>
         <p className="text-muted">
-          Let's discuss your project with real-time validation and preview
+          Let&apos;s discuss your project with real-time validation and preview
         </p>
       </div>
 

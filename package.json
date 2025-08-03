@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "mysite",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -29,5 +29,8 @@
     "eslint-config-next": "15.4.5",
     "tailwindcss": "^4",
     "typescript": "~5.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import {
+  PersonStructuredData,
+  WebsiteStructuredData,
+} from "./components/StructuredData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,6 +20,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aleksmanov.me"),
   title: "Aleks Manov - Full Stack Developer & Cloud Architect",
   description:
     "Innovative Full Stack Developer and Cloud Architecture Expert specializing in scalable web applications, serverless solutions, and cutting-edge technologies. Experience in React, Next.js, AWS, and modern development practices.",
@@ -76,6 +81,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <PersonStructuredData />
+        <WebsiteStructuredData />
+      </head>
       <body className={`${inter.variable} ${firaCode.variable} antialiased`}>
         <Navbar />
         {children}

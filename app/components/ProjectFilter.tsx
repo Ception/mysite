@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Project } from "../types/project";
 import {
   Filter,
   Search,
@@ -16,29 +17,14 @@ import {
   X,
 } from "lucide-react";
 
-interface Project {
-  id: string;
-  title: string;
-  shortTitle: string;
-  description: string;
-  category: string;
-  status: string;
-  year: string;
-  techStack: string[];
-  features: string[];
-  githubUrl: string;
-  liveUrl: string;
-  gradient: string;
-  icon: any;
-  codeSnippet: string;
-}
-
 interface ProjectFilterProps {
   projects: Project[];
   onFilterChange: (filteredProjects: Project[]) => void;
 }
 
-const categoryIcons: { [key: string]: any } = {
+const categoryIcons: {
+  [key: string]: React.ComponentType<{ className?: string }>;
+} = {
   Infrastructure: Shield,
   "Web Application": Globe,
   "Backend API": Database,

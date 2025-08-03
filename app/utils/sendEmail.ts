@@ -6,7 +6,7 @@ import { ServerClient } from "postmark";
 
 const isDevelopment = process.env.ENABLE_DEV === "true";
 
-export async function validateForm(prevState: unknown, formData: FormData) {
+export async function validateForm(_prevState: unknown, formData: FormData) {
   const input = {
     email: formData.get("email") as string,
     message: formData.get("message") as string,
