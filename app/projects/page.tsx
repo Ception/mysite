@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Link from "next/link";
+import ProjectFilter from "../components/ProjectFilter";
+import ClientOnlyParticleSystem from "../components/ClientOnlyParticleSystem";
 import {
   Plus,
   Github,
@@ -207,6 +209,7 @@ export const cacheService = new CacheService();`,
 
 export default function ProjectsPage() {
   const [showCode, setShowCode] = useState<{ [key: string]: boolean }>({});
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
   const toggleCode = (projectId: string) => {
     setShowCode((prev) => ({
@@ -260,6 +263,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
+      <ClientOnlyParticleSystem />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
         <div
@@ -316,7 +320,7 @@ export default function ProjectsPage() {
                 <Star className="w-6 h-6 text-nord-0" />
               </div>
               <div className="text-2xl font-bold text-primary">
-                {projects.length}
+                {filteredProjects.length}
               </div>
               <div className="text-sm text-muted">Projects</div>
             </div>
@@ -347,8 +351,13 @@ export default function ProjectsPage() {
           </motion.div>
         </motion.div>
 
+        <ProjectFilter
+          projects={projects as any}
+          onFilterChange={(filtered) => setFilteredProjects(filtered as any)}
+        />
+
         <div className="space-y-20">
-          {projects.map((project, index) => {
+          {filteredProjects.map((project, index) => {
             const CategoryIcon = getCategoryIcon(project.category);
             const ProjectIcon = project.icon;
 

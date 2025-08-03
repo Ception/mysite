@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import InteractiveSkillChart from "./components/InteractiveSkillChart";
+import ClientOnlyParticleSystem from "./components/ClientOnlyParticleSystem";
+import TypingAnimation from "./components/TypingAnimation";
 import {
   Plus,
   ArrowRight,
@@ -122,6 +125,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <ClientOnlyParticleSystem />
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -164,9 +168,13 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <div className="modern-card px-8 py-4 bg-gradient-to-r from-background-elevated to-background-card border border-primary/20">
-                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium text-primary">
-                  {skills[currentSkill]}
-                </span>
+                <TypingAnimation
+                  texts={skills}
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium"
+                  speed={80}
+                  deleteSpeed={40}
+                  delayBetweenTexts={2500}
+                />
               </div>
             </motion.div>
 
@@ -710,6 +718,11 @@ export default function Home() {
               applications
             </p>
           </motion.div>
+
+          <InteractiveSkillChart />
+
+          {/* Add spacing between interactive chart and tech categories */}
+          <div className="h-20"></div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {techCategories.map((category, index) => {

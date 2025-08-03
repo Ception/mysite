@@ -1,19 +1,19 @@
 "use client";
 
 import { useState, FormEvent, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import EnhancedContactForm from "../components/EnhancedContactForm";
+import ClientOnlyParticleSystem from "../components/ClientOnlyParticleSystem";
 import {
   Mail,
   Linkedin,
   Github,
   ArrowRight,
   Send,
-  MessageCircle,
   Clock,
   Shield,
   Zap,
   CheckCircle,
-  AlertCircle,
   Globe,
   Calendar,
   Coffee,
@@ -200,6 +200,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
+      <ClientOnlyParticleSystem />
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -324,110 +325,7 @@ export default function ContactPage() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="space-y-8"
           >
-            <div className="modern-card p-6 lg:p-10 relative overflow-hidden group">
-              <div className="mb-8 lg:mb-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient mb-4 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 text-nord-0" />
-                  </div>
-                  Send a Message
-                </h2>
-                <p className="text-muted">
-                  Let&apos;s discuss your project and turn your ideas into
-                  reality
-                </p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="space-y-3">
-                  <label className="flex items-center gap-2 text-primary font-semibold">
-                    <Mail className="w-4 h-4" />
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your.email@domain.com"
-                    className="w-full modern-input focus-ring text-lg py-4"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                <div className="space-y-3">
-                  <label className="flex items-center gap-2 text-primary font-semibold">
-                    <MessageCircle className="w-4 h-4" />
-                    Your Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell me about your project, goals, timeline, budget, or just say hello..."
-                    className="w-full modern-input focus-ring min-h-[200px] resize-none text-lg py-4"
-                    required
-                    disabled={isSubmitting}
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`w-full modern-btn primary text-lg py-5 ${
-                    isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                >
-                  {isSubmitting ? (
-                    <span className="flex items-center justify-center gap-3">
-                      <motion.div
-                        className="w-5 h-5 border-2 border-nord-0 border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          duration: 1,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                      Sending Message...
-                    </span>
-                  ) : (
-                    <span className="flex items-center justify-center gap-3">
-                      <Send className="w-5 h-5" />
-                      Send Message
-                    </span>
-                  )}
-                </motion.button>
-              </form>
-
-              <AnimatePresence>
-                {isMessageVisible && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5 }}
-                    className={`mt-8 p-6 rounded-xl border flex items-center gap-3 ${
-                      hasError
-                        ? "bg-error/10 border-error/30 text-error"
-                        : "bg-success/10 border-success/30 text-success"
-                    }`}
-                  >
-                    {hasError ? (
-                      <AlertCircle className="w-6 h-6 flex-shrink-0" />
-                    ) : (
-                      <CheckCircle className="w-6 h-6 flex-shrink-0" />
-                    )}
-                    <span className="font-medium">{responseMessage}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-            </div>
+            <EnhancedContactForm />
           </motion.div>
 
           <motion.div
