@@ -263,15 +263,16 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8">
-              <span className="text-gradient">The Journey</span>
+              <span className="text-gradient">My Journey</span>
             </h2>
-            <p className="text-xl text-muted max-w-2xl mx-auto">
-              Passionate developer crafting the future of digital experiences
+            <p className="text-xl text-muted max-w-3xl mx-auto">
+              From curious problem-solver to full-stack architect - every line
+              of code tells a story of passion, growth, and innovation
             </p>
           </motion.div>
 
           <div className="space-y-20">
-            {/* Interactive Timeline - My Journey */}
+            {/* Interactive Timeline */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -279,16 +280,6 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="text-center mb-16">
-                <h3 className="text-3xl font-bold text-gradient mb-4">
-                  My Story
-                </h3>
-                <p className="text-lg text-muted max-w-2xl mx-auto">
-                  From curious problem-solver to full-stack architect - every
-                  line of code tells a story
-                </p>
-              </div>
-
               {/* Timeline Container */}
               <div className="relative overflow-visible">
                 {/* Central Timeline Line */}
