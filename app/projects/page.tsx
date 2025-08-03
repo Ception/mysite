@@ -1,300 +1,701 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import CustomButton from "../_components/ui/CustomButton";
-import CustomTitle from "../_components/ui/CustomTitle";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialOceanic } from "react-syntax-highlighter/dist/esm/styles/prism";
-import ShutterEffect from "../_components/utils/ShutterEffect";
+import { nord } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Link from "next/link";
+import {
+  Plus,
+  Github,
+  ExternalLink,
+  Code,
+  Eye,
+  EyeOff,
+  Star,
+  Calendar,
+  Tag,
+  Activity,
+  Zap,
+  Shield,
+  Globe,
+  Database,
+  Smartphone,
+} from "lucide-react";
 
-const CF_WORKERS_SNIPPET = `
-export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    const responseHeaders = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
-    const RATE_LIMIT = 1; // rate limit per IP
-    const TIME_WINDOW = 60; // Time window in seconds (60 seconds)
-
-    try {
-      // Retrieve the client's IP address from the 'x-real-ip' header
-      const ip = request.headers.get('x-real-ip');
-
-      if (!ip) {
-        return new Response('IP address not found', { status: 400, headers: responseHeaders });
-      }
-
-      // Retrieve the current count for this IP from KV store
-      const countResult = await env.RATE_LIMIT_STORE.get(ip);
-      let count = countResult ? parseInt(countResult) : 0;
-
-      // Check if the rate limit has been exceeded
-      if (count >= RATE_LIMIT) {
-        return new Response('Rate limit exceeded', { status: 429, headers: responseHeaders });
-      }
-
-      // Increment the count and update the KV store
-      await env.RATE_LIMIT_STORE.put(ip, (count + 1).toString(), { expirationTtl: TIME_WINDOW });
-
-      // Existing VM selection logic
-      const { country, city } = request.cf;
-      const vmIpsArray = env.VMS.split(',');
-
-      const selectedVmIps = selectVmsBasedOnLocation(vmIpsArray, { country, city });
-
-      const vmStatuses: VMStatus[] = await Promise.all(
-        selectedVmIps.map((ip: string) =>
-          checkLatency(ip).catch((error) => {
-            console.log("Error checking latency for IP: ", ip);
-            return { ip, latency: Infinity, available: false };
-          })
-        )
-      );
-
-      const availableVms = vmStatuses.filter((vm) => vm.available && vm.latency !== Infinity);
-
-      if (availableVms.length === 0) {
-        console.error('All VMs are unavailable. Retrying after a delay...');
-        return new Response('No available servers', { status: 503, headers: responseHeaders });
-      }
-
-      const bestVm = availableVms.reduce((prev, curr) => (prev.latency < curr.latency ? prev : curr));
-
-      return new Response(bestVm.ip, { headers: responseHeaders });
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error("Unexpected error: ", error.message);
-      } else {
-        console.error("Unexpected error: ", error);
-      }
-      return new Response('An unexpected error occurred', { status: 500, headers: responseHeaders });
-    }
-  },
-};`;
-
-const COMMERCE_CODE_SNIPPET = `
-export async function GET(req: NextRequest, { params }: any) {
-  const API = process.env.API_URL;
-  const AUTH_TOKEN = process.env.API_TOKEN;
-  const name = params.product;
-
-  try {
-    const response = await fetch(
-      \`\${API}\`, // template literal for dynamic URL
-      {
-        headers: {
-          Authorization: \`Bearer \${AUTH_TOKEN}\`,
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Error fetching products");
-    }
-
-    const jsonResponse = await response.json();
-    return new Response(JSON.stringify(jsonResponse), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-        cache: "no-cache",
-      },
-    });
-  } catch (error) {
-    return new Response(
-      JSON.stringify({ message: "Error fetching products" }),
-      {
-        status: 500,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }
-}`;
-
-const API_CODE_SNIPPET = `
-const router = Router();
-router.get("/verify-discord", async (req: Request, res: Response) => {
-  try {
-    const code = req.query.code;
-    if (typeof code !== "string") {
-      return res
-        .status(400)
-        .send({ success: false, message: "Invalid or missing code" });
-    }
-    const isValidCode = await verifyDiscordCode(code);
-    if (!isValidCode) {
-      return res.status(401).send({ success: false, message: "Invalid code" });
-    } else {
-      const getRolesClaimed = await getClaimedDiscordCode(code);
-      if (!getRolesClaimed) {
-        return res.status(200).send({
-          success: false,
-          message: "Roles already claimed",
-        });
-      }
-      const testerRole = await getDiscordAccountID(code);
-      await claimDiscordCode(code);
-      return res.status(200).send({
-        success: true,
-        message: "Code verified successfully",
-        role: testerRole,
-      });
-    }
-  } catch (err) {
-    console.error("Error in /verify-discord:", err);
-    return res
-      .status(500)
-      .send({ success: false, message: "An unknown error occurred" });
-  }
-});
-export default router;`;
-
-const PROJECT_DETAILS = {
-  "001": {
+const projects = [
+  {
+    id: "001",
     title: "Advanced DDoS Mitigation & Global Server Optimization",
+    shortTitle: "DDoS Shield",
     description:
-      "A serverless solution for robust DDoS protection and worldwide low-latency content delivery.",
+      "Enterprise-grade serverless solution providing robust DDoS protection and worldwide low-latency content delivery using Cloudflare Workers. Features intelligent IP-based rate limiting, geolocation-aware VM selection, and real-time performance monitoring.",
+    category: "Infrastructure",
+    status: "Production",
+    year: "2024",
+    features: [
+      "Real-time DDoS protection",
+      "Global load balancing",
+      "Intelligent rate limiting",
+      "Performance monitoring",
+      "Auto-failover systems",
+    ],
     techStack: [
       "Cloudflare Workers",
       "CDN",
-      "DNS",
       "Express.js",
-      "Linux",
       "Docker",
-      "Ansible",
       "Prometheus",
       "Grafana",
     ],
-    codeSnippet: CF_WORKERS_SNIPPET,
+    githubUrl: "https://github.com/Ception",
+    liveUrl: "",
+    gradient: "from-primary to-secondary",
+    icon: Shield,
+    codeSnippet: `export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const RATE_LIMIT = 1;
+    const TIME_WINDOW = 60;
+    
+    try {
+      const ip = request.headers.get('x-real-ip');
+      if (!ip) {
+        return new Response('IP not found', { status: 400 });
+      }
+
+      // Rate limiting with KV store
+      const count = await env.RATE_LIMIT_STORE.get(ip);
+      if (parseInt(count || '0') >= RATE_LIMIT) {
+        return new Response('Rate limit exceeded', { status: 429 });
+      }
+
+      await env.RATE_LIMIT_STORE.put(
+        ip, 
+        (parseInt(count || '0') + 1).toString(), 
+        { expirationTtl: TIME_WINDOW }
+      );
+
+      // Intelligent VM selection
+      const { country, city } = request.cf;
+      const vmIpsArray = env.VMS.split(',');
+      const selectedVms = selectVmsBasedOnLocation(vmIpsArray, { country, city });
+
+      const bestVm = await findOptimalVm(selectedVms);
+      return new Response(bestVm.ip);
+    } catch (error) {
+      return new Response('Service unavailable', { status: 503 });
+    }
+  }
+};`,
   },
-  "002": {
-    title: "Full-Stack E-Commerce Platform with Custom CMS",
+  {
+    id: "002",
+    title: "Next.js E-Commerce Platform with Headless CMS",
+    shortTitle: "E-Commerce Engine",
     description:
-      "Comprehensive e-commerce platform featuring Next.js for SSR, SSG, and ISR, with custom CMS and Stripe integration.",
-    techStack: [
-      "React",
-      "Next.js 14",
-      "Tailwind CSS",
-      "Strapi",
-      "Stripe API",
-      "Cloudflare Pages",
+      "Comprehensive e-commerce solution built with Next.js and Strapi CMS, featuring advanced product management, secure payment processing with Stripe, and optimized for high-performance user experiences.",
+    category: "Web Application",
+    status: "Production",
+    year: "2024",
+    features: [
+      "Headless CMS integration",
+      "Secure payment processing",
+      "Real-time inventory",
+      "Advanced search & filters",
+      "Mobile-optimized checkout",
     ],
-    codeSnippet: COMMERCE_CODE_SNIPPET,
+    techStack: [
+      "Next.js",
+      "Strapi",
+      "PostgreSQL",
+      "Stripe",
+      "Tailwind CSS",
+      "TypeScript",
+    ],
+    githubUrl: "https://github.com/Ception",
+    liveUrl: "",
+    gradient: "from-secondary to-accent",
+    icon: Globe,
+    codeSnippet: `import { loadStripe } from '@stripe/stripe-js';
+import { CartItem } from '@/types';
+
+export async function createCheckoutSession(items: CartItem[]) {
+  const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+  
+  const lineItems = items.map(item => ({
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: item.name,
+        images: [item.image],
+      },
+      unit_amount: item.price * 100,
+    },
+    quantity: item.quantity,
+  }));
+
+  const { error } = await stripe!.redirectToCheckout({
+    lineItems,
+    mode: 'payment',
+    successUrl: \`\${window.location.origin}/success\`,
+    cancelUrl: \`\${window.location.origin}/cart\`,
+  });
+
+  if (error) {
+    console.error('Stripe error:', error);
+  }
+}`,
   },
-  "003": {
-    title: "Complete Custom CMS API",
+  {
+    id: "003",
+    title: "High-Performance Backend API with Redis Caching",
+    shortTitle: "CMS Core API",
     description:
-      "Robust backend for content management systems with Redis caching, MariaDB connectivity, and JWT authentication.",
+      "Scalable backend infrastructure powering content management systems with advanced caching strategies, JWT authentication, and Discord API integration for real-time notifications.",
+    category: "Backend API",
+    status: "Production",
+    year: "2023",
+    features: [
+      "High-performance caching",
+      "JWT authentication",
+      "Discord integration",
+      "Rate limiting",
+      "API versioning",
+    ],
     techStack: [
       "TypeScript",
-      "Node.js",
       "Express.js",
       "Redis",
-      "MariaDB",
+      "PostgreSQL",
       "JWT",
+      "Discord API",
     ],
-    codeSnippet: API_CODE_SNIPPET,
+    githubUrl: "https://github.com/Ception",
+    liveUrl: "",
+    gradient: "from-accent to-success",
+    icon: Database,
+    codeSnippet: `import { createClient } from 'redis';
+import jwt from 'jsonwebtoken';
+
+class CacheService {
+  private redis = createClient({
+    url: process.env.REDIS_URL
+  });
+
+  async get<T>(key: string): Promise<T | null> {
+    try {
+      const data = await this.redis.get(key);
+      return data ? JSON.parse(data) : null;
+    } catch (error) {
+      console.error('Cache get error:', error);
+      return null;
+    }
+  }
+
+  async set(key: string, value: any, ttl: number = 3600): Promise<void> {
+    try {
+      await this.redis.setEx(key, ttl, JSON.stringify(value));
+    } catch (error) {
+      console.error('Cache set error:', error);
+    }
+  }
+}
+
+export const cacheService = new CacheService();`,
   },
-};
+];
 
 export default function ProjectsPage() {
-  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [showCode, setShowCode] = useState<{ [key: string]: boolean }>({});
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("fade-in-slide");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  const toggleCode = (projectId: string) => {
+    setShowCode((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId],
+    }));
+  };
 
-    projectRefs.current
-      .filter((ref): ref is HTMLDivElement => ref !== null)
-      .forEach((ref) => observer.observe(ref));
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Production":
+        return "text-success";
+      case "Development":
+        return "text-warning";
+      case "Planning":
+        return "text-purple";
+      default:
+        return "text-primary";
+    }
+  };
 
-    return () => observer.disconnect();
-  }, []);
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "Infrastructure":
+        return "primary";
+      case "Web Application":
+        return "secondary";
+      case "Backend API":
+        return "success";
+      case "Mobile App":
+        return "purple";
+      default:
+        return "primary";
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "Infrastructure":
+        return Shield;
+      case "Web Application":
+        return Globe;
+      case "Backend API":
+        return Database;
+      case "Mobile App":
+        return Smartphone;
+      default:
+        return Code;
+    }
+  };
 
   return (
-    <>
-      {Object.entries(PROJECT_DETAILS).map(([key, project], index) => (
+    <div className="min-h-screen pt-24 pb-16 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
         <div
-          key={key}
-          ref={(el) => {
-            projectRefs.current[index] = el;
-          }}
-          className={`mb-32 opacity-0 transition-all duration-1000 ease-out ${
-            index % 2 === 0 ? "translate-x-[-50px]" : "translate-x-[50px]"
-          }`}
+          className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-2xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent/5 rounded-full blur-xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+        {/* Enhanced Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          <div
-            className={`flex flex-col ${
-              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            } gap-8 items-start`}
+          <motion.h1
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="w-full md:w-1/2">
-              <CustomTitle
-                text={`${key}: ${project.title}`}
-                textSize="xl"
-                reverse={index % 2 !== 0}
+            <span className="text-gradient block mb-4">Featured</span>
+            <span className="text-foreground block relative">
+              Projects
+              <motion.div
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
               />
-              <p className="mt-4 text-gray-300">{project.description}</p>
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold mb-2">Tech Stack:</h3>
-                <ul className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <li
-                      key={tech}
-                      className="px-3 py-1 bg-gray-700 text-cyan-300 rounded-full text-sm"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-xl md:text-2xl text-muted max-w-4xl mx-auto leading-relaxed mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            A showcase of innovative solutions spanning cloud infrastructure,
+            full-stack applications, and enterprise-grade backends. Each project
+            represents a commitment to excellence and technical innovation.
+          </motion.p>
+
+          {/* Project Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
+          >
+            <div className="modern-card p-6 text-center group hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
+                <Star className="w-6 h-6 text-nord-0" />
               </div>
-              <div className="mt-8">
-                <Link href="/contact" aria-label="Request project access">
-                  <CustomButton
-                    text="Request Access"
-                    icon="SHARP_ARROW_OUT"
-                    iconSize={24}
-                  />
-                </Link>
+              <div className="text-2xl font-bold text-primary">
+                {projects.length}
               </div>
+              <div className="text-sm text-muted">Projects</div>
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="rounded-lg overflow-hidden shadow-lg">
-                <ShutterEffect
-                  reverse={index % 2 !== 0}
-                  backgroundReveal={true}
+
+            <div className="modern-card p-6 text-center group hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
+                <Zap className="w-6 h-6 text-nord-0" />
+              </div>
+              <div className="text-2xl font-bold text-secondary">100%</div>
+              <div className="text-sm text-muted">Success Rate</div>
+            </div>
+
+            <div className="modern-card p-6 text-center group hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br from-accent to-warning rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
+                <Activity className="w-6 h-6 text-nord-0" />
+              </div>
+              <div className="text-2xl font-bold text-accent">24/7</div>
+              <div className="text-sm text-muted">Monitoring</div>
+            </div>
+
+            <div className="modern-card p-6 text-center group hover:scale-105 transition-transform duration-300">
+              <div className="w-12 h-12 bg-gradient-to-br from-success to-primary rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:rotate-12 transition-transform duration-300">
+                <Calendar className="w-6 h-6 text-nord-0" />
+              </div>
+              <div className="text-2xl font-bold text-success">2024</div>
+              <div className="text-sm text-muted">Latest</div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Enhanced Projects Grid */}
+        <div className="space-y-20">
+          {projects.map((project, index) => {
+            const CategoryIcon = getCategoryIcon(project.category);
+            const ProjectIcon = project.icon;
+
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="modern-card p-8 lg:p-12 relative overflow-hidden group hover:scale-[1.02] transition-all duration-500"
+              >
+                {/* Enhanced Gradient Bar */}
+                <motion.div
+                  className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${project.gradient}`}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <SyntaxHighlighter
-                    language="javascript"
-                    style={materialOceanic}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      fontSize: "0.9rem",
-                      padding: "1.5rem",
-                      margin: "0",
-                      borderRadius: "0.5rem",
-                      maxHeight: "400px",
-                      overflow: "auto",
-                    }}
-                  >
-                    {project.codeSnippet}
-                  </SyntaxHighlighter>
-                </ShutterEffect>
-              </div>
-            </div>
-          </div>
+                  <div className="absolute inset-0 bg-white/20 -skew-x-12 group-hover:translate-x-full transition-transform duration-1000"></div>
+                </motion.div>
+
+                {/* Project Header */}
+                <div className="flex flex-col lg:flex-row justify-between items-start mb-10">
+                  <div className="flex-1 mb-8 lg:mb-0 py-2">
+                    {/* Project Meta */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        className={`w-16 h-16 bg-gradient-to-br ${project.gradient} rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300`}
+                      >
+                        <ProjectIcon className="w-8 h-8 text-nord-0" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-primary font-mono text-lg font-bold">
+                            #{project.id}
+                          </span>
+                          <span className="text-muted text-sm flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            {project.year}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <span
+                            className={`modern-badge bg-${getCategoryColor(
+                              project.category
+                            )}/10 text-${getCategoryColor(
+                              project.category
+                            )} border-${getCategoryColor(
+                              project.category
+                            )}/20 flex items-center gap-2`}
+                          >
+                            <CategoryIcon className="w-4 h-4" />
+                            {project.category}
+                          </span>
+                          <span
+                            className={`modern-badge ${getStatusColor(
+                              project.status
+                            )} flex items-center gap-2`}
+                          >
+                            <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
+                            {project.status}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Project Titles */}
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gradient mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
+                      {project.shortTitle}
+                    </h2>
+                    <h3 className="text-lg md:text-xl text-muted mb-6 leading-relaxed">
+                      {project.title}
+                    </h3>
+                  </div>
+
+                  {/* Enhanced Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <motion.button
+                      onClick={() => toggleCode(project.id)}
+                      className="modern-btn accent px-6 py-3 flex items-center gap-3 group/btn"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {showCode[project.id] ? (
+                        <>
+                          <EyeOff className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+                          Hide Code
+                        </>
+                      ) : (
+                        <>
+                          <Eye className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+                          View Code
+                        </>
+                      )}
+                    </motion.button>
+
+                    {project.githubUrl && (
+                      <Link
+                        href={project.githubUrl}
+                        target="_blank"
+                        className="modern-btn primary px-6 py-3 flex items-center gap-3 group/btn"
+                      >
+                        <Github className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+                        GitHub
+                      </Link>
+                    )}
+
+                    {project.liveUrl && (
+                      <Link
+                        href={project.liveUrl}
+                        target="_blank"
+                        className="modern-btn success px-6 py-3 flex items-center gap-3 group/btn"
+                      >
+                        <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                        Live Demo
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* Project Content Grid */}
+                <div className="grid lg:grid-cols-2 gap-10">
+                  {/* Description & Features */}
+                  <div className="space-y-8">
+                    <div>
+                      <h4 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
+                        <div className="w-6 h-6 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                          <Tag className="w-3 h-3 text-nord-0" />
+                        </div>
+                        Project Overview
+                      </h4>
+                      <p className="text-muted leading-relaxed text-lg">
+                        {project.description}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-xl font-bold text-foreground mb-6 flex items-center gap-3">
+                        <div className="w-6 h-6 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
+                          <Star className="w-3 h-3 text-nord-0" />
+                        </div>
+                        Key Features
+                      </h4>
+                      <div className="grid gap-3">
+                        {project.features.map((feature, featureIndex) => (
+                          <motion.div
+                            key={feature}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{
+                              duration: 0.4,
+                              delay: 0.1 + featureIndex * 0.1,
+                            }}
+                            viewport={{ once: true }}
+                            className="flex items-center gap-3 p-3 rounded-lg bg-background-elevated/50 hover:bg-background-elevated transition-colors duration-200"
+                          >
+                            <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            <span className="text-foreground">{feature}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div>
+                    <h4 className="text-xl font-bold text-foreground mb-6 flex items-center gap-3">
+                      <div className="w-6 h-6 bg-gradient-to-br from-accent to-warning rounded-lg flex items-center justify-center">
+                        <Code className="w-3 h-3 text-nord-0" />
+                      </div>
+                      Technology Stack
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {project.techStack.map((tech, techIndex) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: techIndex * 0.05,
+                          }}
+                          viewport={{ once: true }}
+                          className="modern-badge bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 hover:scale-105 transition-all duration-200 cursor-default"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Code Preview */}
+                <AnimatePresence>
+                  {showCode[project.id] && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0, y: -20 }}
+                      animate={{ opacity: 1, height: "auto", y: 0 }}
+                      exit={{ opacity: 0, height: 0, y: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="mt-10 overflow-hidden"
+                    >
+                      <div className="modern-card p-6 bg-nord-0/50 border border-primary/20">
+                        <div className="flex items-center justify-between mb-4">
+                          <h4 className="text-lg font-bold text-primary flex items-center gap-3">
+                            <Code className="w-5 h-5" />
+                            Code Snippet
+                          </h4>
+                          <button
+                            onClick={() => toggleCode(project.id)}
+                            className="text-muted hover:text-primary transition-colors"
+                          >
+                            <EyeOff className="w-5 h-5" />
+                          </button>
+                        </div>
+                        <SyntaxHighlighter
+                          language="typescript"
+                          style={nord}
+                          customStyle={{
+                            background: "transparent",
+                            padding: "0",
+                            margin: "0",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {project.codeSnippet}
+                        </SyntaxHighlighter>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Background Decoration */}
+                <div
+                  className={`absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-br ${project.gradient} opacity-5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700`}
+                ></div>
+
+                {/* Floating Elements */}
+                <div className="absolute top-8 right-8 w-3 h-3 bg-primary/30 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <div
+                  className="absolute bottom-8 left-8 w-2 h-2 bg-secondary/30 rounded-full group-hover:scale-150 transition-transform duration-500"
+                  style={{ transitionDelay: "0.1s" }}
+                ></div>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Enhanced Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mt-32"
+        >
+          <div className="modern-card p-16 relative overflow-hidden group">
+            <div className="relative z-10">
+              <motion.h2
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-gradient block mb-4">
+                  Ready to Collaborate?
+                </span>
+              </motion.h2>
+
+              <motion.p
+                className="text-xl md:text-2xl text-muted mb-12 max-w-4xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                These projects represent just the beginning of what's possible.
+                Let's discuss how we can bring your vision to life with
+                innovative technology and exceptional execution.
+              </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-6 justify-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href="/contact"
+                  className="modern-btn primary text-lg px-10 py-5 group flex items-center gap-3 transform hover:scale-105 transition-all duration-300"
+                >
+                  <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+                  <span>Start a Project</span>
+                </Link>
+                <Link
+                  href="https://github.com/Ception"
+                  target="_blank"
+                  className="modern-btn success text-lg px-10 py-5 group flex items-center gap-3 transform hover:scale-105 transition-all duration-300"
+                >
+                  <Github className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                  <span>View All on GitHub</span>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Animated Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            {/* Background Decoration */}
+            <div className="absolute top-8 right-8 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
+            <div className="absolute bottom-8 left-8 w-16 h-16 bg-secondary/5 rounded-full blur-lg group-hover:scale-150 transition-transform duration-700"></div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Floating Elements */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 0.3, scale: 1 }}
+          transition={{ duration: 1, delay: 2 + i * 0.1 }}
+          className={`absolute w-2 h-2 rounded-full pulse-subtle ${
+            i % 3 === 0
+              ? "bg-primary"
+              : i % 3 === 1
+              ? "bg-secondary"
+              : "bg-accent"
+          }`}
+          style={{
+            left: `${5 + i * 12}%`,
+            top: `${15 + (i % 4) * 20}%`,
+            animationDelay: `${i * 0.4}s`,
+          }}
+        />
       ))}
-    </>
+    </div>
   );
 }

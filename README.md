@@ -1,35 +1,36 @@
-# My Personal Website 
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Description
+## Getting Started
 
-Leveraging Next.js 14, Tailwind CSS, Three.js, and Postmark Mail for a state-of-the-art portfolio. Next.js's powerful SSR capabilities, Tailwind's modern design, Three.js's immersive 3D graphics, and Postmark Mail's reliable email service combine to deliver a high-performance, visually captivating showcase of professional endeavors.
+First, run the development server:
 
-## Technologies
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Next.js 14**: A powerful React framework with server-side rendering and static site generation.
-- **Tailwind CSS**: A utility-first CSS framework for modern, responsive design.
-- **Three.js**: A cross-browser JavaScript library and API used to create and display animated 3D computer graphics in a web browser.
-- **Postmark Mail**: A reliable email service for sending and receiving emails.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Setup
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### Next.js
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Follow the [official Next.js documentation](https://nextjs.org/docs) for setup and usage instructions.
+## Learn More
 
-### Tailwind CSS
+To learn more about Next.js, take a look at the following resources:
 
-Follow the [official Tailwind CSS documentation](https://tailwindcss.com/docs) for setup and usage instructions.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### Three.js
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Follow the [official Three.js documentation](https://threejs.org/docs/) for setup and usage instructions.
+## Deploy on Vercel
 
-### Postmark Mail
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Follow the [official Postmark Mail documentation](https://postmarkapp.com/developer) for setup and usage instructions.
-
-## Contact
-
-Aleks Manov - contact@aleksmanov.me  
-Project Link: [Personal Website Project Repo](https://github.com/Ception/mysite)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

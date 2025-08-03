@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { validateForm } from "../../_components/utils/sendEmail";
+import { validateForm } from "../../utils/sendEmail";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();

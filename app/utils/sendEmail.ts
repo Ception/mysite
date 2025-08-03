@@ -6,7 +6,7 @@ import { ServerClient } from "postmark";
 
 const isDevelopment = process.env.ENABLE_DEV === "true";
 
-export async function validateForm(prevState: any, formData: FormData) {
+export async function validateForm(prevState: unknown, formData: FormData) {
   const input = {
     email: formData.get("email") as string,
     message: formData.get("message") as string,
@@ -39,7 +39,7 @@ export async function validateForm(prevState: any, formData: FormData) {
     await sendEmail(email, message);
     revalidatePath("/contact");
     return { success: true, message: "Email successfully sent" };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
     return {
       success: false,
@@ -67,7 +67,7 @@ const sendEmail = async (email: string, message: string) => {
       },
     });
     return response.MessageID;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(`Error: ${error}`);
     throw new Error("Something's wrong with postmark mail sending");
   }
