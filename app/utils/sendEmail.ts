@@ -1,6 +1,4 @@
 "use server";
-
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { ServerClient } from "postmark";
 
@@ -37,7 +35,6 @@ export async function validateForm(_prevState: unknown, formData: FormData) {
   const { email, message } = validationResult.data;
   try {
     await sendEmail(email, message);
-    revalidatePath("/contact");
     return { success: true, message: "Email successfully sent" };
   } catch (error: unknown) {
     console.error(error);

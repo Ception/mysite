@@ -41,15 +41,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: "/api/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=300, s-maxage=300",
-          },
-        ],
-      },
+      // Avoid misleading cache headers on API routes handling POST
     ];
   },
 
