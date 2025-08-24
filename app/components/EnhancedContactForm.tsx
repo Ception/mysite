@@ -1,6 +1,6 @@
 "use client";
 
- import { useEffect, useState, FormEvent, useActionState } from "react";
+import { useEffect, useState, FormEvent, useActionState } from "react";
  import { useFormStatus } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { validateForm as serverValidateForm } from "../utils/sendEmail";
@@ -29,6 +29,41 @@ interface FormData {
   email: string;
   message: string;
   name?: string;
+}
+
+function SubmitButton({ disabledByErrors }: { disabledByErrors: boolean }) {
+  const { pending } = useFormStatus();
+  const disabled = pending || disabledByErrors;
+  return (
+    <motion.button
+      type="submit"
+      disabled={disabled}
+      className={`w-full modern-btn primary text-lg py-5 ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      initial={false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      {pending ? (
+        <span className="flex items-center justify-center gap-3">
+          <motion.div
+            className="w-5 h-5 border-2 border-nord-0 border-t-transparent rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+          Sending Message...
+        </span>
+      ) : (
+        <span className="flex items-center justify-center gap-3">
+          <Send className="w-5 h-5" />
+          Send Message
+        </span>
+      )}
+    </motion.button>
+  );
 }
 
 export default function EnhancedContactForm() {
@@ -109,40 +144,7 @@ export default function EnhancedContactForm() {
     }
   }, [actionState.success, actionState.message]);
 
-  function SubmitButton({ disabledByErrors }: { disabledByErrors: boolean }) {
-    const { pending } = useFormStatus();
-    const disabled = pending || disabledByErrors;
-    return (
-      <motion.button
-        type="submit"
-        disabled={disabled}
-        className={`w-full modern-btn primary text-lg py-5 ${
-          disabled ? "opacity-50 cursor-not-allowed" : ""
-        }`}
-        whileHover={{ scale: disabled ? 1 : 1.02 }}
-        whileTap={{ scale: disabled ? 1 : 0.98 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-      >
-        {pending ? (
-          <span className="flex items-center justify-center gap-3">
-            <motion.div
-              className="w-5 h-5 border-2 border-nord-0 border-t-transparent rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-            Sending Message...
-          </span>
-        ) : (
-          <span className="flex items-center justify-center gap-3">
-            <Send className="w-5 h-5" />
-            Send Message
-          </span>
-        )}
-      </motion.button>
-    );
-  }
+  
 
   const getInputVariants = (hasError: boolean, isFocused: boolean) => ({
     initial: { borderColor: "var(--border)" },
