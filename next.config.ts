@@ -14,13 +14,16 @@ const nextConfig: NextConfig = {
   // Compress responses
   compress: true,
 
-  // Optimize per-package imports to reduce bundle size
-  optimizePackageImports: [
-    "lucide-react",
-    "framer-motion",
-    "zod",
-    "react-syntax-highlighter",
-  ],
+  // Experimental features
+  experimental: {
+    // Optimize per-package imports to reduce bundle size
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "zod",
+      "react-syntax-highlighter",
+    ],
+  },
 
   // Server external packages (moved from experimental)
   serverExternalPackages: [],
