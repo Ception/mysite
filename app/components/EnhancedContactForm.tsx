@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, FormEvent } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+ import { useEffect, useState, FormEvent, useActionState } from "react";
+ import { useFormStatus } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { validateForm as serverValidateForm } from "../utils/sendEmail";
 import {
@@ -49,7 +49,7 @@ export default function EnhancedContactForm() {
     success: null,
     message: "",
   };
-  const [actionState, formAction] = useFormState(serverValidateForm, initialActionState);
+  const [actionState, formAction] = useActionState(serverValidateForm, initialActionState);
 
   // Real-time validation
   const validateField = (field: string, value: string): string | undefined => {
