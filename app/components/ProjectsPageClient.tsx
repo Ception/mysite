@@ -312,6 +312,7 @@ export default function ProjectsPageClient() {
                       <Link
                         href={project.liveUrl}
                         target="_blank"
+                        prefetch={false}
                         className="modern-btn success px-6 py-3 flex items-center gap-3 group/btn"
                       >
                         <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />

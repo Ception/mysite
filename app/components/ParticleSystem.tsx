@@ -3,6 +3,15 @@
 import { motion } from "framer-motion";
 
 export default function ParticleSystem() {
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion) {
+    return null;
+  }
+
   return (
     <>
       {/* Floating geometric shapes */}

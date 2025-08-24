@@ -14,6 +14,17 @@ const nextConfig: NextConfig = {
   // Compress responses
   compress: true,
 
+  // Experimental features
+  experimental: {
+    // Optimize per-package imports to reduce bundle size
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "zod",
+      "react-syntax-highlighter",
+    ],
+  },
+
   // Server external packages (moved from experimental)
   serverExternalPackages: [],
 
@@ -23,6 +34,14 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
           {
             key: "X-Frame-Options",
             value: "DENY",
@@ -41,15 +60,7 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      {
-        source: "/api/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=300, s-maxage=300",
-          },
-        ],
-      },
+      // Avoid misleading cache headers on API routes handling POST
     ];
   },
 

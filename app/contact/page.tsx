@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import ContactPageClient from "../components/ContactPageClient";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Contact Aleks Manov - Let's Build Something Amazing Together",
   description:
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
     url: "https://aleksmanov.me/contact",
     images: [
       {
-        url: "/og-contact.jpg",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "Contact Aleks Manov - Full Stack Developer",

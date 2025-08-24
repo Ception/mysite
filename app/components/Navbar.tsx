@@ -55,6 +55,7 @@ export default function Navbar() {
 
             <Link
               href="/projects"
+              prefetch={false}
               className={`relative px-4 py-2 font-medium transition-all duration-300 ${
                 isActive("/projects")
                   ? "text-secondary"
@@ -69,6 +70,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
+              prefetch={false}
               className={`modern-btn primary text-sm ${
                 isActive("/contact") ? "bg-success text-nord-0" : ""
               }`}

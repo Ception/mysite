@@ -166,6 +166,7 @@ export default function HomePage() {
           >
             <Link
               href="/projects"
+              prefetch={false}
               className="modern-btn primary text-lg px-10 py-5 group flex items-center gap-3 transform hover:scale-105 transition-all duration-300"
             >
               <span>View Projects</span>
@@ -173,6 +174,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/contact"
+              prefetch={false}
               className="modern-btn accent text-lg px-10 py-5 group flex items-center gap-3 transform hover:scale-105 transition-all duration-300"
             >
               <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform" />
@@ -894,6 +896,7 @@ export default function HomePage() {
                 <div className="relative">
                   <Link
                     href="/projects"
+                    prefetch={false}
                     className="inline-flex items-center gap-3 text-primary hover:text-secondary transition-all duration-300 font-medium group/link"
                   >
                     <span>Explore Project</span>
@@ -935,6 +938,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/projects"
+                  prefetch={false}
                   className="modern-btn primary text-lg px-10 py-4 group/btn flex items-center gap-3 mx-auto w-fit"
                 >
                   <span>View All Projects</span>
@@ -1264,6 +1268,7 @@ export default function HomePage() {
             >
               <Link
                 href="/contact"
+                prefetch={false}
                 className="modern-btn primary text-lg px-10 py-5 group flex items-center gap-3 transform hover:scale-105 transition-all duration-300 relative overflow-hidden"
               >
                 <Plus className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />

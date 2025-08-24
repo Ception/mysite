@@ -1,6 +1,9 @@
 import { Metadata } from "next";
 import ProjectsPageClient from "../components/ProjectsPageClient";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Projects Portfolio - Aleks Manov | Full Stack Developer",
   description:
@@ -15,7 +18,7 @@ export const metadata: Metadata = {
     url: "https://aleksmanov.me/projects",
     images: [
       {
-        url: "/og-projects.jpg",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "Aleks Manov Projects Portfolio",

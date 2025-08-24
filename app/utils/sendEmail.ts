@@ -1,6 +1,4 @@
 "use server";
-
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { ServerClient } from "postmark";
 
@@ -10,6 +8,7 @@ export async function validateForm(_prevState: unknown, formData: FormData) {
   const input = {
     email: formData.get("email") as string,
     message: formData.get("message") as string,
+    name: (formData.get("name") as string) || "",
   };
 
   const formSchema = z.object({
@@ -21,6 +20,12 @@ export async function validateForm(_prevState: unknown, formData: FormData) {
       .string()
       .min(10, "Message must be at least 10 characters long.")
       .max(1000, "Message must not exceed 1000 characters."),
+    name: z
+      .string()
+      .trim()
+      .max(100, "Name must be less than 100 characters.")
+      .optional()
+      .or(z.literal("")),
   });
 
   const validationResult = formSchema.safeParse(input);
@@ -34,10 +39,9 @@ export async function validateForm(_prevState: unknown, formData: FormData) {
     };
   }
 
-  const { email, message } = validationResult.data;
+  const { email, message, name } = validationResult.data;
   try {
-    await sendEmail(email, message);
-    revalidatePath("/contact");
+    await sendEmail(email, message, name?.trim() || undefined);
     return { success: true, message: "Email successfully sent" };
   } catch (error: unknown) {
     console.error(error);
@@ -48,7 +52,7 @@ export async function validateForm(_prevState: unknown, formData: FormData) {
   }
 }
 
-const sendEmail = async (email: string, message: string) => {
+const sendEmail = async (email: string, message: string, name?: string) => {
   const apiKey = isDevelopment
     ? (process.env.POSTMARK_API_KEY_DEV as string)
     : (process.env.POSTMARK_API_KEY as string);
@@ -63,7 +67,8 @@ const sendEmail = async (email: string, message: string) => {
       MessageStream: "outbound",
       TemplateAlias: templateName,
       TemplateModel: {
-        message: message,
+        message,
+        name,
       },
     });
     return response.MessageID;

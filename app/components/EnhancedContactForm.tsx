@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent, useActionState } from "react";
+ import { useFormStatus } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { validateForm as serverValidateForm } from "../utils/sendEmail";
 import {
   Mail,
   MessageCircle,
@@ -29,6 +31,41 @@ interface FormData {
   name?: string;
 }
 
+function SubmitButton({ disabledByErrors }: { disabledByErrors: boolean }) {
+  const { pending } = useFormStatus();
+  const disabled = pending || disabledByErrors;
+  return (
+    <motion.button
+      type="submit"
+      disabled={disabled}
+      className={`w-full modern-btn primary text-lg py-5 ${
+        disabled ? "opacity-50 cursor-not-allowed" : ""
+      }`}
+      whileHover={{ scale: disabled ? 1 : 1.02 }}
+      whileTap={{ scale: disabled ? 1 : 0.98 }}
+      initial={false}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      {pending ? (
+        <span className="flex items-center justify-center gap-3">
+          <motion.div
+            className="w-5 h-5 border-2 border-nord-0 border-t-transparent rounded-full"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+          />
+          Sending Message...
+        </span>
+      ) : (
+        <span className="flex items-center justify-center gap-3">
+          <Send className="w-5 h-5" />
+          Send Message
+        </span>
+      )}
+    </motion.button>
+  );
+}
+
 export default function EnhancedContactForm() {
   const [formData, setFormData] = useState<FormData>({
     email: "",
@@ -36,13 +73,18 @@ export default function EnhancedContactForm() {
     name: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
   const [showPreview, setShowPreview] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
+
+  const initialActionState: ValidationResult = {
+    success: false,
+    message: "",
+  };
+  const [actionState, formAction] = useActionState(serverValidateForm, initialActionState);
 
   // Real-time validation
   const validateField = (field: string, value: string): string | undefined => {
@@ -75,9 +117,7 @@ export default function EnhancedContactForm() {
     }));
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     setSubmitStatus({ type: null, message: "" });
 
     // Validate all fields
@@ -87,44 +127,25 @@ export default function EnhancedContactForm() {
 
     setErrors(newErrors);
 
-    // Check if there are any errors
     const hasErrors = Object.values(newErrors).some((error) => error);
     if (hasErrors) {
-      setIsSubmitting(false);
-      return;
-    }
-
-    const form = new FormData();
-    form.append("email", formData.email);
-    form.append("message", formData.message);
-    if (formData.name) form.append("name", formData.name);
-
-    try {
-      const response = await fetch("/api/validateForm", {
-        method: "POST",
-        body: form,
-      });
-      const result: ValidationResult = await response.json();
-
-      if (result.success) {
-        setSubmitStatus({
-          type: "success",
-          message: "Message sent successfully!",
-        });
-        setFormData({ email: "", message: "", name: "" });
-        setErrors({});
-      } else {
-        setSubmitStatus({ type: "error", message: result.message });
-      }
-    } catch {
-      setSubmitStatus({
-        type: "error",
-        message: "Failed to send message. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
+      e.preventDefault();
     }
   };
+
+  useEffect(() => {
+    // Ignore initial mount until an action returns a non-empty message
+    if (actionState.message === "") return;
+    if (actionState.success) {
+      setSubmitStatus({ type: "success", message: "Message sent successfully!" });
+      setFormData({ email: "", message: "", name: "" });
+      setErrors({});
+    } else {
+      setSubmitStatus({ type: "error", message: actionState.message || "Submission failed" });
+    }
+  }, [actionState.success, actionState.message]);
+
+  
 
   const getInputVariants = (hasError: boolean, isFocused: boolean) => ({
     initial: { borderColor: "var(--border)" },
@@ -160,7 +181,7 @@ export default function EnhancedContactForm() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form action={formAction} onSubmit={handleSubmit} className="space-y-6">
         {/* Name Field (Optional) */}
         <motion.div
           className="space-y-3"
@@ -174,13 +195,13 @@ export default function EnhancedContactForm() {
           </label>
           <motion.input
             type="text"
+            name="name"
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             onFocus={() => setFocusedField("name")}
             onBlur={() => setFocusedField(null)}
             placeholder="Your name"
             className="w-full modern-input focus-ring text-lg py-4"
-            disabled={isSubmitting}
             {...getInputVariants(false, focusedField === "name")}
           />
         </motion.div>
@@ -198,6 +219,7 @@ export default function EnhancedContactForm() {
           </label>
           <motion.input
             type="email"
+            name="email"
             value={formData.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
             onFocus={() => setFocusedField("email")}
@@ -205,7 +227,6 @@ export default function EnhancedContactForm() {
             placeholder="your.email@domain.com"
             className="w-full modern-input focus-ring text-lg py-4"
             required
-            disabled={isSubmitting}
             {...getInputVariants(!!errors.email, focusedField === "email")}
           />
           <AnimatePresence>
@@ -251,6 +272,7 @@ export default function EnhancedContactForm() {
 
           <div className="space-y-4">
             <motion.textarea
+              name="message"
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
               onFocus={() => setFocusedField("message")}
@@ -258,7 +280,6 @@ export default function EnhancedContactForm() {
               placeholder="Tell me about your project, goals, timeline, budget, or just say hello..."
               className="w-full modern-input focus-ring min-h-[200px] resize-none text-lg py-4"
               required
-              disabled={isSubmitting}
               {...getInputVariants(
                 !!errors.message,
                 focusedField === "message"
@@ -321,52 +342,7 @@ export default function EnhancedContactForm() {
         </motion.div>
 
         {/* Submit Button */}
-        <motion.button
-          type="submit"
-          disabled={
-            isSubmitting || Object.values(errors).some((error) => error)
-          }
-          className={`w-full modern-btn primary text-lg py-5 ${
-            isSubmitting || Object.values(errors).some((error) => error)
-              ? "opacity-50 cursor-not-allowed"
-              : ""
-          }`}
-          whileHover={{
-            scale:
-              isSubmitting || Object.values(errors).some((error) => error)
-                ? 1
-                : 1.02,
-          }}
-          whileTap={{
-            scale:
-              isSubmitting || Object.values(errors).some((error) => error)
-                ? 1
-                : 0.98,
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          {isSubmitting ? (
-            <span className="flex items-center justify-center gap-3">
-              <motion.div
-                className="w-5 h-5 border-2 border-nord-0 border-t-transparent rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-              Sending Message...
-            </span>
-          ) : (
-            <span className="flex items-center justify-center gap-3">
-              <Send className="w-5 h-5" />
-              Send Message
-            </span>
-          )}
-        </motion.button>
+        <SubmitButton disabledByErrors={Object.values(errors).some((e) => !!e)} />
       </form>
 
       {/* Submit Status */}
