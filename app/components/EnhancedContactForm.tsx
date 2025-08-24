@@ -80,8 +80,8 @@ export default function EnhancedContactForm() {
   const [showPreview, setShowPreview] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const initialActionState: ValidationResult & { success: boolean | null } = {
-    success: null,
+  const initialActionState: ValidationResult = {
+    success: false,
     message: "",
   };
   const [actionState, formAction] = useActionState(serverValidateForm, initialActionState);
@@ -134,7 +134,8 @@ export default function EnhancedContactForm() {
   };
 
   useEffect(() => {
-    if (actionState.success === null) return;
+    // Ignore initial mount until an action returns a non-empty message
+    if (actionState.message === "") return;
     if (actionState.success) {
       setSubmitStatus({ type: "success", message: "Message sent successfully!" });
       setFormData({ email: "", message: "", name: "" });
